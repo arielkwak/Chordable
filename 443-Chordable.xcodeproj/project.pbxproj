@@ -8,21 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */; };
-		35B244122AEEF8E700F04453 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244112AEEF8E700F04453 /* ContentView.swift */; };
 		35B244142AEEF8E800F04453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244132AEEF8E800F04453 /* Assets.xcassets */; };
 		35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244162AEEF8E800F04453 /* Preview Assets.xcassets */; };
 		35B244192AEEF8E800F04453 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244182AEEF8E800F04453 /* Persistence.swift */; };
 		35B2441C2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35B2441A2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld */; };
+		35B244242AEF052E00F04453 /* ChordDataInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244232AEF052E00F04453 /* ChordDataInitializer.swift */; };
+		35B244262AEF065C00F04453 /* SongDataInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244252AEF065C00F04453 /* SongDataInitializer.swift */; };
+		35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2442C2AEF09F600F04453 /* HomeView.swift */; };
+		35B2442F2AEF0A0000F04453 /* ChordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2442E2AEF0A0000F04453 /* ChordsView.swift */; };
+		35B244312AEF0A0900F04453 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244302AEF0A0900F04453 /* SongsView.swift */; };
+		35B244352AEF0E3F00F04453 /* ChordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244342AEF0E3F00F04453 /* ChordsViewController.swift */; };
+		35B244392AEF102400F04453 /* ChordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244382AEF102400F04453 /* ChordDetailView.swift */; };
+		35B2443B2AEF168B00F04453 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2443A2AEF168B00F04453 /* MainTabView.swift */; };
+		35B2443D2AEF3FB800F04453 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2443C2AEF3FB800F04453 /* Chord.swift */; };
+		35B2443F2AEF401600F04453 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2443E2AEF401600F04453 /* Song.swift */; };
+		35B244412AEF403400F04453 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244402AEF403400F04453 /* Quote.swift */; };
+		35B244432AEF404B00F04453 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244422AEF404B00F04453 /* UserInfo.swift */; };
+		35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244442AEF406300F04453 /* SongChordInstance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35B2440C2AEEF8E700F04453 /* 443-Chordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "443-Chordable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableApp.swift; sourceTree = "<group>"; };
-		35B244112AEEF8E700F04453 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35B244132AEEF8E800F04453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B244162AEEF8E800F04453 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		35B244182AEEF8E800F04453 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		35B2441B2AEEF8E800F04453 /* _43_Chordable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = _43_Chordable.xcdatamodel; sourceTree = "<group>"; };
+		35B244232AEF052E00F04453 /* ChordDataInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDataInitializer.swift; sourceTree = "<group>"; };
+		35B244252AEF065C00F04453 /* SongDataInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDataInitializer.swift; sourceTree = "<group>"; };
+		35B2442C2AEF09F600F04453 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		35B2442E2AEF0A0000F04453 /* ChordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordsView.swift; sourceTree = "<group>"; };
+		35B244302AEF0A0900F04453 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
+		35B244342AEF0E3F00F04453 /* ChordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordsViewController.swift; sourceTree = "<group>"; };
+		35B244382AEF102400F04453 /* ChordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailView.swift; sourceTree = "<group>"; };
+		35B2443A2AEF168B00F04453 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		35B2443C2AEF3FB800F04453 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		35B2443E2AEF401600F04453 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		35B244402AEF403400F04453 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		35B244422AEF404B00F04453 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +79,12 @@
 		35B2440E2AEEF8E700F04453 /* 443-Chordable */ = {
 			isa = PBXGroup;
 			children = (
+				35B244332AEF0E1300F04453 /* Models */,
+				35B244322AEF0E0B00F04453 /* Controllers */,
+				35B2442A2AEF09DC00F04453 /* Views */,
+				35B244272AEF099B00F04453 /* Services */,
 				35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */,
-				35B244112AEEF8E700F04453 /* ContentView.swift */,
 				35B244132AEEF8E800F04453 /* Assets.xcassets */,
-				35B244182AEEF8E800F04453 /* Persistence.swift */,
 				35B2441A2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld */,
 				35B244152AEEF8E800F04453 /* Preview Content */,
 			);
@@ -71,6 +97,80 @@
 				35B244162AEEF8E800F04453 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		35B244222AEF04F300F04453 /* DataInitializers */ = {
+			isa = PBXGroup;
+			children = (
+				35B244232AEF052E00F04453 /* ChordDataInitializer.swift */,
+				35B244252AEF065C00F04453 /* SongDataInitializer.swift */,
+			);
+			path = DataInitializers;
+			sourceTree = "<group>";
+		};
+		35B244272AEF099B00F04453 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				35B244282AEF09A300F04453 /* CoreData */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		35B244282AEF09A300F04453 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				35B244222AEF04F300F04453 /* DataInitializers */,
+				35B244182AEEF8E800F04453 /* Persistence.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		35B2442A2AEF09DC00F04453 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35B244372AEF101300F04453 /* ChordDetail */,
+				35B2442B2AEF09E900F04453 /* Tabs */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35B2442B2AEF09E900F04453 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				35B2442C2AEF09F600F04453 /* HomeView.swift */,
+				35B2442E2AEF0A0000F04453 /* ChordsView.swift */,
+				35B244302AEF0A0900F04453 /* SongsView.swift */,
+				35B2443A2AEF168B00F04453 /* MainTabView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		35B244322AEF0E0B00F04453 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				35B244342AEF0E3F00F04453 /* ChordsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		35B244332AEF0E1300F04453 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35B2443C2AEF3FB800F04453 /* Chord.swift */,
+				35B2443E2AEF401600F04453 /* Song.swift */,
+				35B244402AEF403400F04453 /* Quote.swift */,
+				35B244422AEF404B00F04453 /* UserInfo.swift */,
+				35B244442AEF406300F04453 /* SongChordInstance.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35B244372AEF101300F04453 /* ChordDetail */ = {
+			isa = PBXGroup;
+			children = (
+				35B244382AEF102400F04453 /* ChordDetailView.swift */,
+			);
+			path = ChordDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,10 +243,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B2443F2AEF401600F04453 /* Song.swift in Sources */,
+				35B244242AEF052E00F04453 /* ChordDataInitializer.swift in Sources */,
+				35B2442F2AEF0A0000F04453 /* ChordsView.swift in Sources */,
+				35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */,
+				35B244432AEF404B00F04453 /* UserInfo.swift in Sources */,
+				35B244352AEF0E3F00F04453 /* ChordsViewController.swift in Sources */,
+				35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */,
+				35B244262AEF065C00F04453 /* SongDataInitializer.swift in Sources */,
+				35B244312AEF0A0900F04453 /* SongsView.swift in Sources */,
 				35B244192AEEF8E800F04453 /* Persistence.swift in Sources */,
-				35B244122AEEF8E700F04453 /* ContentView.swift in Sources */,
+				35B244392AEF102400F04453 /* ChordDetailView.swift in Sources */,
 				35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */,
+				35B2443B2AEF168B00F04453 /* MainTabView.swift in Sources */,
 				35B2441C2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld in Sources */,
+				35B244412AEF403400F04453 /* Quote.swift in Sources */,
+				35B2443D2AEF3FB800F04453 /* Chord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

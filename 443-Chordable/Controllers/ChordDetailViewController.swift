@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate {
+class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
   func viewDidLoad() {
@@ -23,11 +23,34 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     }
   }
   
-  
   var audioRecorder: AVAudioRecorder?
   var audioPlayer: AVAudioPlayer?
   
-  // save one audio to temporary directory
+  // MARK: - Playing Audio -
+  
+  // playing audio
+  func playChord() {
+    print("playing")
+    guard let path = Bundle.main.path(forResource: "sample-audio", ofType: "wav") else {
+      print("File not found")
+      return
+    }
+    let url = URL(fileURLWithPath: path)
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOf: url)
+      audioPlayer?.delegate = self
+      status = .playing
+      audioPlayer?.play()
+      status = .stopped
+    } catch {
+      print("Error playing chord file")
+    }
+  }
+  
+  
+  // MARK: - Recording Audio -
+  
+  // save recorded audio to temporary directory
   var urlForMemo: URL {
     let fileManager = FileManager.default
     let tempDir = fileManager.temporaryDirectory

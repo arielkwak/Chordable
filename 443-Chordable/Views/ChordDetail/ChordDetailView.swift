@@ -17,6 +17,13 @@ struct ChordDetailView: View {
 
   var body: some View {
     VStack {
+      // play chord audio
+      if audio.status == .stopped {
+        Button("Hear Chord", action: {
+          audio.playChord()
+        })
+      }
+      
       Text(chord.chord_name ?? "")
         .font(.largeTitle)
         .padding()
@@ -42,7 +49,7 @@ struct ChordDetailView: View {
       // change images from assets import
       Image(audio.status == .recording ?
             "button-record-active" :
-              "button-record-inactive")
+            "button-record-inactive")
       .resizable()
       .scaledToFit()
     }

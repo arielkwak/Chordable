@@ -13,7 +13,7 @@ struct ChordDetailView: View {
   @State var hasMicAccess = false
   @State var displayNotification = false
   
-    let chord: Chord
+  let chord: Chord
 
   var body: some View {
     VStack {
@@ -22,11 +22,13 @@ struct ChordDetailView: View {
         .padding()
       
       Spacer()
+      // Display corresponding chord image
+      Image("\(chord.chord_name ?? "")")
     }
     .navigationTitle(chord.chord_name ?? "Chord Detail")
     
     Button {
-      // record audio
+      // record audio for 5 seconds
       if audio.status == .stopped {
         if hasMicAccess {
           audio.record(forDuration: 5)
@@ -47,13 +49,17 @@ struct ChordDetailView: View {
   }
   
   private func requestMicrophoneAccess() {
-    AVAudioApplication.requestRecordPermission { granted in
-      hasMicAccess = granted
-      if granted {
-        audio.record(forDuration: 5)
-      } else {
-        displayNotification = true
+    if #available(iOS 17.0, *) {
+      AVAudioApplication.requestRecordPermission { granted in
+        hasMicAccess = granted
+        if granted {
+          audio.record(forDuration: 5)
+        } else {
+          displayNotification = true
+        }
       }
+    } else {
+      // Fallback on earlier versions
     }
   }
 }

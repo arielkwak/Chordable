@@ -3,7 +3,7 @@
 //  443-Chordable
 //
 //  Created by Minjoo Kim on 10/31/23.
-//  Code adapted from lesson: https://www.kodeco.com/21868250-audio-with-avfoundation/lessons/1
+//  Audio code adapted from lesson: https://www.kodeco.com/21868250-audio-with-avfoundation/lessons/1
 
 import Foundation
 import AVFoundation

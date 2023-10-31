@@ -47,48 +47,6 @@
 		35B244402AEF403400F04453 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		35B244422AEF404B00F04453 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
-		F014E2802AF08D6A0045FACC /* DMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = DMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2812AF08D6A0045FACC /* r&b_soul_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "r&b_soul_icon.svg"; sourceTree = "<group>"; };
-		F014E2822AF08D6A0045FACC /* CMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2832AF08D6A0045FACC /* rock_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = rock_icon.svg; sourceTree = "<group>"; };
-		F014E2842AF08D6A0045FACC /* chords_tab_highlighted.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = chords_tab_highlighted.svg; sourceTree = "<group>"; };
-		F014E2852AF08D6A0045FACC /* GMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = GMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2862AF08D6A0045FACC /* A#Minor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "A#Minor_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2872AF08D6A0045FACC /* G#Major_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "G#Major_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2882AF08D6A0045FACC /* FMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = FMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2892AF08D6A0045FACC /* left_hand_view.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = left_hand_view.svg; sourceTree = "<group>"; };
-		F014E28A2AF08D6A0045FACC /* AMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = AMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E28B2AF08D6A0045FACC /* guitar_holding_guide.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = guitar_holding_guide.svg; sourceTree = "<group>"; };
-		F014E28C2AF08D6A0045FACC /* home_tab_highlighted.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_tab_highlighted.svg; sourceTree = "<group>"; };
-		F014E28D2AF08D6A0045FACC /* home_tab_grey.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = home_tab_grey.svg; sourceTree = "<group>"; };
-		F014E28E2AF08D6A0045FACC /* C#Major_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "C#Major_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E28F2AF08D6A0045FACC /* song_tab_highlighted.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = song_tab_highlighted.svg; sourceTree = "<group>"; };
-		F014E2902AF08D6A0045FACC /* F#Minor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "F#Minor_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2912AF08D6A0045FACC /* BMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = BMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2922AF08D6A0045FACC /* D#Major_diagram_images.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "D#Major_diagram_images.svg"; sourceTree = "<group>"; };
-		F014E2932AF08D6A0045FACC /* EMajor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = EMajor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2942AF08D6A0045FACC /* folk_country_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = folk_country_icon.svg; sourceTree = "<group>"; };
-		F014E2952AF08D6A0045FACC /* CMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2962AF08D6A0045FACC /* DMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = DMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2972AF08D6A0045FACC /* congrats_emoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = congrats_emoji.png; sourceTree = "<group>"; };
-		F014E2982AF08D6A0045FACC /* D#Minor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "D#Minor_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2992AF08D6A0045FACC /* A#Major_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "A#Major_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E29A2AF08D6A0045FACC /* GMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = GMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E29B2AF08D6A0045FACC /* AMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = AMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E29C2AF08D6A0045FACC /* song_tab_grey.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = song_tab_grey.svg; sourceTree = "<group>"; };
-		F014E29D2AF08D6A0045FACC /* finger_guide_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = finger_guide_icon.svg; sourceTree = "<group>"; };
-		F014E29E2AF08D6A0045FACC /* G#Minor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "G#Minor_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E29F2AF08D6A0045FACC /* FMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = FMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2A02AF08D6A0045FACC /* fire_emoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_emoji.png; sourceTree = "<group>"; };
-		F014E2A12AF08D6A0045FACC /* start_page_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_page_background_image.png; sourceTree = "<group>"; };
-		F014E2A22AF08D6A0045FACC /* EMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = EMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2A32AF08D6A0045FACC /* american_pop_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = american_pop_icon.svg; sourceTree = "<group>"; };
-		F014E2A42AF08D6A0045FACC /* locked_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = locked_icon.svg; sourceTree = "<group>"; };
-		F014E2A52AF08D6A0045FACC /* alternative_icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = alternative_icon.svg; sourceTree = "<group>"; };
-		F014E2A62AF08D6A0045FACC /* C#Minor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "C#Minor_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2A72AF08D6A0045FACC /* F#Major_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "F#Major_diagram_image.svg"; sourceTree = "<group>"; };
-		F014E2A82AF08D6A0045FACC /* BMinor_diagram_image.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = BMinor_diagram_image.svg; sourceTree = "<group>"; };
-		F014E2A92AF08D6A0045FACC /* chords_tab_grey.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = chords_tab_grey.svg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +79,6 @@
 		35B2440E2AEEF8E700F04453 /* 443-Chordable */ = {
 			isa = PBXGroup;
 			children = (
-				F014E27F2AF08D6A0045FACC /* Assets */,
 				35B244332AEF0E1300F04453 /* Models */,
 				35B244322AEF0E0B00F04453 /* Controllers */,
 				35B2442A2AEF09DC00F04453 /* Views */,
@@ -214,55 +171,6 @@
 				35B244382AEF102400F04453 /* ChordDetailView.swift */,
 			);
 			path = ChordDetail;
-			sourceTree = "<group>";
-		};
-		F014E27F2AF08D6A0045FACC /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				F014E2802AF08D6A0045FACC /* DMajor_diagram_image.svg */,
-				F014E2812AF08D6A0045FACC /* r&b_soul_icon.svg */,
-				F014E2822AF08D6A0045FACC /* CMajor_diagram_image.svg */,
-				F014E2832AF08D6A0045FACC /* rock_icon.svg */,
-				F014E2842AF08D6A0045FACC /* chords_tab_highlighted.svg */,
-				F014E2852AF08D6A0045FACC /* GMajor_diagram_image.svg */,
-				F014E2862AF08D6A0045FACC /* A#Minor_diagram_image.svg */,
-				F014E2872AF08D6A0045FACC /* G#Major_diagram_image.svg */,
-				F014E2882AF08D6A0045FACC /* FMajor_diagram_image.svg */,
-				F014E2892AF08D6A0045FACC /* left_hand_view.svg */,
-				F014E28A2AF08D6A0045FACC /* AMajor_diagram_image.svg */,
-				F014E28B2AF08D6A0045FACC /* guitar_holding_guide.svg */,
-				F014E28C2AF08D6A0045FACC /* home_tab_highlighted.svg */,
-				F014E28D2AF08D6A0045FACC /* home_tab_grey.svg */,
-				F014E28E2AF08D6A0045FACC /* C#Major_diagram_image.svg */,
-				F014E28F2AF08D6A0045FACC /* song_tab_highlighted.svg */,
-				F014E2902AF08D6A0045FACC /* F#Minor_diagram_image.svg */,
-				F014E2912AF08D6A0045FACC /* BMajor_diagram_image.svg */,
-				F014E2922AF08D6A0045FACC /* D#Major_diagram_images.svg */,
-				F014E2932AF08D6A0045FACC /* EMajor_diagram_image.svg */,
-				F014E2942AF08D6A0045FACC /* folk_country_icon.svg */,
-				F014E2952AF08D6A0045FACC /* CMinor_diagram_image.svg */,
-				F014E2962AF08D6A0045FACC /* DMinor_diagram_image.svg */,
-				F014E2972AF08D6A0045FACC /* congrats_emoji.png */,
-				F014E2982AF08D6A0045FACC /* D#Minor_diagram_image.svg */,
-				F014E2992AF08D6A0045FACC /* A#Major_diagram_image.svg */,
-				F014E29A2AF08D6A0045FACC /* GMinor_diagram_image.svg */,
-				F014E29B2AF08D6A0045FACC /* AMinor_diagram_image.svg */,
-				F014E29C2AF08D6A0045FACC /* song_tab_grey.svg */,
-				F014E29D2AF08D6A0045FACC /* finger_guide_icon.svg */,
-				F014E29E2AF08D6A0045FACC /* G#Minor_diagram_image.svg */,
-				F014E29F2AF08D6A0045FACC /* FMinor_diagram_image.svg */,
-				F014E2A02AF08D6A0045FACC /* fire_emoji.png */,
-				F014E2A12AF08D6A0045FACC /* start_page_background_image.png */,
-				F014E2A22AF08D6A0045FACC /* EMinor_diagram_image.svg */,
-				F014E2A32AF08D6A0045FACC /* american_pop_icon.svg */,
-				F014E2A42AF08D6A0045FACC /* locked_icon.svg */,
-				F014E2A52AF08D6A0045FACC /* alternative_icon.svg */,
-				F014E2A62AF08D6A0045FACC /* C#Minor_diagram_image.svg */,
-				F014E2A72AF08D6A0045FACC /* F#Major_diagram_image.svg */,
-				F014E2A82AF08D6A0045FACC /* BMinor_diagram_image.svg */,
-				F014E2A92AF08D6A0045FACC /* chords_tab_grey.svg */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

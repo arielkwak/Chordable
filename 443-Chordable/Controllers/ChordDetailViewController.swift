@@ -31,7 +31,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   // playing audio
   func playChord() {
     print("playing")
-    guard let path = Bundle.main.path(forResource: "sample-audio", ofType: "wav") else {
+    guard let path = Bundle.main.path(forResource: "sample-audio-test", ofType: "wav") else {
       print("File not found")
       return
     }

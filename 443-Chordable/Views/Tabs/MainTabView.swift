@@ -23,14 +23,14 @@ struct MainTabView: View {
             // Home Tab
             HomeView()
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image(selectedTab == 0 ? "home_tab_grey" : "home_tab_highlighted")
                     Text("Home")
                 }
             
             // Songs Tab
             SongsView()
                 .tabItem {
-                    Image(systemName: "music.mic")
+                    Image(selectedTab == 0 ? "song_tab_grey" : "song_tab_highlighted")
                     Text("Songs")
                 }
         }

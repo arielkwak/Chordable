@@ -50,9 +50,6 @@ struct ChordsView: View {
                     .padding()
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
-//                    .onTapGesture {
-//                      viewController.completeChord(chord)
-//                    }
                   }
                 }.padding([.leading, .trailing])
               }

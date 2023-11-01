@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 extension Chord {
+  // change to remove trail of 'm'
     var displayableName: String {
         return self.chord_name ?? "Unknown Chord"
     }

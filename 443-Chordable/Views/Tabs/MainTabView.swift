@@ -1,56 +1,65 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: Int = 0  // To keep track of the currently selected tab
-
-    init() {
-      let appearance = UITabBarAppearance()
-      appearance.backgroundColor = .black
-      if #available(iOS 14.0, *) {
-           appearance.shadowColor = UIColor(Color(red: 0.14, green: 0, blue: 1))
-       } else {
-           // Fallback on earlier versions
-           appearance.shadowColor = .white
-       }
-      UITabBar.appearance().scrollEdgeAppearance = appearance
-      UITabBar.appearance().standardAppearance = appearance
-    }
+    @State private var selectedTab: Int = 0
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            // Chords Tab
-            ChordsView(viewController: ChordsViewController())
-                .tabItem {
-                    Image(selectedTab == 0 ? "chords_tab_highlighted" : "chords_tab_grey")
-                    Text("Chords")
-                    .fontWeight(selectedTab == 0 ? .bold : .regular)
-                    .foregroundColor(selectedTab == 0 ? .white : .gray)
-                }
-                .tag(0)
-            
-            // Home Tab
-            HomeView()
-                .tabItem {
-                    Image(selectedTab == 1 ? "home_tab_highlighted" : "home_tab_grey")
-                    Text("Home")
-                    .fontWeight(selectedTab == 1 ? .bold : .regular)
-                    .foregroundColor(selectedTab == 1 ? .white : .gray)
+        VStack(spacing: 0) { // Remove the Spacer and set spacing to 0
+            // Content views for different tabs
+            if selectedTab == 0 {
+                ChordsView(viewController: ChordsViewController())
+            } else if selectedTab == 1 {
+                HomeView()
+            } else if selectedTab == 2 {
+                SongsView()
+            }
 
+            Rectangle()
+            .fill(Color(red: 0.14, green: 0, blue: 1))
+            .frame(height: 2)
+            HStack {
+                CustomTabBarButton(selectedImageName: "chords_tab_highlighted", unselectedImageName: "chords_tab_grey", title: "Chords", isSelected: selectedTab == 0) {
+                    selectedTab = 0
                 }
-                .tag(1)
-            
-            // Songs Tab
-            SongsView()
-                .tabItem {
-                    Image(selectedTab == 2 ? "song_tab_highlighted" : "song_tab_grey")
-                    Text("Songs")
-                    .fontWeight(selectedTab == 0 ? .bold : .regular)
-                    .foregroundColor(selectedTab == 2 ? .white : .gray)
+                CustomTabBarButton(selectedImageName: "home_tab_highlighted", unselectedImageName: "home_tab_grey", title: "Home", isSelected: selectedTab == 1) {
+                    selectedTab = 1
                 }
-                .tag(2)
+                CustomTabBarButton(selectedImageName: "song_tab_highlighted", unselectedImageName: "song_tab_grey", title: "Songs", isSelected: selectedTab == 2) {
+                    selectedTab = 2
+                }
+            }
+            .frame(height: 88)
+            .background(Color.black)
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
+
+struct CustomTabBarButton: View {
+    let selectedImageName: String
+    let unselectedImageName: String
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                Image(isSelected ? selectedImageName : unselectedImageName)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.top, 10)
+                Text(title)
+                    .font(.system(size: 10))
+                    .fontWeight(isSelected ? .bold : .regular)
+                    .foregroundColor(isSelected ? .white : .gray)
+                    .padding(.bottom, 30)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {

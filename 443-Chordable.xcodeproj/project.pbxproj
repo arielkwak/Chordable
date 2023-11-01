@@ -25,6 +25,7 @@
 		35B244412AEF403400F04453 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244402AEF403400F04453 /* Quote.swift */; };
 		35B244432AEF404B00F04453 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244422AEF404B00F04453 /* UserInfo.swift */; };
 		35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244442AEF406300F04453 /* SongChordInstance.swift */; };
+		419C8DEB2AF1E44C00A91F2A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 419C8DEA2AF1E44C00A91F2A /* .gitignore */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
 		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
 		41FB94392AF1636A00409446 /* sample-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41FB94382AF1636A00409446 /* sample-audio.wav */; };
@@ -51,6 +52,7 @@
 		35B244402AEF403400F04453 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		35B244422AEF404B00F04453 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
+		419C8DEA2AF1E44C00A91F2A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 		41FB94382AF1636A00409446 /* sample-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "sample-audio.wav"; path = "../../../../../../Downloads/sample-audio.wav"; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		35B244032AEEF8E600F04453 = {
 			isa = PBXGroup;
 			children = (
+				419C8DEA2AF1E44C00A91F2A /* .gitignore */,
 				35B2440E2AEEF8E700F04453 /* 443-Chordable */,
 				35B2440D2AEEF8E700F04453 /* Products */,
 			);
@@ -251,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419C8DEB2AF1E44C00A91F2A /* .gitignore in Resources */,
 				35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */,
 				41FB94392AF1636A00409446 /* sample-audio.wav in Resources */,
 				35B244142AEEF8E800F04453 /* Assets.xcassets in Resources */,

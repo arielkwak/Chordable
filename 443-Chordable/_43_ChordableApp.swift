@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+
 struct _43_ChordableApp: App {
     let persistenceController = PersistenceController.shared
 

@@ -1,8 +1,9 @@
 {
   "data" : [
     {
-      "filename" : "A#.wav",
-      "idiom" : "universal"
+      "filename" : "Contents.json",
+      "idiom" : "universal",
+      "universal-type-identifier" : "public.json"
     }
   ],
   "info" : {

@@ -20,7 +20,7 @@ struct ChordDetailView: View {
       // play chord audio
       if audio.status == .stopped {
         Button("Hear Chord", action: {
-          audio.playChord()
+          audio.playChord(chordName: "\(chord.chord_name ?? "")")
         })
       }
       

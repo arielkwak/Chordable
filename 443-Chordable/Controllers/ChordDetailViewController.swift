@@ -26,19 +26,19 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   var audioRecorder: AVAudioRecorder?
   var audioPlayer: AVAudioPlayer?
   
+  
   // MARK: - Playing Audio -
   
   // playing audio
-  func playChord() {
-    print("playing")
+  func playChord(chordName: String) {
     // change audio file path for each chord
-    guard let path = Bundle.main.path(forResource: "sample-audio-test", ofType: "wav") else {
+    print(chordName)
+    guard let asset  = NSDataAsset(name: chordName) else {
       print("File not found")
       return
     }
-    let url = URL(fileURLWithPath: path)
     do {
-      audioPlayer = try AVAudioPlayer(contentsOf: url)
+      audioPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint:"wav")
       audioPlayer?.delegate = self
       status = .playing
       audioPlayer?.play()

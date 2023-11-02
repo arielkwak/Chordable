@@ -94,10 +94,20 @@ struct ChordsView: View {
 struct SearchBar: View {
     @Binding var text: String
     var body: some View {
-        TextField("Search for chords...", text: $text)
-            .padding(10)
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            .padding([.leading, .trailing])
+        HStack {
+            Image(systemName: "magnifyingglass")  // Add this line
+                .foregroundColor(.black)
+                .padding(.horizontal, 15)
+            
+            TextField("Search for chords...", text: $text)
+                .padding(.vertical, 10)
+                .background(Color.white)
+                .foregroundColor(.black)
+                .font(Font.custom("Barlow-regular", size: 16))
+        }
+        .background(Color.white)
+        .cornerRadius(8)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 30)
     }
 }

@@ -47,17 +47,17 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
   
   // MARK: - Recording Audio -
-   
+  
    // save recorded audio to temporary directory
-   var urlForMemo: URL {
+  var urlForMemo: URL {
      let fileManager = FileManager.default
      let tempDir = fileManager.temporaryDirectory
      let filePath = "TempMemo.caf"
      return tempDir.appendingPathComponent(filePath)
-   }
+  }
    
    // recording function
-   func setupRecorder() {
+  func setupRecorder() {
      // set up recording setting
      let recordSettings: [String: Any] = [
        AVFormatIDKey: Int(kAudioFormatLinearPCM),
@@ -73,19 +73,23 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
      } catch {
        print("Error creating audioRecording")
      }
-   }
+  }
    
-   // begin recording for 5 seconds
-   func record(forDuration duration: TimeInterval) {
-     audioRecorder?.record(forDuration: duration)
-     status = .recording
-   }
+   // begin recording for 5 seconds with 3 second delay
+  func record() {
+//     let delay = 3.0
+//     let playAt = (audioRecorder?.deviceCurrentTime ?? 0.0) + delay
+    let duration = 5.0
+//    audioRecorder?.record(atTime: playAt, forDuration: duration)
+    audioRecorder?.record(forDuration: duration)
+    status = .recording
+  }
    
    // stop recording
-   func stopRecording() {
+  func stopRecording() {
      audioRecorder?.stop()
      status = .stopped
-   }
+  }
  }
 
 extension ChordDetailViewController {

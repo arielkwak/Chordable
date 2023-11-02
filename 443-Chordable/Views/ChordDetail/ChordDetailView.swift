@@ -12,6 +12,8 @@ struct ChordDetailView: View {
   @ObservedObject var audio = ChordDetailViewController()
   @State var hasMicAccess = false
   @State var displayNotification = false
+  @State var countdown = 3
+  @State var isCountingDown = false
   
   let chord: Chord
 
@@ -38,12 +40,16 @@ struct ChordDetailView: View {
     }
     .navigationTitle(chord.chord_name ?? "Chord Detail")
     
+    if isCountingDown {
+      Text("\(countdown)")
+    }
+    
     // record chord
     Button {
-      // record audio for 5 seconds
+      // record audio
       if audio.status == .stopped {
         if hasMicAccess {
-          audio.record(forDuration: 5)
+          startCountdown()
         } else {
           requestMicrophoneAccess()
         }
@@ -52,11 +58,23 @@ struct ChordDetailView: View {
       }
     } label: {
       // change images from assets import
-      Image(audio.status == .recording ?
-            "button-record-active" :
-            "button-record-inactive")
+      let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
+      Image(systemName: imageName)
       .resizable()
       .scaledToFit()
+    }
+  }
+  private func startCountdown() {
+    isCountingDown = true
+    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+      if countdown > 0 {
+        countdown -= 1
+      } else {
+        isCountingDown = false
+        timer.invalidate()
+        countdown = 3
+        audio.record()
+      }
     }
   }
   
@@ -65,7 +83,7 @@ struct ChordDetailView: View {
       AVAudioApplication.requestRecordPermission { granted in
         hasMicAccess = granted
         if granted {
-          audio.record(forDuration: 5)
+          startCountdown()
         } else {
           displayNotification = true
         }

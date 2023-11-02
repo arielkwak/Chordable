@@ -17,7 +17,6 @@ class ChordsViewController: ObservableObject {
     }
 
     func fetchChords() {
-        print("here")
         let request: NSFetchRequest<Chord> = Chord.fetchChords(completed: filterOnCompleted)
         do {
             displayedChords = try viewContext.fetch(request)

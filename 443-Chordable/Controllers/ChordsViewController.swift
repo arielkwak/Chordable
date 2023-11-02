@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
+
 class ChordsViewController: ObservableObject {
     @Published var displayedChords: [Chord] = []
     @Published var filterOnCompleted: Bool = false {
@@ -9,20 +10,23 @@ class ChordsViewController: ObservableObject {
             fetchChords()
         }
     }
-
     private var viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext
-
     init() {
         fetchChords()
     }
-
-    func fetchChords() {
-        let request: NSFetchRequest<Chord> = Chord.fetchChords(completed: filterOnCompleted)
-        do {
-            displayedChords = try viewContext.fetch(request)
-        } catch {
-            print("Failed to fetch chords: \(error)")
+  
+    @Published var searchQuery: String = "" {
+        didSet {
+            fetchChords()
         }
+    }
+    func fetchChords() {
+      let request: NSFetchRequest<Chord> = Chord.fetchChords(completed: filterOnCompleted, searchText: searchQuery)
+      do {
+          displayedChords = try viewContext.fetch(request)
+      } catch {
+          print("Failed to fetch chords: \(error)")
+      }
     }
   
     func completeChord(_ chord: Chord) {
@@ -36,5 +40,5 @@ class ChordsViewController: ObservableObject {
         }
         fetchChords() // Refresh the chords
     }
-
 }
+

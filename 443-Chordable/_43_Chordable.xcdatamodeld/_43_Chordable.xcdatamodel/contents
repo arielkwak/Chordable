@@ -5,6 +5,7 @@
         <attribute name="chord_name" optional="YES" attributeType="String"/>
         <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="difficulty" optional="YES" attributeType="String"/>
+        <attribute name="displayable_name" optional="YES" attributeType="String"/>
         <attribute name="quality" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Quote" representedClassName="Quote" syncable="YES" codeGenerationType="class">

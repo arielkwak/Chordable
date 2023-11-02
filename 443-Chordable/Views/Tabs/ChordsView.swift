@@ -12,6 +12,8 @@ struct ChordsView: View {
             .foregroundColor(.white)
             .padding()
           
+          SearchBar(text: $viewController.searchQuery)
+          
           HStack {
             Button(action: {
               viewController.filterOnCompleted = true
@@ -43,7 +45,7 @@ struct ChordsView: View {
               
               LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 8), count: 3), spacing: 10) {
                 ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
-                  let displayableName = chord.displayableName.replacingOccurrences(of: "m", with: "")
+                  let displayableName = chord.displayable_name ?? "Unknown Chord"
                   let chordParts = displayableName.components(separatedBy: "#")
                   NavigationLink(destination: ChordDetailView(chord: chord)) {
                     VStack {
@@ -86,4 +88,16 @@ struct ChordsView: View {
       .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
     }
   }
+}
+
+
+struct SearchBar: View {
+    @Binding var text: String
+    var body: some View {
+        TextField("Search for chords...", text: $text)
+            .padding(10)
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
+            .padding([.leading, .trailing])
+    }
 }

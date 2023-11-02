@@ -22,7 +22,11 @@ struct ChordDetailView: View {
         })
       }
       
-      Text(chord.chord_name ?? "")
+      Text(chord.displayable_name ?? "")
+        .font(.largeTitle)
+        .padding()
+      
+      Text(chord.quality ?? "")
         .font(.largeTitle)
         .padding()
       

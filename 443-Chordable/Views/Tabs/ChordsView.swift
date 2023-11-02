@@ -30,6 +30,9 @@ struct ChordsView: View {
                 .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
+//                .onTapGesture {
+//                  viewController.completeChord(chord)
+//                }
             }
           }.padding([.leading, .trailing])
           

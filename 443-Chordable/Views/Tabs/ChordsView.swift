@@ -41,49 +41,28 @@ struct ChordsView: View {
                 .padding(.top)
                 .foregroundColor(.white)
               
-              LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 8), count: 3), spacing: 10) {
+              LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
                 ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
-                  let displayableName = chord.displayableName.replacingOccurrences(of: "m", with: "")
-                  let chordParts = displayableName.components(separatedBy: "#")
                   NavigationLink(destination: ChordDetailView(chord: chord)) {
                     VStack {
-                      HStack {
-                        if let firstPart = chordParts.first {
-                          Text(firstPart)
-                            .font(.custom("Barlow-BlackItalic", size: 64))
-                            .foregroundColor(.white)
-                            .fixedSize(horizontal: false, vertical: true)
-                        }
-                        if chordParts.count > 1 {
-                          Text("#" + chordParts[1])
-                            .font(.custom("Barlow-BlackItalic", size: 32))
-                            .foregroundColor(.white)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .offset(x:-5, y: -10)
-                        }
-                      }.frame(width:90, height: 50)
-                        .padding(.top, 8)
+                      Text(chord.displayableName)
+                        .font(.title)
                       Text(chord.quality ?? "Major or Minor")
-                        .font(.custom("Barlow-Regular", size: 24))
-                        .foregroundColor(.white)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, 8)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 10)
-                    .background(Color.black)
-                    .cornerRadius(15)
-                    //                    .onTapGesture {
-                    //                      viewController.completeChord(chord)
-                    //                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+//                    .onTapGesture {
+//                      viewController.completeChord(chord)
+//                    }
                   }
-                }
+                }.padding([.leading, .trailing])
               }
             }
           }
         }
       }
-      .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
+      .background(Color.black)
     }
   }
 }

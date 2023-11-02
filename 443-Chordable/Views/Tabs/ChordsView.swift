@@ -8,9 +8,12 @@ struct ChordsView: View {
       ScrollView {
         VStack(spacing: 10) {
           Text("CHORDS")
-            .font(.largeTitle)
+            .padding(.top,60)
+            .font(.custom("Barlow-Bold", size: 32))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .kerning(1.6)
             .foregroundColor(.white)
-            .padding()
+            .padding(.leading, 30)
           
           SearchBar(text: $viewController.searchQuery)
           

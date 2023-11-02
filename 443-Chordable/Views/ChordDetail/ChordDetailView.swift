@@ -3,23 +3,36 @@
 //  443-Chordable
 //
 //  Created by Owen Gometz on 10/29/23.
-//
+//  Audio code adapted from lesson: https://www.kodeco.com/21868250-audio-with-avfoundation/lessons/1
 
 import SwiftUI
+import AVFoundation
 
 struct ChordDetailView: View {
-    let chord: Chord
+  @ObservedObject var audio = ChordDetailViewController()
+  
+  let chord: Chord
 
-    var body: some View {
-        VStack {
-            Text(chord.chord_name ?? "")
-                .font(.largeTitle)
-                .padding()
-
-            Spacer()
-        }
-        .navigationTitle(chord.chord_name ?? "Chord Detail")
+  var body: some View {
+    VStack {
+      // play chord audio
+      if audio.status == .stopped {
+        Button("Hear Chord", action: {
+          audio.playChord(chordName: "\(chord.chord_name ?? "")")
+        })
+      }
+      
+      Text(chord.chord_name ?? "")
+        .font(.largeTitle)
+        .padding()
+      
+      Spacer()
+      // Display corresponding chord image
+      Image("\(chord.chord_name ?? "")_diagram")
     }
+    .navigationTitle(chord.chord_name ?? "Chord Detail")
+
+  }
 }
 
 //
@@ -28,3 +41,4 @@ struct ChordDetailView: View {
 //        ChordDetailView()
 //    }
 //}
+

@@ -25,6 +25,8 @@
 		35B244412AEF403400F04453 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244402AEF403400F04453 /* Quote.swift */; };
 		35B244432AEF404B00F04453 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244422AEF404B00F04453 /* UserInfo.swift */; };
 		35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244442AEF406300F04453 /* SongChordInstance.swift */; };
+		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
+		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		35B244402AEF403400F04453 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		35B244422AEF404B00F04453 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
+		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
+		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				35B244342AEF0E3F00F04453 /* ChordsViewController.swift */,
+				41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				35B244402AEF403400F04453 /* Quote.swift */,
 				35B244422AEF404B00F04453 /* UserInfo.swift */,
 				35B244442AEF406300F04453 /* SongChordInstance.swift */,
+				41FB94342AF0B4A600409446 /* AudioStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +251,7 @@
 			files = (
 				35B2443F2AEF401600F04453 /* Song.swift in Sources */,
 				35B244242AEF052E00F04453 /* ChordDataInitializer.swift in Sources */,
+				41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */,
 				35B2442F2AEF0A0000F04453 /* ChordsView.swift in Sources */,
 				35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */,
 				35B244432AEF404B00F04453 /* UserInfo.swift in Sources */,
@@ -254,6 +261,7 @@
 				35B244312AEF0A0900F04453 /* SongsView.swift in Sources */,
 				35B244192AEEF8E800F04453 /* Persistence.swift in Sources */,
 				35B244392AEF102400F04453 /* ChordDetailView.swift in Sources */,
+				41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */,
 				35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */,
 				35B2443B2AEF168B00F04453 /* MainTabView.swift in Sources */,
 				35B2441C2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld in Sources */,
@@ -389,6 +397,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone access:";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -417,6 +426,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone access:";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

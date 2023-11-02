@@ -27,24 +27,24 @@
 		35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244442AEF406300F04453 /* SongChordInstance.swift */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
 		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
-		F0D97BFF2AF34CF300AF16B6 /* Barlow-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF72AF34CE600AF16B6 /* Barlow-Black.ttf */; };
-		F0D97C002AF34CF700AF16B6 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BEE2AF34CE500AF16B6 /* Barlow-BlackItalic.ttf */; };
-		F0D97C012AF34CFA00AF16B6 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF82AF34CE600AF16B6 /* Barlow-Bold.ttf */; };
-		F0D97C022AF34CFC00AF16B6 /* Barlow-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF22AF34CE500AF16B6 /* Barlow-BoldItalic.ttf */; };
-		F0D97C032AF34CFF00AF16B6 /* Barlow-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BFC2AF34CE600AF16B6 /* Barlow-ExtraBold.ttf */; };
-		F0D97C042AF34D0A00AF16B6 /* Barlow-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF92AF34CE600AF16B6 /* Barlow-ExtraBoldItalic.ttf */; };
-		F0D97C052AF34D0C00AF16B6 /* Barlow-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF42AF34CE500AF16B6 /* Barlow-ExtraLight.ttf */; };
-		F0D97C062AF34D0E00AF16B6 /* Barlow-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF62AF34CE600AF16B6 /* Barlow-ExtraLightItalic.ttf */; };
-		F0D97C072AF34D1100AF16B6 /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF12AF34CE500AF16B6 /* Barlow-Italic.ttf */; };
-		F0D97C082AF34D1400AF16B6 /* Barlow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF32AF34CE500AF16B6 /* Barlow-Light.ttf */; };
-		F0D97C092AF34D1600AF16B6 /* Barlow-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BFB2AF34CE600AF16B6 /* Barlow-LightItalic.ttf */; };
-		F0D97C0A2AF34D1800AF16B6 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BED2AF34CE500AF16B6 /* Barlow-Medium.ttf */; };
-		F0D97C0B2AF34D1A00AF16B6 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BFE2AF34CE600AF16B6 /* Barlow-MediumItalic.ttf */; };
-		F0D97C0C2AF34D1C00AF16B6 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BFD2AF34CE600AF16B6 /* Barlow-SemiBold.ttf */; };
-		F0D97C0D2AF34D1F00AF16B6 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BEF2AF34CE500AF16B6 /* Barlow-Regular.ttf */; };
-		F0D97C0E2AF34D2200AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BFA2AF34CE600AF16B6 /* Barlow-SemiBoldItalic.ttf */; };
-		F0D97C0F2AF34D2400AF16B6 /* Barlow-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF52AF34CE500AF16B6 /* Barlow-Thin.ttf */; };
-		F0D97C102AF34D2600AF16B6 /* Barlow-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97BF02AF34CE500AF16B6 /* Barlow-ThinItalic.ttf */; };
+		F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */; };
+		F0D97C262AF3730F00AF16B6 /* Barlow-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C142AF3730E00AF16B6 /* Barlow-Black.ttf */; };
+		F0D97C272AF3730F00AF16B6 /* Barlow-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C152AF3730E00AF16B6 /* Barlow-ExtraBoldItalic.ttf */; };
+		F0D97C282AF3730F00AF16B6 /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C162AF3730E00AF16B6 /* Barlow-Regular.ttf */; };
+		F0D97C292AF3730F00AF16B6 /* Barlow-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C172AF3730E00AF16B6 /* Barlow-Thin.ttf */; };
+		F0D97C2A2AF3730F00AF16B6 /* Barlow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C182AF3730F00AF16B6 /* Barlow-Light.ttf */; };
+		F0D97C2B2AF3730F00AF16B6 /* Barlow-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C192AF3730F00AF16B6 /* Barlow-BoldItalic.ttf */; };
+		F0D97C2C2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1A2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf */; };
+		F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1B2AF3730F00AF16B6 /* Barlow-Medium.ttf */; };
+		F0D97C2E2AF3730F00AF16B6 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1C2AF3730F00AF16B6 /* Barlow-SemiBold.ttf */; };
+		F0D97C2F2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1D2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf */; };
+		F0D97C302AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1E2AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf */; };
+		F0D97C312AF3730F00AF16B6 /* Barlow-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C1F2AF3730F00AF16B6 /* Barlow-LightItalic.ttf */; };
+		F0D97C322AF3730F00AF16B6 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C202AF3730F00AF16B6 /* Barlow-Bold.ttf */; };
+		F0D97C332AF3730F00AF16B6 /* Barlow-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C212AF3730F00AF16B6 /* Barlow-ExtraLight.ttf */; };
+		F0D97C342AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C222AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf */; };
+		F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */; };
+		F0D97C362AF3730F00AF16B6 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,25 +69,25 @@
 		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
 		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
-		F0D97BED2AF34CE500AF16B6 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Medium.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Medium.ttf"; sourceTree = "<group>"; };
-		F0D97BEE2AF34CE500AF16B6 /* Barlow-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-BlackItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-BlackItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BEF2AF34CE500AF16B6 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Regular.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Regular.ttf"; sourceTree = "<group>"; };
-		F0D97BF02AF34CE500AF16B6 /* Barlow-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-ThinItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-ThinItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BF12AF34CE500AF16B6 /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Italic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Italic.ttf"; sourceTree = "<group>"; };
-		F0D97BF22AF34CE500AF16B6 /* Barlow-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-BoldItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-BoldItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BF32AF34CE500AF16B6 /* Barlow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Light.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Light.ttf"; sourceTree = "<group>"; };
-		F0D97BF42AF34CE500AF16B6 /* Barlow-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-ExtraLight.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-ExtraLight.ttf"; sourceTree = "<group>"; };
-		F0D97BF52AF34CE500AF16B6 /* Barlow-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Thin.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Thin.ttf"; sourceTree = "<group>"; };
-		F0D97BF62AF34CE600AF16B6 /* Barlow-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-ExtraLightItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BF72AF34CE600AF16B6 /* Barlow-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Black.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Black.ttf"; sourceTree = "<group>"; };
-		F0D97BF82AF34CE600AF16B6 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-Bold.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-Bold.ttf"; sourceTree = "<group>"; };
-		F0D97BF92AF34CE600AF16B6 /* Barlow-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-ExtraBoldItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BFA2AF34CE600AF16B6 /* Barlow-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBoldItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BFB2AF34CE600AF16B6 /* Barlow-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-LightItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-LightItalic.ttf"; sourceTree = "<group>"; };
-		F0D97BFC2AF34CE600AF16B6 /* Barlow-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-ExtraBold.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-ExtraBold.ttf"; sourceTree = "<group>"; };
-		F0D97BFD2AF34CE600AF16B6 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-SemiBold.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
-		F0D97BFE2AF34CE600AF16B6 /* Barlow-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Barlow-MediumItalic.ttf"; path = "../../../../../../Downloads/Barlow/Barlow-MediumItalic.ttf"; sourceTree = "<group>"; };
 		F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-43-Chordable-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-BlackItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C142AF3730E00AF16B6 /* Barlow-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Black.ttf"; sourceTree = "<group>"; };
+		F0D97C152AF3730E00AF16B6 /* Barlow-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C162AF3730E00AF16B6 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Regular.ttf"; sourceTree = "<group>"; };
+		F0D97C172AF3730E00AF16B6 /* Barlow-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Thin.ttf"; sourceTree = "<group>"; };
+		F0D97C182AF3730F00AF16B6 /* Barlow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Light.ttf"; sourceTree = "<group>"; };
+		F0D97C192AF3730F00AF16B6 /* Barlow-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C1A2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ThinItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C1B2AF3730F00AF16B6 /* Barlow-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Medium.ttf"; sourceTree = "<group>"; };
+		F0D97C1C2AF3730F00AF16B6 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		F0D97C1D2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraBold.ttf"; sourceTree = "<group>"; };
+		F0D97C1E2AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C1F2AF3730F00AF16B6 /* Barlow-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-LightItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C202AF3730F00AF16B6 /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Bold.ttf"; sourceTree = "<group>"; };
+		F0D97C212AF3730F00AF16B6 /* Barlow-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-ExtraLight.ttf"; sourceTree = "<group>"; };
+		F0D97C222AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
+		F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-MediumItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +120,8 @@
 		35B2440E2AEEF8E700F04453 /* 443-Chordable */ = {
 			isa = PBXGroup;
 			children = (
+				F0D97C122AF372F800AF16B6 /* Fonts */,
 				F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */,
-				F0D97BEC2AF34C8B00AF16B6 /* Fonts */,
 				35B244332AEF0E1300F04453 /* Models */,
 				35B244322AEF0E0B00F04453 /* Controllers */,
 				35B2442A2AEF09DC00F04453 /* Views */,
@@ -218,27 +218,27 @@
 			path = ChordDetail;
 			sourceTree = "<group>";
 		};
-		F0D97BEC2AF34C8B00AF16B6 /* Fonts */ = {
+		F0D97C122AF372F800AF16B6 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F0D97BF72AF34CE600AF16B6 /* Barlow-Black.ttf */,
-				F0D97BEE2AF34CE500AF16B6 /* Barlow-BlackItalic.ttf */,
-				F0D97BF82AF34CE600AF16B6 /* Barlow-Bold.ttf */,
-				F0D97BF22AF34CE500AF16B6 /* Barlow-BoldItalic.ttf */,
-				F0D97BFC2AF34CE600AF16B6 /* Barlow-ExtraBold.ttf */,
-				F0D97BF92AF34CE600AF16B6 /* Barlow-ExtraBoldItalic.ttf */,
-				F0D97BF42AF34CE500AF16B6 /* Barlow-ExtraLight.ttf */,
-				F0D97BF62AF34CE600AF16B6 /* Barlow-ExtraLightItalic.ttf */,
-				F0D97BF12AF34CE500AF16B6 /* Barlow-Italic.ttf */,
-				F0D97BF32AF34CE500AF16B6 /* Barlow-Light.ttf */,
-				F0D97BFB2AF34CE600AF16B6 /* Barlow-LightItalic.ttf */,
-				F0D97BED2AF34CE500AF16B6 /* Barlow-Medium.ttf */,
-				F0D97BFE2AF34CE600AF16B6 /* Barlow-MediumItalic.ttf */,
-				F0D97BEF2AF34CE500AF16B6 /* Barlow-Regular.ttf */,
-				F0D97BFD2AF34CE600AF16B6 /* Barlow-SemiBold.ttf */,
-				F0D97BFA2AF34CE600AF16B6 /* Barlow-SemiBoldItalic.ttf */,
-				F0D97BF52AF34CE500AF16B6 /* Barlow-Thin.ttf */,
-				F0D97BF02AF34CE500AF16B6 /* Barlow-ThinItalic.ttf */,
+				F0D97C142AF3730E00AF16B6 /* Barlow-Black.ttf */,
+				F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */,
+				F0D97C202AF3730F00AF16B6 /* Barlow-Bold.ttf */,
+				F0D97C192AF3730F00AF16B6 /* Barlow-BoldItalic.ttf */,
+				F0D97C1D2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf */,
+				F0D97C152AF3730E00AF16B6 /* Barlow-ExtraBoldItalic.ttf */,
+				F0D97C212AF3730F00AF16B6 /* Barlow-ExtraLight.ttf */,
+				F0D97C1E2AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf */,
+				F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */,
+				F0D97C182AF3730F00AF16B6 /* Barlow-Light.ttf */,
+				F0D97C1F2AF3730F00AF16B6 /* Barlow-LightItalic.ttf */,
+				F0D97C1B2AF3730F00AF16B6 /* Barlow-Medium.ttf */,
+				F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */,
+				F0D97C162AF3730E00AF16B6 /* Barlow-Regular.ttf */,
+				F0D97C1C2AF3730F00AF16B6 /* Barlow-SemiBold.ttf */,
+				F0D97C222AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf */,
+				F0D97C172AF3730E00AF16B6 /* Barlow-Thin.ttf */,
+				F0D97C1A2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -301,26 +301,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0D97C072AF34D1100AF16B6 /* Barlow-Italic.ttf in Resources */,
+				F0D97C322AF3730F00AF16B6 /* Barlow-Bold.ttf in Resources */,
+				F0D97C2A2AF3730F00AF16B6 /* Barlow-Light.ttf in Resources */,
+				F0D97C292AF3730F00AF16B6 /* Barlow-Thin.ttf in Resources */,
+				F0D97C2B2AF3730F00AF16B6 /* Barlow-BoldItalic.ttf in Resources */,
+				F0D97C312AF3730F00AF16B6 /* Barlow-LightItalic.ttf in Resources */,
+				F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */,
+				F0D97C2F2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf in Resources */,
+				F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */,
+				F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */,
+				F0D97C2C2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf in Resources */,
+				F0D97C262AF3730F00AF16B6 /* Barlow-Black.ttf in Resources */,
+				F0D97C342AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */,
 				35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */,
-				F0D97C0C2AF34D1C00AF16B6 /* Barlow-SemiBold.ttf in Resources */,
-				F0D97C0A2AF34D1800AF16B6 /* Barlow-Medium.ttf in Resources */,
-				F0D97C0D2AF34D1F00AF16B6 /* Barlow-Regular.ttf in Resources */,
-				F0D97C012AF34CFA00AF16B6 /* Barlow-Bold.ttf in Resources */,
-				F0D97C052AF34D0C00AF16B6 /* Barlow-ExtraLight.ttf in Resources */,
-				F0D97C0F2AF34D2400AF16B6 /* Barlow-Thin.ttf in Resources */,
-				F0D97C092AF34D1600AF16B6 /* Barlow-LightItalic.ttf in Resources */,
-				F0D97C022AF34CFC00AF16B6 /* Barlow-BoldItalic.ttf in Resources */,
-				F0D97C002AF34CF700AF16B6 /* Barlow-BlackItalic.ttf in Resources */,
-				F0D97C0E2AF34D2200AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */,
-				F0D97C0B2AF34D1A00AF16B6 /* Barlow-MediumItalic.ttf in Resources */,
 				35B244142AEEF8E800F04453 /* Assets.xcassets in Resources */,
-				F0D97C102AF34D2600AF16B6 /* Barlow-ThinItalic.ttf in Resources */,
-				F0D97C042AF34D0A00AF16B6 /* Barlow-ExtraBoldItalic.ttf in Resources */,
-				F0D97C082AF34D1400AF16B6 /* Barlow-Light.ttf in Resources */,
-				F0D97C032AF34CFF00AF16B6 /* Barlow-ExtraBold.ttf in Resources */,
-				F0D97BFF2AF34CF300AF16B6 /* Barlow-Black.ttf in Resources */,
-				F0D97C062AF34D0E00AF16B6 /* Barlow-ExtraLightItalic.ttf in Resources */,
+				F0D97C282AF3730F00AF16B6 /* Barlow-Regular.ttf in Resources */,
+				F0D97C332AF3730F00AF16B6 /* Barlow-ExtraLight.ttf in Resources */,
+				F0D97C302AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf in Resources */,
+				F0D97C2E2AF3730F00AF16B6 /* Barlow-SemiBold.ttf in Resources */,
+				F0D97C362AF3730F00AF16B6 /* Barlow-MediumItalic.ttf in Resources */,
+				F0D97C272AF3730F00AF16B6 /* Barlow-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

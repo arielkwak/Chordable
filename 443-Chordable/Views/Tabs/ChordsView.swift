@@ -50,7 +50,7 @@ struct ChordsView: View {
                       Text(chord.quality ?? "Major or Minor")
                     }
                     .padding()
-                    .background(Color.gray.opacity(0.1))
+                    .background(Color.black)
                     .cornerRadius(8)
 //                    .onTapGesture {
 //                      viewController.completeChord(chord)
@@ -62,7 +62,7 @@ struct ChordsView: View {
           }
         }
       }
-      .background(Color.black)
+      .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
     }
   }
 }

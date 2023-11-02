@@ -41,7 +41,7 @@ struct ChordsView: View {
                 .padding(.top)
                 .foregroundColor(.white)
               
-              LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 10), count: 3), spacing: 10) {
+              LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 8), count: 3), spacing: 10) {
                 ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
                   let displayableName = chord.displayableName.replacingOccurrences(of: "m", with: "")
                   let chordParts = displayableName.components(separatedBy: "#")
@@ -61,12 +61,13 @@ struct ChordsView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .offset(x:-5, y: -10)
                         }
-                      }.frame(width:90)
+                      }.frame(width:90, height: 50)
+                        .padding(.top, 8)
                       Text(chord.quality ?? "Major or Minor")
                         .font(.custom("Barlow-Regular", size: 24))
                         .foregroundColor(.white)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 8)
                     }
                     .padding(.horizontal, 10)
                     .padding(.vertical, 10)

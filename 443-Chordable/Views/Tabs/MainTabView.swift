@@ -50,7 +50,7 @@ struct CustomTabBarButton: View {
                     .frame(width: 30, height: 30)
                     .padding(.top, 10)
                 Text(title)
-                    .font(.system(size: 10))
+                    .font(.custom("Barlow-Bold", size: 14))
                     .fontWeight(isSelected ? .bold : .regular)
                     .foregroundColor(isSelected ? .white : .gray)
                     .padding(.bottom, 30)

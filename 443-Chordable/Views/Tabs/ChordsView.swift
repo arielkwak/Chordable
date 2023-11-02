@@ -43,15 +43,34 @@ struct ChordsView: View {
               
               LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
                 ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
+                  let displayableName = chord.displayableName.replacingOccurrences(of: "m", with: "")
+                  let chordParts = displayableName.components(separatedBy: "#")
                   NavigationLink(destination: ChordDetailView(chord: chord)) {
                     VStack {
-                      Text(chord.displayableName)
-                        .font(.title)
+                      HStack {
+                        if let firstPart = chordParts.first {
+                            Text(firstPart)
+                            .font(.custom("Barlow-BlackItalic", size: 64))
+                            .foregroundColor(.white)
+                            .fixedSize(horizontal: false, vertical: true)
+                        }
+                        if chordParts.count > 1 {
+                            Text("#" + chordParts[1])
+                            .font(.custom("Barlow-BlackItalic", size: 32))
+                            .foregroundColor(.white)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .offset(y: -10)
+                        }
+                      }
                       Text(chord.quality ?? "Major or Minor")
+                      .font(.custom("Barlow-Regular", size: 24))
+                      .foregroundColor(.white)
+                      .fixedSize(horizontal: false, vertical: true)
                     }
                     .padding()
                     .background(Color.black)
-                    .cornerRadius(8)
+                    .cornerRadius(15)
+                    .frame(width: 114, height: 120)
 //                    .onTapGesture {
 //                      viewController.completeChord(chord)
 //                    }

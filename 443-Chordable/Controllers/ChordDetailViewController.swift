@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-class ChordDetailViewController: NSObject, ObservableObject, AVAudioPlayerDelegate {
+class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
   func viewDidLoad() {
@@ -24,7 +24,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioPlayerDelega
   }
   
   var audioPlayer: AVAudioPlayer?
-  
+  var audioRecorder: AVAudioRecorder?
   
   // MARK: - Playing Audio -
   
@@ -45,4 +45,51 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioPlayerDelega
       print("Error playing chord file")
     }
   }
+  
+  // MARK: - Recording Audio -
+   
+   // save recorded audio to temporary directory
+   var urlForMemo: URL {
+     let fileManager = FileManager.default
+     let tempDir = fileManager.temporaryDirectory
+     let filePath = "TempMemo.caf"
+     return tempDir.appendingPathComponent(filePath)
+   }
+   
+   // recording function
+   func setupRecorder() {
+     // set up recording setting
+     let recordSettings: [String: Any] = [
+       AVFormatIDKey: Int(kAudioFormatLinearPCM),
+       AVSampleRateKey: 44100.0,
+       AVNumberOfChannelsKey: 1,
+       AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
+     ]
+     
+     // creating recorder
+     do {
+       audioRecorder = try AVAudioRecorder(url: urlForMemo, settings: recordSettings)
+       audioRecorder?.delegate = self
+     } catch {
+       print("Error creating audioRecording")
+     }
+   }
+   
+   // begin recording for 5 seconds
+   func record(forDuration duration: TimeInterval) {
+     audioRecorder?.record(forDuration: duration)
+     status = .recording
+   }
+   
+   // stop recording
+   func stopRecording() {
+     audioRecorder?.stop()
+     status = .stopped
+   }
+ }
+
+extension ChordDetailViewController {
+ func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+   status = .stopped
+ }
 }

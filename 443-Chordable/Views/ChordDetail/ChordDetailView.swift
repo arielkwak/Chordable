@@ -10,6 +10,8 @@ import AVFoundation
 
 struct ChordDetailView: View {
   @ObservedObject var audio = ChordDetailViewController()
+  @State var hasMicAccess = false
+  @State var displayNotification = false
   
   let chord: Chord
 
@@ -35,7 +37,42 @@ struct ChordDetailView: View {
       Image("\(chord.chord_name ?? "")_diagram")
     }
     .navigationTitle(chord.chord_name ?? "Chord Detail")
-
+    
+    // record chord
+    Button {
+      // record audio for 5 seconds
+      if audio.status == .stopped {
+        if hasMicAccess {
+          audio.record(forDuration: 5)
+        } else {
+          requestMicrophoneAccess()
+        }
+      } else {
+        audio.stopRecording()
+      }
+    } label: {
+      // change images from assets import
+      Image(audio.status == .recording ?
+            "button-record-active" :
+            "button-record-inactive")
+      .resizable()
+      .scaledToFit()
+    }
+  }
+  
+  private func requestMicrophoneAccess() {
+    if #available(iOS 17.0, *) {
+      AVAudioApplication.requestRecordPermission { granted in
+        hasMicAccess = granted
+        if granted {
+          audio.record(forDuration: 5)
+        } else {
+          displayNotification = true
+        }
+      }
+    } else {
+      // Fallback on earlier versions
+    }
   }
 }
 

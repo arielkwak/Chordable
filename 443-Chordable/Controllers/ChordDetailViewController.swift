@@ -32,9 +32,8 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   // playing audio
   func playChord(chordName: String) {
     // change audio file path for each chord
-    print(chordName)
-    guard let asset  = NSDataAsset(name: chordName) else {
-      print("File not found")
+    guard let asset  = NSDataAsset(name: "\(chordName)_audio") else {
+      print("File not found for chord: \(chordName)")
       return
     }
     do {

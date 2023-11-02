@@ -30,7 +30,7 @@ struct ChordDetailView: View {
       
       Spacer()
       // Display corresponding chord image
-      Image("\(chord.chord_name ?? "")")
+      Image("\(chord.chord_name ?? "")_diagram")
     }
     .navigationTitle(chord.chord_name ?? "Chord Detail")
     

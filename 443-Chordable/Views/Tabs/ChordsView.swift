@@ -9,6 +9,7 @@ struct ChordsView: View {
         VStack(spacing: 10) {
           Text("CHORDS")
             .font(.largeTitle)
+            .foregroundColor(.white)
             .padding()
           
           HStack {
@@ -30,9 +31,6 @@ struct ChordsView: View {
                 .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
-//                .onTapGesture {
-//                  viewController.completeChord(chord)
-//                }
             }
           }.padding([.leading, .trailing])
           
@@ -41,6 +39,7 @@ struct ChordsView: View {
               Text(difficulty.capitalized)
                 .font(.title2)
                 .padding(.top)
+                .foregroundColor(.white)
               
               LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 3), spacing: 16) {
                 ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
@@ -53,6 +52,9 @@ struct ChordsView: View {
                     .padding()
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
+//                    .onTapGesture {
+//                      viewController.completeChord(chord)
+//                    }
                   }
                 }.padding([.leading, .trailing])
               }
@@ -60,6 +62,7 @@ struct ChordsView: View {
           }
         }
       }
+      .background(Color.black)
     }
   }
 }

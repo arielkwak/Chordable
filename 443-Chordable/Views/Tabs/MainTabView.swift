@@ -32,6 +32,7 @@ struct MainTabView: View {
             .background(Color.black)
         }
         .edgesIgnoringSafeArea(.all)
+        .shadow(color: .black.opacity(0.9), radius: 35, x: 0, y: -10)
     }
 }
 

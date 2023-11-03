@@ -12,9 +12,9 @@ import AVFoundation
 class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
-  override init() {
-    timer = Timer()
-  }
+//  override init() {
+//    var timer = Timer()
+//  }
   
   func viewDidLoad() {
     // configure audio permissions
@@ -29,6 +29,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
+  var timer: Timer?
   
   // MARK: - Playing Audio -
   
@@ -52,7 +53,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   // MARK: - Recording Audio -
   
-  var timer: Timer
+//  var timer: Timer
   
   // save recorded audio to temporary directory
   var urlForMemo: URL {
@@ -82,10 +83,17 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
   
   // begin recording for 5 seconds with 3 second delay
-  func record() {
+  func startRecording() {
+    
     let duration = 5.0
-    audioRecorder?.record(forDuration: duration)
+    audioRecorder?.record()
     status = .recording
+    
+    Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { [weak self] timer in
+      self?.stopRecording()
+      timer.invalidate()
+    }
+    
   }
   
   // stop recording
@@ -95,8 +103,8 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
 }
 
-//extension ChordDetailViewController {
-// func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-//   status = .stopped
-// }
-//}
+extension ChordDetailViewController {
+ func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+   status = .stopped
+ }
+}

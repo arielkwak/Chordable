@@ -21,11 +21,10 @@ struct ChordDetailView: View {
     VStack {
       // MARK: - Hear Chord Example and Name -
       // play chord audio
-      if audio.status == .stopped {
-        Button("Hear Chord", action: {
-          audio.playChord(chordName: "\(chord.chord_name ?? "")")
-        })
-      }
+      
+      Button("Hear Chord", action: {
+        audio.playChord(chordName: "\(chord.chord_name ?? "")")
+      })
       
       Text(chord.displayable_name ?? "")
         .font(.largeTitle)
@@ -43,14 +42,16 @@ struct ChordDetailView: View {
     
     // MARK: - Recording Button -
     
+    // display countdown if counting down
     if isCountingDown {
       Text("Get Ready!")
       Text("\(countdown)")
         .bold()
     }
     
-    // record chord
     Spacer()
+    
+    // record chord button, begin counting down/stop recording
     Button {
       // record audio
       if audio.status == .stopped {
@@ -63,12 +64,26 @@ struct ChordDetailView: View {
         audio.stopRecording()
       }
     } label: {
-      // change images from assets import
-      let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic")
-      Image(systemName: imageName)
-        .font(.system(size: 50))
+      // pulse if iOS17 +
+      if #available(iOS 17.0, *) {
+        if audio.status == .recording {
+          Image(systemName: "mic.circle.fill")
+            .font(.system(size: 70))
+            .symbolEffect(.pulse, value: true)
+        } else {
+          Image(systemName: "mic.circle")
+            .font(.system(size: 70))
+        }
+      } else {
+        // older vers
+        let imageName = (audio.status == .recording ? "record.circle.fill" : "record.circle")
+        Image(systemName: imageName)
+          .font(.system(size: 70))
+      }
     }
   }
+  
+  // start counting down
   func startCountdown() {
     isCountingDown = true
     _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
@@ -77,7 +92,7 @@ struct ChordDetailView: View {
       } else {
         isCountingDown = false
         timer.invalidate()
-        audio.record()
+        audio.startRecording()
       }
     }
     countdown = 3

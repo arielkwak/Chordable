@@ -19,6 +19,7 @@ struct ChordDetailView: View {
 
   var body: some View {
     VStack {
+      // MARK: - Hear Chord Example and Name -
       // play chord audio
       if audio.status == .stopped {
         Button("Hear Chord", action: {
@@ -40,11 +41,16 @@ struct ChordDetailView: View {
     }
     .navigationTitle(chord.chord_name ?? "Chord Detail")
     
+    // MARK: - Recording Button -
+    
     if isCountingDown {
+      Text("Get Ready!")
       Text("\(countdown)")
+        .bold()
     }
     
     // record chord
+    Spacer()
     Button {
       // record audio
       if audio.status == .stopped {
@@ -53,29 +59,28 @@ struct ChordDetailView: View {
         } else {
           requestMicrophoneAccess()
         }
-      } else {
+      } else if audio.status == .recording {
         audio.stopRecording()
       }
     } label: {
       // change images from assets import
-      let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
+      let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic")
       Image(systemName: imageName)
-      .resizable()
-      .scaledToFit()
+        .font(.system(size: 50))
     }
   }
-  private func startCountdown() {
+  func startCountdown() {
     isCountingDown = true
-    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-      if countdown > 0 {
+    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+      if countdown > 1 {
         countdown -= 1
       } else {
         isCountingDown = false
         timer.invalidate()
-        countdown = 3
         audio.record()
       }
     }
+    countdown = 3
   }
   
   private func requestMicrophoneAccess() {

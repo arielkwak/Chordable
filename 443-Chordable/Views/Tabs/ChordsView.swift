@@ -9,7 +9,7 @@ struct ChordsView: View {
         VStack(spacing: 10) {
           VStack {
             Text("CHORDS")
-              .padding(.top,60)
+              .padding(.top,30)
               .font(.custom("Barlow-Bold", size: 32))
               .frame(maxWidth: .infinity, alignment: .leading)
               .kerning(1.6)
@@ -18,37 +18,51 @@ struct ChordsView: View {
           }
           .background(Color.black)
           
-          SearchBar(text: $viewController.searchQuery)
-          
-          HStack {
-            Button(action: {
-              viewController.filterOnCompleted = true
-            }) {
-              Text("Completed")
-                .padding()
-                .background(viewController.filterOnCompleted ? Color.blue : Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(8)
+          ZStack {
+            Color.black
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
+            VStack{
+              Rectangle()
+                .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color(red: 190/255, green: 180/255, blue: 255/255), Color.black]), startPoint: .leading, endPoint: .trailing))
+                .frame(height: 5)
+                .padding(.horizontal, 30)
+
+              VStack {
+                SearchBar(text: $viewController.searchQuery)
+                
+                HStack {
+                  Button(action: {
+                    viewController.filterOnCompleted = true
+                  }) {
+                    Text("Completed")
+                      .padding()
+                      .background(viewController.filterOnCompleted ? Color.blue : Color.gray)
+                      .foregroundColor(.white)
+                      .cornerRadius(8)
+                  }
+                  
+                  Button(action: {
+                    viewController.filterOnCompleted = false
+                  }) {
+                    Text("Incomplete")
+                      .padding()
+                      .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
+                      .foregroundColor(.white)
+                      .cornerRadius(8)
+                  }
+                }.padding([.leading, .trailing])
+              }
             }
-            
-            Button(action: {
-              viewController.filterOnCompleted = false
-            }) {
-              Text("Incomplete")
-                .padding()
-                .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-            }
-          }.padding([.leading, .trailing])
-          
+          }.padding(.top, 20)
+           
           VStack{
             VStack{
               ForEach(["easy", "medium", "hard"], id: \.self) { difficulty in
                 VStack(alignment: .leading) {
                   Text(difficulty.capitalized)
                     .font(.custom("Barlow-Medium", size: 24))
-                    .padding(.top)
+                    .padding(.top, 30)
                     .padding(.leading, 25)
                     .foregroundColor(.white)
                   
@@ -107,7 +121,7 @@ struct SearchBar: View {
     @Binding var text: String
     var body: some View {
         HStack {
-            Image(systemName: "magnifyingglass")  // Add this line
+            Image(systemName: "magnifyingglass")  
                 .foregroundColor(.black)
                 .padding(.horizontal, 15)
             
@@ -119,7 +133,7 @@ struct SearchBar: View {
         }
         .background(Color.white)
         .cornerRadius(8)
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 30)
         .padding(.vertical, 30)
     }
 }

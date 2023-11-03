@@ -7,13 +7,16 @@ struct ChordsView: View {
     NavigationView {
       ScrollView {
         VStack(spacing: 10) {
-          Text("CHORDS")
-            .padding(.top,60)
-            .font(.custom("Barlow-Bold", size: 32))
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .kerning(1.6)
-            .foregroundColor(.white)
-            .padding(.leading, 30)
+          VStack {
+            Text("CHORDS")
+              .padding(.top,60)
+              .font(.custom("Barlow-Bold", size: 32))
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .kerning(1.6)
+              .foregroundColor(.white)
+              .padding(.leading, 25)
+          }
+          .background(Color.black)
           
           SearchBar(text: $viewController.searchQuery)
           
@@ -39,56 +42,62 @@ struct ChordsView: View {
             }
           }.padding([.leading, .trailing])
           
-          ForEach(["easy", "medium", "hard"], id: \.self) { difficulty in
-            VStack {
-              Text(difficulty.capitalized)
-                .font(.title2)
-                .padding(.top)
-                .foregroundColor(.white)
-              
-              LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 8), count: 3), spacing: 10) {
-                ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
-                  let displayableName = chord.displayable_name ?? "Unknown Chord"
-                  let chordParts = displayableName.components(separatedBy: "#")
-                  NavigationLink(destination: ChordDetailView(chord: chord)) {
-                    VStack {
-                      HStack {
-                        if let firstPart = chordParts.first {
-                          Text(firstPart)
-                            .font(.custom("Barlow-BlackItalic", size: 64))
+          VStack{
+            VStack{
+              ForEach(["easy", "medium", "hard"], id: \.self) { difficulty in
+                VStack(alignment: .leading) {
+                  Text(difficulty.capitalized)
+                    .font(.custom("Barlow-Medium", size: 24))
+                    .padding(.top)
+                    .padding(.leading, 25)
+                    .foregroundColor(.white)
+                  
+                  LazyVGrid(columns: Array(repeating: GridItem(.fixed(114), spacing: 8), count: 3), spacing: 10) {
+                    ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
+                      let displayableName = chord.displayable_name ?? "Unknown Chord"
+                      let chordParts = displayableName.components(separatedBy: "#")
+                      NavigationLink(destination: ChordDetailView(chord: chord)) {
+                        VStack {
+                          HStack {
+                            if let firstPart = chordParts.first {
+                              Text(firstPart)
+                                .font(.custom("Barlow-BlackItalic", size: 64))
+                                .foregroundColor(.white)
+                                .fixedSize(horizontal: false, vertical: true)
+                            }
+                            if chordParts.count > 1 {
+                              Text("#" + chordParts[1])
+                                .font(.custom("Barlow-BlackItalic", size: 32))
+                                .foregroundColor(.white)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .offset(x:-5, y: -10)
+                            }
+                          }.frame(width:90, height: 50)
+                            .padding(.top, 8)
+                          Text(chord.quality ?? "Major or Minor")
+                            .font(.custom("Barlow-Regular", size: 24))
                             .foregroundColor(.white)
                             .fixedSize(horizontal: false, vertical: true)
+                            .padding(.bottom, 8)
                         }
-                        if chordParts.count > 1 {
-                          Text("#" + chordParts[1])
-                            .font(.custom("Barlow-BlackItalic", size: 32))
-                            .foregroundColor(.white)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .offset(x:-5, y: -10)
-                        }
-                      }.frame(width:90, height: 50)
-                        .padding(.top, 8)
-                      Text(chord.quality ?? "Major or Minor")
-                        .font(.custom("Barlow-Regular", size: 24))
-                        .foregroundColor(.white)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, 8)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 10)
+                        .background(Color.black)
+                        .cornerRadius(15)
+                        //                    .onTapGesture {
+                        //                      viewController.completeChord(chord)
+                        //                    }
+                      }
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 10)
-                    .background(Color.black)
-                    .cornerRadius(15)
-                    //                    .onTapGesture {
-                    //                      viewController.completeChord(chord)
-                    //                    }
                   }
                 }
               }
-            }
+            }.padding(.bottom, 40)
           }
+          .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
         }
       }
-      .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
+      .background(Color.black)
     }
   }
 }

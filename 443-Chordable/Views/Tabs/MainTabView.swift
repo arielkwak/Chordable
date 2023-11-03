@@ -15,7 +15,7 @@ struct MainTabView: View {
             }
 
             Rectangle()
-            .fill(Color(red: 0.14, green: 0, blue: 1))
+            .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
             .frame(height: 2)
             HStack {
                 CustomTabBarButton(selectedImageName: "chords_tab_highlighted", unselectedImageName: "chords_tab_grey", title: "Chords", isSelected: selectedTab == 0) {

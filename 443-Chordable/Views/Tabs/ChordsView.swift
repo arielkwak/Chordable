@@ -96,11 +96,32 @@ struct ChordsView: View {
                         )
                       }
                   }
-                }.padding([.leading, .trailing])
+                }
+                .padding([.leading, .trailing])
+                
+                // underline for buttons when pressed 
+                Spacer()
+                  GeometryReader { geometry in
+                    HStack {
+                      Rectangle()
+                      .fill(viewController.filterOnCompleted ?
+                          AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                          AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                      Spacer()
+                      Rectangle()
+                      .fill(!viewController.filterOnCompleted ?
+                          AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                          AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                  }.padding(.bottom, -15)
               }
             }
           }
-          .padding(.vertical, 20)
            
           VStack{
             VStack{
@@ -154,7 +175,7 @@ struct ChordsView: View {
               }
               Spacer()
             }.padding(.bottom, 40)
-            .frame(minHeight: 430)
+            .frame(minHeight: 460)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
         }

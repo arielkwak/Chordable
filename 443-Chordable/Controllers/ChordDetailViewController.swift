@@ -53,7 +53,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   var urlForMemo: URL {
     let fileManager = FileManager.default
     let tempDir = fileManager.temporaryDirectory
-    let filePath = "TempMemo.caf"
+    let filePath = "TempMemo.wav"
     return tempDir.appendingPathComponent(filePath)
   }
   
@@ -71,15 +71,19 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     do {
       audioRecorder = try AVAudioRecorder(url: urlForMemo, settings: recordSettings)
       audioRecorder?.delegate = self
+      
+      if let recorder = audioRecorder, !recorder.prepareToRecord() {
+        print("Failed to prepare to record.")
+      }
     } catch {
-      print("Error creating audioRecording")
+      print("Error creating audio recording: \(error.localizedDescription)")
     }
   }
   
   // begin recording for 5 seconds with 3 second delay
   func startRecording() {
-    
     let duration = 5.0
+    setupRecorder()
     audioRecorder?.record()
     status = .recording
     
@@ -98,7 +102,10 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
 }
 
 extension ChordDetailViewController {
- func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-   status = .stopped
- }
+  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    status = .stopped
+  }
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    status = .stopped
+  }
 }

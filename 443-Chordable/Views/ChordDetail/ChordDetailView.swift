@@ -26,10 +26,6 @@ struct ChordDetailView: View {
         audio.playChord(chordName: "\(chord.chord_name ?? "")")
       })
       
-      Button("Hear recording", action: {
-        audio.playRecording()
-      })
-      
       Text(chord.displayable_name ?? "")
         .font(.largeTitle)
         .padding()
@@ -116,7 +112,15 @@ struct ChordDetailView: View {
         }
       }
     } else {
-      // Fallback on earlier versions
+      // For iOS versions prior to 17, use AVAudioSession to request microphone access
+       AVAudioSession.sharedInstance().requestRecordPermission { granted in
+         hasMicAccess = granted
+         if granted {
+            startCountdown()
+         } else {
+            displayNotification = true
+         }
+     }
     }
   }
 }

@@ -10,6 +10,7 @@ struct ChordsView: View {
           VStack {
             Text("CHORDS")
               .padding(.top,30)
+              .padding(.bottom, 10)
               .font(.custom("Barlow-Bold", size: 32))
               .frame(maxWidth: .infinity, alignment: .leading)
               .kerning(1.6)
@@ -28,33 +29,100 @@ struct ChordsView: View {
                 .frame(height: 5)
                 .padding(.horizontal, 30)
 
+              // styling for searchbar & complete/incomplete buttons
               VStack {
                 SearchBar(text: $viewController.searchQuery)
                 
                 HStack {
+                  // button styling for complete
                   Button(action: {
                     viewController.filterOnCompleted = true
                   }) {
                     Text("Completed")
-                      .padding()
-                      .background(viewController.filterOnCompleted ? Color.blue : Color.gray)
-                      .foregroundColor(.white)
-                      .cornerRadius(8)
+                      .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                      .padding(.trailing, 50)
+                      .overlay { viewController.filterOnCompleted ?
+                        LinearGradient(
+                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Completed")
+                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.trailing, 50)
+                        )
+                        :
+                        LinearGradient(
+                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Completed")
+                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.trailing, 50)
+                        )
+                      }
                   }
                   
+                  // button styling for incomplete
                   Button(action: {
                     viewController.filterOnCompleted = false
                   }) {
                     Text("Incomplete")
-                      .padding()
-                      .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
-                      .foregroundColor(.white)
-                      .cornerRadius(8)
+                      .font(viewController.filterOnCompleted ? .custom("Barlow-Regular", size: 22) : .custom("Barlow-Bold", size: 22))
+                      .padding(.leading, 50)
+                      .overlay { !viewController.filterOnCompleted ?
+                        LinearGradient(
+                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Incomplete")
+                          .font(!viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.leading, 50)
+                        )
+                        :
+                        LinearGradient(
+                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Incomplete")
+                          .font(!viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.leading, 50)
+                        )
+                      }
                   }
-                }.padding([.leading, .trailing])
+                }
+                .padding([.leading, .trailing])
+                
+                // underline for buttons when pressed
+                Spacer()
+                  GeometryReader { geometry in
+                    HStack {
+                      Rectangle()
+                      .fill(viewController.filterOnCompleted ?
+                          AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                          AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                      Spacer()
+                      Rectangle()
+                      .fill(!viewController.filterOnCompleted ?
+                          AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                          AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                  }.padding(.bottom, -15)
               }
             }
-          }.padding(.top, 20)
+          }
            
           VStack{
             VStack{
@@ -108,7 +176,7 @@ struct ChordsView: View {
               }
               Spacer()
             }.padding(.bottom, 40)
-            .frame(minHeight: 430)
+            .frame(minHeight: 460)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
         }

@@ -9,22 +9,23 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-class ChordDetailViewController: NSObject, ObservableObject, AVAudioPlayerDelegate {
+class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
   func viewDidLoad() {
     // configure audio permissions
     let session = AVAudioSession.sharedInstance()
     do {
-        try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
-        try session.setActive(true)
+      try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
+      try session.setActive(true)
     } catch {
-        print("AVAudioSession configuration error: \(error.localizedDescription)")
+      print("AVAudioSession configuration error: \(error.localizedDescription)")
     }
   }
   
   var audioPlayer: AVAudioPlayer?
-  
+  var audioRecorder: AVAudioRecorder?
+  var timer: Timer?
   
   // MARK: - Playing Audio -
   
@@ -45,4 +46,59 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioPlayerDelega
       print("Error playing chord file")
     }
   }
+  
+  // MARK: - Recording Audio -
+  
+  // save recorded audio to temporary directory
+  var urlForMemo: URL {
+    let fileManager = FileManager.default
+    let tempDir = fileManager.temporaryDirectory
+    let filePath = "TempMemo.caf"
+    return tempDir.appendingPathComponent(filePath)
+  }
+  
+  // recording function
+  func setupRecorder() {
+    // set up recording setting
+    let recordSettings: [String: Any] = [
+      AVFormatIDKey: Int(kAudioFormatLinearPCM),
+      AVSampleRateKey: 44100.0,
+      AVNumberOfChannelsKey: 1,
+      AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
+    ]
+    
+    // creating recorder
+    do {
+      audioRecorder = try AVAudioRecorder(url: urlForMemo, settings: recordSettings)
+      audioRecorder?.delegate = self
+    } catch {
+      print("Error creating audioRecording")
+    }
+  }
+  
+  // begin recording for 5 seconds with 3 second delay
+  func startRecording() {
+    
+    let duration = 5.0
+    audioRecorder?.record()
+    status = .recording
+    
+    Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { [weak self] timer in
+      self?.stopRecording()
+      timer.invalidate()
+    }
+    
+  }
+  
+  // stop recording
+  func stopRecording() {
+    audioRecorder?.stop()
+    status = .stopped
+  }
+}
+
+extension ChordDetailViewController {
+ func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+   status = .stopped
+ }
 }

@@ -70,15 +70,18 @@ struct ChordDetailView: View {
           Image(systemName: "mic.circle.fill")
             .font(.system(size: 70))
             .symbolEffect(.pulse, value: true)
+            .foregroundColor(Color(.systemRed))
         } else {
           Image(systemName: "mic.circle")
             .font(.system(size: 70))
+            .foregroundColor(Color(.systemRed))
         }
       } else {
         // older vers
-        let imageName = (audio.status == .recording ? "record.circle.fill" : "record.circle")
+        let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
         Image(systemName: imageName)
           .font(.system(size: 70))
+          .foregroundColor(Color(.systemRed))
       }
     }
   }

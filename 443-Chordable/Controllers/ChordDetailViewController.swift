@@ -12,10 +12,6 @@ import AVFoundation
 class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
-//  override init() {
-//    var timer = Timer()
-//  }
-  
   func viewDidLoad() {
     // configure audio permissions
     let session = AVAudioSession.sharedInstance()
@@ -52,8 +48,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
   
   // MARK: - Recording Audio -
-  
-//  var timer: Timer
   
   // save recorded audio to temporary directory
   var urlForMemo: URL {

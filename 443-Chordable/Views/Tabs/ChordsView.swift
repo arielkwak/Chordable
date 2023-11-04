@@ -36,25 +36,24 @@ struct ChordsView: View {
                     viewController.filterOnCompleted = true
                   }) {
                     Text("Completed")
-                      .padding()
-                      .background(viewController.filterOnCompleted ? Color.blue : Color.gray)
-                      .foregroundColor(.white)
-                      .cornerRadius(8)
+                      .foregroundColor(viewController.filterOnCompleted ? Color(red: 0.63, green: 0.63, blue: 0.63) : .white)
+                      .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 20) : .custom("Barlow-Regular", size: 22))
+                      .padding(.trailing, 50)
                   }
                   
                   Button(action: {
                     viewController.filterOnCompleted = false
                   }) {
                     Text("Incomplete")
-                      .padding()
-                      .background(viewController.filterOnCompleted ? Color.gray : Color.blue)
-                      .foregroundColor(.white)
-                      .cornerRadius(8)
+                      .foregroundColor(!viewController.filterOnCompleted ? Color(red: 0.63, green: 0.63, blue: 0.63) : .white)
+                      .font(viewController.filterOnCompleted ? .custom("Barlow-Regular", size: 20) : .custom("Barlow-Bold", size: 22))
+                      .padding(.leading, 50)
                   }
                 }.padding([.leading, .trailing])
               }
             }
-          }.padding(.top, 20)
+          }
+          .padding(.vertical, 20)
            
           VStack{
             VStack{

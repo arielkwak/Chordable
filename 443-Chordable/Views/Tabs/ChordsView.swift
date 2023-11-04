@@ -10,6 +10,7 @@ struct ChordsView: View {
           VStack {
             Text("CHORDS")
               .padding(.top,30)
+              .padding(.bottom, 10)
               .font(.custom("Barlow-Bold", size: 32))
               .frame(maxWidth: .infinity, alignment: .leading)
               .kerning(1.6)
@@ -99,7 +100,7 @@ struct ChordsView: View {
                 }
                 .padding([.leading, .trailing])
                 
-                // underline for buttons when pressed 
+                // underline for buttons when pressed
                 Spacer()
                   GeometryReader { geometry in
                     HStack {

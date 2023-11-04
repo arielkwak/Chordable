@@ -26,6 +26,10 @@ struct ChordDetailView: View {
         audio.playChord(chordName: "\(chord.chord_name ?? "")")
       })
       
+      Button("Hear recording", action: {
+        audio.playRecording()
+      })
+      
       Text(chord.displayable_name ?? "")
         .font(.largeTitle)
         .padding()

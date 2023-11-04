@@ -47,13 +47,35 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     }
   }
   
+  func playRecording() {
+    do {
+      print("Current URL:", urlForMemo)
+      
+      if FileManager.default.fileExists(atPath: urlForMemo.path) {
+        
+        audioPlayer = try AVAudioPlayer(contentsOf: urlForMemo)
+        audioPlayer?.delegate = self
+        status = .playing
+        audioPlayer?.play()
+        status = .stopped
+        
+      } else {
+        print("The file does not exist at \(urlForMemo.path).")
+      }
+      
+    } catch let error as NSError {
+      print("Error playing recorded audio: \(error.localizedDescription)")
+      print("Error code: \(error.code)")
+    }
+  }
+  
   // MARK: - Recording Audio -
   
   // save recorded audio to temporary directory
   var urlForMemo: URL {
     let fileManager = FileManager.default
     let tempDir = fileManager.temporaryDirectory
-    let filePath = "TempMemo.caf"
+    let filePath = "TempMemo.wav"
     return tempDir.appendingPathComponent(filePath)
   }
   
@@ -71,15 +93,19 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     do {
       audioRecorder = try AVAudioRecorder(url: urlForMemo, settings: recordSettings)
       audioRecorder?.delegate = self
+      
+      if let recorder = audioRecorder, !recorder.prepareToRecord() {
+        print("Failed to prepare to record.")
+      }
     } catch {
-      print("Error creating audioRecording")
+      print("Error creating audio recording: \(error.localizedDescription)")
     }
   }
   
   // begin recording for 5 seconds with 3 second delay
   func startRecording() {
-    
     let duration = 5.0
+    setupRecorder()
     audioRecorder?.record()
     status = .recording
     
@@ -98,7 +124,10 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
 }
 
 extension ChordDetailViewController {
- func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-   status = .stopped
- }
+  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    status = .stopped
+  }
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    status = .stopped
+  }
 }

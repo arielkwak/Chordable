@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352D3C662AF70CA9005BC35B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D3C652AF70CA9005BC35B /* WelcomeView.swift */; };
 		35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */; };
 		35B244142AEEF8E800F04453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244132AEEF8E800F04453 /* Assets.xcassets */; };
 		35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244162AEEF8E800F04453 /* Preview Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352D3C652AF70CA9005BC35B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		35B2440C2AEEF8E700F04453 /* 443-Chordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "443-Chordable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableApp.swift; sourceTree = "<group>"; };
 		35B244132AEEF8E800F04453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352D3C642AF70C9B005BC35B /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				352D3C652AF70CA9005BC35B /* WelcomeView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
 		35B244032AEEF8E600F04453 = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +181,7 @@
 		35B2442A2AEF09DC00F04453 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				352D3C642AF70C9B005BC35B /* Welcome */,
 				35B244372AEF101300F04453 /* ChordDetail */,
 				35B2442B2AEF09E900F04453 /* Tabs */,
 			);
@@ -349,6 +360,7 @@
 				35B2441C2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld in Sources */,
 				35B244412AEF403400F04453 /* Quote.swift in Sources */,
 				35B2443D2AEF3FB800F04453 /* Chord.swift in Sources */,
+				352D3C662AF70CA9005BC35B /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

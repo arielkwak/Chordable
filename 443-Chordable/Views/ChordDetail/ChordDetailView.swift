@@ -14,76 +14,161 @@ struct ChordDetailView: View {
   @State var displayNotification = false
   @State var countdown = 3
   @State var isCountingDown = false
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
 
   var body: some View {
-    VStack {
-      // MARK: - Hear Chord Example and Name -
-      // play chord audio
+    VStack{
+      VStack {
+        // MARK: - Hear Chord Example and Name -
+        // play chord audio
+        
+        Button(action: {
+          audio.playChord(chordName: "\(chord.chord_name ?? "")")
+        }){
+          HStack{
+            let chordParts = (chord.displayable_name ?? "").components(separatedBy: "#")
+            if let firstPart = chordParts.first {
+              Text(firstPart)
+                .font(.custom("Barlow-BlackItalic", size: 50))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.leading, 20)
+            }
+            if chordParts.count > 1 {
+              Text("#" + chordParts[1])
+                .font(.custom("Barlow-BlackItalic", size: 25))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
+                .offset(x:-5, y: -10)
+            }
+            Text(chord.quality ?? "")
+              .font(.custom("Barlow-Regular", size: 24))
+              .padding(.trailing, 10)
+              .foregroundStyle(Color.white)
+            
+            Image(systemName: "headphones")
+              .font(.system(size: 23))
+              .foregroundColor(Color(.white))
+              .padding(.trailing, 20)
+          }.frame(height: 84)
+        }
+        .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
+        .clipShape(RoundedRectangle(cornerRadius: 30))
+        .padding(.bottom, 30)
+        .padding(.top, 10)
+        
+        Text("Strum the highlighted strings!")
+          .font(.custom("Barlow-Bold", size: 14))
+          .padding(.bottom, 30)
+          .foregroundStyle(Color.white)
+        
+        // Display corresponding chord image
+        Image("\(chord.chord_name ?? "")_diagram")
+          .resizable()
+          .scaledToFill()
+          .frame(maxWidth: .infinity)
+          .ignoresSafeArea(.all, edges: .horizontal)
+      }
       
-      Button("Hear Chord", action: {
-        audio.playChord(chordName: "\(chord.chord_name ?? "")")
-      })
+      Text("Check your finger position!")
+        .font(.custom("Barlow-Bold", size: 14))
+        .padding(.vertical, 30)
+        .foregroundStyle(Color.white)
       
-      Text(chord.displayable_name ?? "")
-        .font(.largeTitle)
-        .padding()
+      // MARK: - Recording Button -b
       
-      Text(chord.quality ?? "")
-        .font(.largeTitle)
-        .padding()
+      // display countdown if counting down
+      if isCountingDown {
+        Text("Get Ready!")
+        Text("\(countdown)")
+          .bold()
+          .foregroundStyle(Color.white)
+      }
       
       Spacer()
-      // Display corresponding chord image
-      Image("\(chord.chord_name ?? "")_diagram")
-    }
-    .navigationTitle(chord.chord_name ?? "Chord Detail")
-    
-    // MARK: - Recording Button -
-    
-    // display countdown if counting down
-    if isCountingDown {
-      Text("Get Ready!")
-      Text("\(countdown)")
-        .bold()
-    }
-    
-    Spacer()
-    
-    // record chord button, begin counting down/stop recording
-    Button {
-      // record audio
-      if audio.status == .stopped {
-        if hasMicAccess {
-          startCountdown()
-        } else {
-          requestMicrophoneAccess()
+      
+      // record chord button, begin counting down/stop recording
+      Button {
+        // record audio
+        if audio.status == .stopped {
+          if hasMicAccess {
+            startCountdown()
+          } else {
+            requestMicrophoneAccess()
+          }
+        } else if audio.status == .recording {
+          audio.stopRecording()
         }
-      } else if audio.status == .recording {
-        audio.stopRecording()
-      }
-    } label: {
-      // pulse if iOS17 +
-      if #available(iOS 17.0, *) {
-        if audio.status == .recording {
-          Image(systemName: "mic.circle.fill")
-            .font(.system(size: 70))
-            .symbolEffect(.pulse, value: true)
-            .foregroundColor(Color(.systemRed))
+      } label: {
+        // pulse if iOS17 +
+        if #available(iOS 17.0, *) {
+          if audio.status == .recording {
+            ZStack{
+              Circle()
+                .fill(Color.white)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .symbolEffect(.pulse, value: true)
+                .foregroundColor(Color(.systemRed))
+            }
+          } else {
+            VStack{
+              ZStack{
+                Circle()
+                  .fill(Color.red)
+                  .frame(width: 77, height: 77)
+                Image(systemName: "mic.circle.fill")
+                  .font(.system(size: 80))
+                  .foregroundColor(Color(.white))
+              }
+              Text("Try it!")
+                .font(.custom("Barlow-Bold", size: 14))
+                .foregroundStyle(Color.white)
+            }
+          }
         } else {
-          Image(systemName: "mic.circle")
-            .font(.system(size: 70))
-            .foregroundColor(Color(.systemRed))
+          // older vers
+          // let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
+          // Image(systemName: imageName)
+          //   .font(.system(size: 70))
+          //   .foregroundColor(Color(.systemRed))
+          if audio.status == .recording{
+            ZStack{
+              Circle()
+                .fill(Color.white)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.systemRed))
+            }
+          } else{
+            ZStack{
+              Circle()
+                .fill(Color.red)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.white))
+            }
+          }
         }
-      } else {
-        // older vers
-        let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
-        Image(systemName: imageName)
-          .font(.system(size: 70))
-          .foregroundColor(Color(.systemRed))
       }
     }
+    .padding(.bottom, 60)
+    .navigationBarBackButtonHidden(true)
+    .navigationBarItems(leading: Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+      }) {
+        Image(systemName: "chevron.backward")
+          .foregroundColor(.white)
+        Text("Chords")
+        .font(.custom("Barlow-Regular", size: 16))
+        .foregroundColor(.white)
+      })
+    .background(Color.black)
   }
   
   // start counting down
@@ -120,15 +205,7 @@ struct ChordDetailView: View {
          } else {
             displayNotification = true
          }
-     }
+      }
     }
   }
 }
-
-//
-//struct ChordDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChordDetailView()
-//    }
-//}
-

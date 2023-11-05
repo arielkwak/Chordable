@@ -80,15 +80,14 @@ struct ChordDetailView: View {
       // MARK: - Recording Button -b
       
       // display countdown if counting down
-      if isCountingDown {
-        Text("Get Ready!")
-        Text("\(countdown)")
-          .bold()
-          .foregroundStyle(Color.white)
-      }
-      
-      Spacer()
-      
+//      if isCountingDown {
+//        Text("Get Ready!")
+//          .foregroundStyle(Color.white)
+//        Text("\(countdown)")
+//          .bold()
+//          .foregroundStyle(Color.white)
+//      }
+            
       // record chord button, begin counting down/stop recording
       Button {
         // record audio
@@ -105,14 +104,19 @@ struct ChordDetailView: View {
         // pulse if iOS17 +
         if #available(iOS 17.0, *) {
           if audio.status == .recording {
-            ZStack{
-              Circle()
-                .fill(Color.white)
-                .frame(width: 77, height: 77)
-              Image(systemName: "mic.circle.fill")
-                .font(.system(size: 80))
-                .symbolEffect(.pulse, value: true)
-                .foregroundColor(Color(.systemRed))
+            VStack{
+              ZStack{
+                Circle()
+                  .fill(Color.white)
+                  .frame(width: 77, height: 77)
+                Image(systemName: "mic.circle.fill")
+                  .font(.system(size: 80))
+                  .symbolEffect(.pulse, value: true)
+                  .foregroundColor(Color(.systemRed))
+              }
+              Text("You have \(countdown) second(s)")
+                .font(.custom("Barlow-Bold", size: 14))
+                .foregroundStyle(Color.white)
             }
           } else {
             VStack{
@@ -136,22 +140,32 @@ struct ChordDetailView: View {
           //   .font(.system(size: 70))
           //   .foregroundColor(Color(.systemRed))
           if audio.status == .recording{
-            ZStack{
-              Circle()
-                .fill(Color.white)
-                .frame(width: 77, height: 77)
-              Image(systemName: "mic.circle.fill")
-                .font(.system(size: 80))
-                .foregroundColor(Color(.systemRed))
+            VStack{
+              ZStack{
+                Circle()
+                  .fill(Color.white)
+                  .frame(width: 77, height: 77)
+                Image(systemName: "mic.circle.fill")
+                  .font(.system(size: 80))
+                  .foregroundColor(Color(.systemRed))
+              }
+              Text("You have \(countdown) second(s)")
+                .font(.custom("Barlow-Bold", size: 14))
+                .foregroundStyle(Color.white)
             }
           } else{
-            ZStack{
-              Circle()
-                .fill(Color.red)
-                .frame(width: 77, height: 77)
-              Image(systemName: "mic.circle.fill")
-                .font(.system(size: 80))
-                .foregroundColor(Color(.white))
+            VStack{
+              ZStack{
+                Circle()
+                  .fill(Color.white)
+                  .frame(width: 77, height: 77)
+                Image(systemName: "mic.circle.fill")
+                  .font(.system(size: 80))
+                  .foregroundColor(Color(.systemRed))
+              }
+              Text("Try it!")
+                .font(.custom("Barlow-Bold", size: 14))
+                .foregroundStyle(Color.white)
             }
           }
         }

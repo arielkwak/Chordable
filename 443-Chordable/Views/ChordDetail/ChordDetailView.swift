@@ -28,11 +28,21 @@ struct ChordDetailView: View {
           audio.playChord(chordName: "\(chord.chord_name ?? "")")
         }){
           HStack{
-            Text(chord.displayable_name ?? "")
-              .font(.custom("Barlow-BlackItalic", size: 50))
-              .padding(.leading, 20)
-              .foregroundStyle(Color.white)
-            
+            let chordParts = (chord.displayable_name ?? "").components(separatedBy: "#")
+            if let firstPart = chordParts.first {
+              Text(firstPart)
+                .font(.custom("Barlow-BlackItalic", size: 50))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.leading, 20)
+            }
+            if chordParts.count > 1 {
+              Text("#" + chordParts[1])
+                .font(.custom("Barlow-BlackItalic", size: 25))
+                .foregroundColor(.white)
+                .fixedSize(horizontal: false, vertical: true)
+                .offset(x:-5, y: -10)
+            }
             Text(chord.quality ?? "")
               .font(.custom("Barlow-Regular", size: 24))
               .padding(.trailing, 10)
@@ -47,6 +57,7 @@ struct ChordDetailView: View {
         .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .padding(.bottom, 30)
+        .padding(.top, 10)
         
         Text("Strum the highlighted strings!")
           .font(.custom("Barlow-Bold", size: 14))
@@ -54,18 +65,16 @@ struct ChordDetailView: View {
           .foregroundStyle(Color.white)
         
         // Display corresponding chord image
-        GeometryReader { geometry in
-            Image("\(chord.chord_name ?? "")_diagram")
-                .resizable()
-                .scaledToFit()
-                .frame(width: geometry.size.width)
-        }
+        Image("\(chord.chord_name ?? "")_diagram")
+          .resizable()
+          .scaledToFill()
+          .frame(maxWidth: .infinity)
+          .ignoresSafeArea(.all, edges: .horizontal)
       }
-      .navigationTitle(chord.chord_name ?? "Chord Detail")
       
       Text("Check your finger position!")
         .font(.custom("Barlow-Bold", size: 14))
-        .padding(.vertical, 60)
+        .padding(.vertical, 30)
         .foregroundStyle(Color.white)
       
       // MARK: - Recording Button -b
@@ -96,26 +105,60 @@ struct ChordDetailView: View {
         // pulse if iOS17 +
         if #available(iOS 17.0, *) {
           if audio.status == .recording {
-            Image(systemName: "mic.circle.fill")
-              .font(.system(size: 70))
-              .symbolEffect(.pulse, value: true)
-              .foregroundColor(Color(.systemRed))
+            ZStack{
+              Circle()
+                .fill(Color.white)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .symbolEffect(.pulse, value: true)
+                .foregroundColor(Color(.systemRed))
+            }
           } else {
-            Image(systemName: "mic.circle")
-              .font(.system(size: 70))
-              .foregroundColor(Color(.systemRed))
+            VStack{
+              ZStack{
+                Circle()
+                  .fill(Color.red)
+                  .frame(width: 77, height: 77)
+                Image(systemName: "mic.circle.fill")
+                  .font(.system(size: 80))
+                  .foregroundColor(Color(.white))
+              }
+              Text("Try it!")
+                .font(.custom("Barlow-Bold", size: 14))
+                .foregroundStyle(Color.white)
+            }
           }
         } else {
           // older vers
-          let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
-          Image(systemName: imageName)
-            .font(.system(size: 70))
-            .foregroundColor(Color(.systemRed))
+          // let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
+          // Image(systemName: imageName)
+          //   .font(.system(size: 70))
+          //   .foregroundColor(Color(.systemRed))
+          if audio.status == .recording{
+            ZStack{
+              Circle()
+                .fill(Color.white)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.systemRed))
+            }
+          } else{
+            ZStack{
+              Circle()
+                .fill(Color.red)
+                .frame(width: 77, height: 77)
+              Image(systemName: "mic.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(Color(.white))
+            }
+          }
         }
       }
-      .padding(.bottom, 40)
     }
-    .navigationBarBackButtonHidden(true) 
+    .padding(.bottom, 60)
+    .navigationBarBackButtonHidden(true)
     .navigationBarItems(leading: Button(action: {
         self.presentationMode.wrappedValue.dismiss()
       }) {

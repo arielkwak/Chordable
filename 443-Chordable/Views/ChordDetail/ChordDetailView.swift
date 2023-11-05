@@ -30,14 +30,20 @@ struct ChordDetailView: View {
         Text(chord.displayable_name ?? "")
           .font(.largeTitle)
           .padding()
+          .foregroundStyle(Color.white)
         
         Text(chord.quality ?? "")
           .font(.largeTitle)
           .padding()
+          .foregroundStyle(Color.white)
         
-        Spacer()
         // Display corresponding chord image
-        Image("\(chord.chord_name ?? "")_diagram")
+        GeometryReader { geometry in
+            Image("\(chord.chord_name ?? "")_diagram")
+                .resizable()
+                .scaledToFit()
+                .frame(width: geometry.size.width)
+        }
       }
       .navigationTitle(chord.chord_name ?? "Chord Detail")
       
@@ -48,6 +54,7 @@ struct ChordDetailView: View {
         Text("Get Ready!")
         Text("\(countdown)")
           .bold()
+          .foregroundStyle(Color.white)
       }
       
       Spacer()
@@ -85,7 +92,8 @@ struct ChordDetailView: View {
             .foregroundColor(Color(.systemRed))
         }
       }
-    }.background(Color.black) 
+      Spacer()
+    }.background(Color.black)
   }
   
   // start counting down

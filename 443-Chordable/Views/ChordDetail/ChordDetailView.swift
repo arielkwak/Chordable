@@ -14,6 +14,7 @@ struct ChordDetailView: View {
   @State var displayNotification = false
   @State var countdown = 3
   @State var isCountingDown = false
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
 
@@ -113,7 +114,18 @@ struct ChordDetailView: View {
         }
       }
       .padding(.bottom, 40)
-    }.background(Color.black)
+    }
+    .navigationBarBackButtonHidden(true) 
+    .navigationBarItems(leading: Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+      }) {
+        Image(systemName: "chevron.backward")
+          .foregroundColor(.white)
+        Text("Chords")
+        .font(.custom("Barlow-Regular", size: 16))
+        .foregroundColor(.white)
+      })
+    .background(Color.black)
   }
   
   // start counting down

@@ -23,18 +23,33 @@ struct ChordDetailView: View {
         // MARK: - Hear Chord Example and Name -
         // play chord audio
         
-        Button("Hear Chord", action: {
+        Button(action: {
           audio.playChord(chordName: "\(chord.chord_name ?? "")")
-        })
+        }){
+          HStack{
+            Text(chord.displayable_name ?? "")
+              .font(.custom("Barlow-BlackItalic", size: 50))
+              .padding(.leading, 20)
+              .foregroundStyle(Color.white)
+            
+            Text(chord.quality ?? "")
+              .font(.custom("Barlow-Regular", size: 24))
+              .padding(.trailing, 10)
+              .foregroundStyle(Color.white)
+            
+            Image(systemName: "headphones")
+              .font(.system(size: 23))
+              .foregroundColor(Color(.white))
+              .padding(.trailing, 20)
+          }.frame(height: 84)
+        }
+        .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
+        .clipShape(RoundedRectangle(cornerRadius: 30))
+        .padding(.bottom, 30)
         
-        Text(chord.displayable_name ?? "")
-          .font(.largeTitle)
-          .padding()
-          .foregroundStyle(Color.white)
-        
-        Text(chord.quality ?? "")
-          .font(.largeTitle)
-          .padding()
+        Text("Strum the highlighted strings!")
+          .font(.custom("Barlow-Bold", size: 14))
+          .padding(.bottom, 30)
           .foregroundStyle(Color.white)
         
         // Display corresponding chord image
@@ -47,7 +62,12 @@ struct ChordDetailView: View {
       }
       .navigationTitle(chord.chord_name ?? "Chord Detail")
       
-      // MARK: - Recording Button -
+      Text("Check your finger position!")
+        .font(.custom("Barlow-Bold", size: 14))
+        .padding(.vertical, 60)
+        .foregroundStyle(Color.white)
+      
+      // MARK: - Recording Button -b
       
       // display countdown if counting down
       if isCountingDown {
@@ -92,7 +112,7 @@ struct ChordDetailView: View {
             .foregroundColor(Color(.systemRed))
         }
       }
-      Spacer()
+      .padding(.bottom, 40)
     }.background(Color.black)
   }
   

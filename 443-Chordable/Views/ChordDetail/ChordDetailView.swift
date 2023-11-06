@@ -220,6 +220,43 @@ struct ChordDetailView: View {
             .padding(.bottom, 130)
         }
       }
+      
+      if fingerButtonPressed{
+        Color.black
+          .opacity(0.85)
+          .edgesIgnoringSafeArea(.all)
+
+        ZStack{
+          RoundedRectangle(cornerRadius: 10)
+            .fill(Color(red: 0.25, green: 0.25, blue: 0.25))
+            .frame(width: 310, height: 420)
+         
+          VStack {
+            Image("left_hand_view")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 246, height: 246)
+              .scaleEffect(1.0)
+            
+            Text("Left Hand View")
+              .font(.custom("Barlow-Bold", size: 20))
+              .foregroundColor(Color.white)
+              .padding(.top, 20)
+          }
+          .padding()
+          
+          Button(action: {
+            fingerButtonPressed = false
+          }){
+            Image(systemName: "xmark")
+              .foregroundColor(.white)
+              .font(.system(size: 34))
+              .padding(.bottom, 340)
+              .padding(.leading, 240)
+          }
+          .padding() // Add padding to the button
+        }
+      }
     }
   }
   

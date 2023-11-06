@@ -15,6 +15,7 @@ struct ChordDetailView: View {
   @State var countdown = 3
   @State var isCountingDown = false
   @State var duration = 5
+  @State var fingerButtonPressed = false
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -74,10 +75,36 @@ struct ChordDetailView: View {
             .ignoresSafeArea(.all, edges: .horizontal)
         }
         
-        Text("Check your finger position!")
-          .font(.custom("Barlow-Bold", size: 14))
-          .padding(.vertical, 30)
-          .foregroundStyle(Color.white)
+        HStack{
+          Text("Check your finger position!")
+            .font(.custom("Barlow-Bold", size: 14))
+            .padding(.vertical, 30)
+            .foregroundStyle(Color.white)
+          
+          
+          Button(action: {
+            fingerButtonPressed = true
+          }){
+            ZStack {
+              RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white)
+                .frame(width: 72, height: 84)
+              
+              VStack {
+                Image("finger_guide_icon")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 26, height: 34)
+                  .scaleEffect(1.0)
+                
+                Text("Finger \n Guide")
+                  .font(.custom("Barlow-Medium", size: 12))
+                  .foregroundColor(Color.black)
+              }
+              .padding()
+            }
+          }
+        }
         
         // MARK: - Recording Button -b
         

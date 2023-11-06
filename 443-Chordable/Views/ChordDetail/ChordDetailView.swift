@@ -60,12 +60,12 @@ struct ChordDetailView: View {
           }
           .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
           .clipShape(RoundedRectangle(cornerRadius: 30))
-          .padding(.bottom, 30)
-          .padding(.top, 10)
+          .padding(.bottom, 20)
+          .padding(.top, 50)
           
           Text("Strum the highlighted strings!")
             .font(.custom("Barlow-Bold", size: 14))
-            .padding(.bottom, 30)
+            .padding(.bottom, 20)
             .foregroundStyle(Color.white)
           
           // Display corresponding chord image
@@ -133,7 +133,7 @@ struct ChordDetailView: View {
               }
             }
           }.padding(.leading, 300)
-        }
+        }.padding(.top, -10)
         
         // MARK: - Recording Button -b
         
@@ -220,7 +220,8 @@ struct ChordDetailView: View {
           }
         }
       }
-      .padding(.bottom, 60)
+      .padding(.bottom, 70)
+      .padding(.top, -20)
       .navigationBarBackButtonHidden(true)
       .navigationBarItems(leading: Button(action: {
         self.presentationMode.wrappedValue.dismiss()

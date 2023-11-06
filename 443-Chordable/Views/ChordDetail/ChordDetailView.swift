@@ -14,6 +14,7 @@ struct ChordDetailView: View {
   @State var displayNotification = false
   @State var countdown = 3
   @State var isCountingDown = false
+  @State var duration = 5
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -114,7 +115,7 @@ struct ChordDetailView: View {
                   .symbolEffect(.pulse, value: true)
                   .foregroundColor(Color(.systemRed))
               }
-              Text("You have \(countdown) second(s)")
+              Text("You have \(duration) second(s)!")
                 .font(.custom("Barlow-Bold", size: 14))
                 .foregroundStyle(Color.white)
             }
@@ -195,9 +196,21 @@ struct ChordDetailView: View {
         isCountingDown = false
         timer.invalidate()
         audio.startRecording()
+        startDuration()
       }
     }
     countdown = 3
+  }
+  
+  func startDuration(){
+    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ timer in
+      if duration > 1{
+        duration -= 1
+      } else{
+        timer.invalidate()
+      }
+    }
+    duration = 5
   }
   
   private func requestMicrophoneAccess() {

@@ -15,6 +15,7 @@ struct ChordDetailView: View {
   @State var countdown = 3
   @State var isCountingDown = false
   @State var duration = 5
+  @State var fingerButtonPressed = false
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -74,10 +75,37 @@ struct ChordDetailView: View {
             .ignoresSafeArea(.all, edges: .horizontal)
         }
         
-        Text("Check your finger position!")
-          .font(.custom("Barlow-Bold", size: 14))
-          .padding(.vertical, 30)
-          .foregroundStyle(Color.white)
+        ZStack{
+          Text("Check your finger position!")
+            .font(.custom("Barlow-Bold", size: 14))
+            .padding(.vertical, 30)
+            .foregroundStyle(Color.white)
+          
+          HStack{
+            Button(action: {
+              fingerButtonPressed = true
+            }){
+              ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                  .fill(Color.white)
+                  .frame(width: 72, height: 84)
+                
+                VStack {
+                  Image("finger_guide_icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 26, height: 34)
+                    .scaleEffect(1.0)
+                  
+                  Text("Finger \n Guide")
+                    .font(.custom("Barlow-Medium", size: 12))
+                    .foregroundColor(Color.black)
+                }
+                .padding()
+              }
+            }
+          }.padding(.leading, 300)
+        }
         
         // MARK: - Recording Button -b
         
@@ -190,6 +218,43 @@ struct ChordDetailView: View {
             .font(.custom("Barlow-BlackItalic", size: 250))
             .foregroundStyle(Color.white)
             .padding(.bottom, 130)
+        }
+      }
+      
+      if fingerButtonPressed{
+        Color.black
+          .opacity(0.85)
+          .edgesIgnoringSafeArea(.all)
+
+        ZStack{
+          RoundedRectangle(cornerRadius: 10)
+            .fill(Color(red: 0.25, green: 0.25, blue: 0.25))
+            .frame(width: 310, height: 420)
+         
+          VStack {
+            Image("left_hand_view")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 246, height: 246)
+              .scaleEffect(1.0)
+            
+            Text("Left Hand View")
+              .font(.custom("Barlow-Bold", size: 20))
+              .foregroundColor(Color.white)
+              .padding(.top, 20)
+          }
+          .padding()
+          
+          Button(action: {
+            fingerButtonPressed = false
+          }){
+            Image(systemName: "xmark")
+              .foregroundColor(.white)
+              .font(.system(size: 34))
+              .padding(.bottom, 340)
+              .padding(.leading, 240)
+          }
+          .padding() // Add padding to the button
         }
       }
     }

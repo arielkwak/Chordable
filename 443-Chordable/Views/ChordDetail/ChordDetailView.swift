@@ -16,6 +16,7 @@ struct ChordDetailView: View {
   @State var isCountingDown = false
   @State var duration = 5
   @State var fingerButtonPressed = false
+  @State var holdingButtonPressed = false
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -59,12 +60,12 @@ struct ChordDetailView: View {
           }
           .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
           .clipShape(RoundedRectangle(cornerRadius: 30))
-          .padding(.bottom, 30)
-          .padding(.top, 10)
+          .padding(.bottom, 20)
+          .padding(.top, 50)
           
           Text("Strum the highlighted strings!")
             .font(.custom("Barlow-Bold", size: 14))
-            .padding(.bottom, 30)
+            .padding(.bottom, 20)
             .foregroundStyle(Color.white)
           
           // Display corresponding chord image
@@ -76,6 +77,33 @@ struct ChordDetailView: View {
         }
         
         ZStack{
+          HStack{
+            Button(action: {
+              holdingButtonPressed = true
+            }){
+              ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                  .fill(Color.white)
+                  .frame(width: 72, height: 107)
+                
+                VStack {
+                  Image("guitar_holding_icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 43, height: 59)
+                    .scaleEffect(1.0)
+                  
+                  Text("Holding \n Guide")
+                    .font(.custom("Barlow-Medium", size: 12))
+                    .foregroundColor(Color.black)
+                }
+                .padding()
+              }
+            }
+          }
+          .padding(.trailing, 300)
+          .padding(.top, 20)
+          
           Text("Check your finger position!")
             .font(.custom("Barlow-Bold", size: 14))
             .padding(.vertical, 30)
@@ -105,7 +133,7 @@ struct ChordDetailView: View {
               }
             }
           }.padding(.leading, 300)
-        }
+        }.padding(.top, -10)
         
         // MARK: - Recording Button -b
         
@@ -192,7 +220,8 @@ struct ChordDetailView: View {
           }
         }
       }
-      .padding(.bottom, 60)
+      .padding(.bottom, 70)
+      .padding(.top, -20)
       .navigationBarBackButtonHidden(true)
       .navigationBarItems(leading: Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -254,7 +283,43 @@ struct ChordDetailView: View {
               .padding(.bottom, 340)
               .padding(.leading, 240)
           }
-          .padding() // Add padding to the button
+          .padding()
+        }
+      }
+      
+      if holdingButtonPressed{
+        ZStack(alignment: .topTrailing) { 
+          Color.black
+            .opacity(0.95)
+            .edgesIgnoringSafeArea(.all)
+  
+          VStack{
+            Text("Hold your guitar\nlike the image")
+              .font(.custom("Barlow-Bold", size: 24))
+              .foregroundColor(Color.white)
+              .padding(.top, 10)
+              .padding(.bottom, 20)
+              .multilineTextAlignment(.center)
+            
+            Image("guitar_holding_guide")
+              .frame(width: 347)
+                        
+            Text("** Mirror View ** \n For Right Handed People")
+              .font(.custom("Barlow-Bold", size: 16))
+              .padding(.top, 30)
+              .foregroundColor(Color.white)
+              .multilineTextAlignment(.center)
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+          Button(action: {
+            holdingButtonPressed = false
+          }){
+            Image(systemName: "xmark")
+              .foregroundColor(.white)
+              .font(.system(size: 34))
+          }
+          .padding()
         }
       }
     }

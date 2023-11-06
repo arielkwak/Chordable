@@ -91,7 +91,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       self?.stopRecording()
       timer.invalidate()
     }
-    
   }
   
   // stop recording

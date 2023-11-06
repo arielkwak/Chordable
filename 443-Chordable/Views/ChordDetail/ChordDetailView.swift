@@ -80,13 +80,13 @@ struct ChordDetailView: View {
       // MARK: - Recording Button -b
       
       // display countdown if counting down
-//      if isCountingDown {
-//        Text("Get Ready!")
-//          .foregroundStyle(Color.white)
-//        Text("\(countdown)")
-//          .bold()
-//          .foregroundStyle(Color.white)
-//      }
+      if isCountingDown {
+        Text("Get Ready!")
+          .foregroundStyle(Color.white)
+        Text("\(countdown)")
+          .bold()
+          .foregroundStyle(Color.white)
+      }
             
       // record chord button, begin counting down/stop recording
       Button {

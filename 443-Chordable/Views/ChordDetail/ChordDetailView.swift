@@ -75,35 +75,36 @@ struct ChordDetailView: View {
             .ignoresSafeArea(.all, edges: .horizontal)
         }
         
-        HStack{
+        ZStack{
           Text("Check your finger position!")
             .font(.custom("Barlow-Bold", size: 14))
             .padding(.vertical, 30)
             .foregroundStyle(Color.white)
           
-          
-          Button(action: {
-            fingerButtonPressed = true
-          }){
-            ZStack {
-              RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
-                .frame(width: 72, height: 84)
-              
-              VStack {
-                Image("finger_guide_icon")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 26, height: 34)
-                  .scaleEffect(1.0)
+          HStack{
+            Button(action: {
+              fingerButtonPressed = true
+            }){
+              ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                  .fill(Color.white)
+                  .frame(width: 72, height: 84)
                 
-                Text("Finger \n Guide")
-                  .font(.custom("Barlow-Medium", size: 12))
-                  .foregroundColor(Color.black)
+                VStack {
+                  Image("finger_guide_icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 26, height: 34)
+                    .scaleEffect(1.0)
+                  
+                  Text("Finger \n Guide")
+                    .font(.custom("Barlow-Medium", size: 12))
+                    .foregroundColor(Color.black)
+                }
+                .padding()
               }
-              .padding()
             }
-          }
+          }.padding(.leading, 300)
         }
         
         // MARK: - Recording Button -b

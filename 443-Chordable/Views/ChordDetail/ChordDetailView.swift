@@ -17,6 +17,8 @@ struct ChordDetailView: View {
   @State var duration = 5
   @State var fingerButtonPressed = false
   @State var holdingButtonPressed = false
+  @State var countdownTimer: Timer?
+  @State var durationTimer: Timer?
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -327,8 +329,9 @@ struct ChordDetailView: View {
   
   // start counting down
   func startCountdown() {
+    countdownTimer?.invalidate()
     isCountingDown = true
-    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+    countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
       if countdown > 1 {
         countdown -= 1
       } else {
@@ -342,7 +345,8 @@ struct ChordDetailView: View {
   }
   
   func startDuration(){
-    _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ timer in
+    durationTimer?.invalidate()
+    durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ timer in
       if duration > 1{
         duration -= 1
       } else{

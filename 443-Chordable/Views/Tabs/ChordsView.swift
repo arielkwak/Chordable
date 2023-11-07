@@ -34,45 +34,13 @@ struct ChordsView: View {
                 SearchBar(text: $viewController.searchQuery)
                 
                 HStack {
-                  // button styling for complete
-                  Button(action: {
-                    viewController.filterOnCompleted = true
-                  }) {
-                    Text("Completed")
-                      .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                      .padding(.trailing, 50)
-                      .overlay { viewController.filterOnCompleted ?
-                        LinearGradient(
-                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
-                          startPoint: .leading,
-                          endPoint: .trailing
-                        )
-                        .mask(
-                          Text("Completed")
-                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                          .padding(.trailing, 50)
-                        )
-                        :
-                        LinearGradient(
-                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
-                          startPoint: .leading,
-                          endPoint: .trailing
-                        )
-                        .mask(
-                          Text("Completed")
-                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                          .padding(.trailing, 50)
-                        )
-                      }
-                  }
-                  
                   // button styling for incomplete
                   Button(action: {
                     viewController.filterOnCompleted = false
                   }) {
                     Text("Incomplete")
                       .font(viewController.filterOnCompleted ? .custom("Barlow-Regular", size: 22) : .custom("Barlow-Bold", size: 22))
-                      .padding(.leading, 50)
+                      .padding(.trailing, 50)
                       .overlay { !viewController.filterOnCompleted ?
                         LinearGradient(
                           colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
@@ -82,7 +50,7 @@ struct ChordsView: View {
                         .mask(
                           Text("Incomplete")
                           .font(!viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                          .padding(.leading, 50)
+                          .padding(.trailing, 50)
                         )
                         :
                         LinearGradient(
@@ -93,6 +61,38 @@ struct ChordsView: View {
                         .mask(
                           Text("Incomplete")
                           .font(!viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.trailing, 50)
+                        )
+                      }
+                  }
+                  
+                  // button styling for complete
+                  Button(action: {
+                    viewController.filterOnCompleted = true
+                  }) {
+                    Text("Complete")
+                      .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                      .padding(.leading, 50)
+                      .overlay { viewController.filterOnCompleted ?
+                        LinearGradient(
+                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Complete")
+                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.leading, 50)
+                        )
+                        :
+                        LinearGradient(
+                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Complete")
+                          .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                           .padding(.leading, 50)
                         )
                       }
@@ -105,14 +105,14 @@ struct ChordsView: View {
                   GeometryReader { geometry in
                     HStack {
                       Rectangle()
-                      .fill(viewController.filterOnCompleted ?
+                      .fill(!viewController.filterOnCompleted ?
                           AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
                           AnyShapeStyle(Color.clear)
                       )
                       .frame(width: geometry.size.width / 2, height: 5)
                       Spacer()
                       Rectangle()
-                      .fill(!viewController.filterOnCompleted ?
+                      .fill(viewController.filterOnCompleted ?
                           AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
                           AnyShapeStyle(Color.clear)
                       )

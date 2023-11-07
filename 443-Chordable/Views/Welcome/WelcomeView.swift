@@ -14,7 +14,7 @@ struct WelcomeView: View {
     @State private var userName: String = ""
 
   var body: some View {
-      NavigationView {
+      ScrollView {
           ZStack {
               // Start with a black background
               Color.black.edgesIgnoringSafeArea(.all)
@@ -38,6 +38,7 @@ struct WelcomeView: View {
                       .font(.custom("Barlow-Regular", size: 50))
                       .fontWeight(.semibold)
                       .foregroundColor(.white)
+                      .padding(.top, 30)
 
                   Text("Let's get you started")
                       .font(.custom("Barlow-Regular", size: 20))
@@ -90,7 +91,7 @@ struct WelcomeView: View {
               .padding(.leading, 30)
           }
           .navigationBarHidden(true)
-      }
+      }.edgesIgnoringSafeArea(.all)
   }
 
 

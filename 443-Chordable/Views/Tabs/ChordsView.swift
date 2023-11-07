@@ -70,7 +70,7 @@ struct ChordsView: View {
                   Button(action: {
                     viewController.filterOnCompleted = true
                   }) {
-                    Text("Completed")
+                    Text("Complete")
                       .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                       .padding(.leading, 50)
                       .overlay { viewController.filterOnCompleted ?
@@ -80,7 +80,7 @@ struct ChordsView: View {
                           endPoint: .trailing
                         )
                         .mask(
-                          Text("Completed")
+                          Text("Complete")
                           .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                           .padding(.leading, 50)
                         )
@@ -91,7 +91,7 @@ struct ChordsView: View {
                           endPoint: .trailing
                         )
                         .mask(
-                          Text("Completed")
+                          Text("Complete")
                           .font(viewController.filterOnCompleted ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                           .padding(.leading, 50)
                         )

@@ -200,7 +200,7 @@ struct ChordDetailView: View {
                     .font(.system(size: 80))
                     .foregroundColor(Color(.systemRed))
                 }
-                Text("You have \(countdown) second(s)")
+                Text("You have \(duration) second(s)!")
                   .font(.custom("Barlow-Bold", size: 14))
                   .foregroundStyle(Color.white)
               }

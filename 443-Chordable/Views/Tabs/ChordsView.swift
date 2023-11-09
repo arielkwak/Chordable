@@ -176,7 +176,7 @@ struct ChordsView: View {
               }
               Spacer()
             }.padding(.bottom, 40)
-            .frame(minHeight: 460)
+            .frame(minHeight: 520)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
         }

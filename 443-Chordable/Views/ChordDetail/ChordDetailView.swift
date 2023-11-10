@@ -385,9 +385,7 @@ struct ChordDetailView: View {
       // For iOS versions prior to 17, use AVAudioSession to request microphone access
        AVAudioSession.sharedInstance().requestRecordPermission { granted in
          hasMicAccess = granted
-         if granted {
-            startCountdown()
-         } else {
+         if !granted {
             displayNotification = true
          }
       }

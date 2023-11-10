@@ -26,6 +26,10 @@
 		35B244412AEF403400F04453 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244402AEF403400F04453 /* Quote.swift */; };
 		35B244432AEF404B00F04453 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244422AEF404B00F04453 /* UserInfo.swift */; };
 		35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B244442AEF406300F04453 /* SongChordInstance.swift */; };
+		35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */; };
+		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
+		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
+		35C434B22AFDC40300DAC3BE /* mock_chord_output.json in Resources */ = {isa = PBXBuildFile; fileRef = 35C434A82AFDBB0E00DAC3BE /* mock_chord_output.json */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
 		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
 		F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */; };
@@ -69,6 +73,10 @@
 		35B244402AEF403400F04453 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		35B244422AEF404B00F04453 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		35B244442AEF406300F04453 /* SongChordInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongChordInstance.swift; sourceTree = "<group>"; };
+		35C434A82AFDBB0E00DAC3BE /* mock_chord_output.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mock_chord_output.json; sourceTree = "<group>"; };
+		35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordResponse.swift; sourceTree = "<group>"; };
+		35C434B02AFDBD6200DAC3BE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 		F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-43-Chordable-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -130,6 +138,7 @@
 		35B2440E2AEEF8E700F04453 /* 443-Chordable */ = {
 			isa = PBXGroup;
 			children = (
+				35C434A72AFDBAF700DAC3BE /* Resources */,
 				F0D97C122AF372F800AF16B6 /* Fonts */,
 				F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */,
 				35B244332AEF0E1300F04453 /* Models */,
@@ -181,6 +190,7 @@
 		35B2442A2AEF09DC00F04453 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				35C434AB2AFDBB7D00DAC3BE /* Result */,
 				352D3C642AF70C9B005BC35B /* Welcome */,
 				35B244372AEF101300F04453 /* ChordDetail */,
 				35B2442B2AEF09E900F04453 /* Tabs */,
@@ -217,6 +227,7 @@
 				35B244422AEF404B00F04453 /* UserInfo.swift */,
 				35B244442AEF406300F04453 /* SongChordInstance.swift */,
 				41FB94342AF0B4A600409446 /* AudioStatus.swift */,
+				35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,6 +238,23 @@
 				35B244382AEF102400F04453 /* ChordDetailView.swift */,
 			);
 			path = ChordDetail;
+			sourceTree = "<group>";
+		};
+		35C434A72AFDBAF700DAC3BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35C434A82AFDBB0E00DAC3BE /* mock_chord_output.json */,
+				35C434B02AFDBD6200DAC3BE /* Helper.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		35C434AB2AFDBB7D00DAC3BE /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 		F0D97C122AF372F800AF16B6 /* Fonts */ = {
@@ -320,6 +348,7 @@
 				F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */,
 				F0D97C2F2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf in Resources */,
 				F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */,
+				35C434B22AFDC40300DAC3BE /* mock_chord_output.json in Resources */,
 				F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */,
 				F0D97C2C2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf in Resources */,
 				F0D97C262AF3730F00AF16B6 /* Barlow-Black.ttf in Resources */,
@@ -347,11 +376,13 @@
 				41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */,
 				35B2442F2AEF0A0000F04453 /* ChordsView.swift in Sources */,
 				35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */,
+				35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */,
 				35B244432AEF404B00F04453 /* UserInfo.swift in Sources */,
 				35B244352AEF0E3F00F04453 /* ChordsViewController.swift in Sources */,
 				35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */,
 				35B244262AEF065C00F04453 /* SongDataInitializer.swift in Sources */,
 				35B244312AEF0A0900F04453 /* SongsView.swift in Sources */,
+				35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */,
 				35B244192AEEF8E800F04453 /* Persistence.swift in Sources */,
 				35B244392AEF102400F04453 /* ChordDetailView.swift in Sources */,
 				41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */,
@@ -361,6 +392,7 @@
 				35B244412AEF403400F04453 /* Quote.swift in Sources */,
 				35B2443D2AEF3FB800F04453 /* Chord.swift in Sources */,
 				352D3C662AF70CA9005BC35B /* WelcomeView.swift in Sources */,
+				35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

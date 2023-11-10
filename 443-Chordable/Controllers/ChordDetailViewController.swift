@@ -47,6 +47,10 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     }
   }
   
+  func completeChord() {
+    
+  }
+  
   // MARK: - Recording Audio -
   
   // save recorded audio to temporary directory
@@ -80,23 +84,24 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     }
   }
   
-  // begin recording for 5 seconds with 3 second delay
-  func startRecording() {
-    let duration = 5.0
-    setupRecorder()
-    audioRecorder?.record()
-    status = .recording
-    
-    Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { [weak self] timer in
-      self?.stopRecording()
-      timer.invalidate()
-    }
+  func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
+      setupRecorder()
+      audioRecorder?.record()
+      status = .recording
+      
+      Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] timer in
+          self?.stopRecording(completion: completion)
+      }
   }
+
   
-  // stop recording
-  func stopRecording() {
-    audioRecorder?.stop()
-    status = .stopped
+  func stopRecording(completion: @escaping (String) -> Void) {
+      audioRecorder?.stop()
+      status = .stopped
+
+      // Simulate an API call delay if needed using DispatchQueue.main.asyncAfter
+      let mockChordResponse: ChordResponse = Bundle.main.decode(ChordResponse.self, from: "mock_chord_output.json")
+      completion(mockChordResponse.chord)
   }
 }
 
@@ -105,6 +110,10 @@ extension ChordDetailViewController {
     status = .stopped
   }
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    status = .stopped
+    if flag {
+      DispatchQueue.main.async {
+        self.status = .stopped
+      }
+    }
   }
 }

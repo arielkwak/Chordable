@@ -19,6 +19,8 @@ struct ChordDetailView: View {
   @State var holdingButtonPressed = false
   @State var countdownTimer: Timer?
   @State var durationTimer: Timer?
+  @State private var showResultView = false
+  @State private var isSuccess = false // Change the type of this to Bool
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -141,17 +143,16 @@ struct ChordDetailView: View {
         
         // record chord button, begin counting down/stop recording
         Button {
-          // record audio
+            // record audio
           if audio.status == .stopped {
             if hasMicAccess {
               startCountdown()
             } else {
               requestMicrophoneAccess()
             }
-          } else if audio.status == .recording {
-            audio.stopRecording()
           }
-        } label: {
+        }
+ label: {
           // pulse if iOS17 +
           if #available(iOS 17.0, *) {
             if audio.status == .recording {
@@ -221,6 +222,10 @@ struct ChordDetailView: View {
             }
           }
         }
+        NavigationLink(destination: ResultView(isSuccess: isSuccess, chord: chord), isActive: $showResultView) {
+            EmptyView()
+        }
+        .hidden()
       }
       .padding(.bottom, 70)
       .padding(.top, -20)
@@ -326,36 +331,48 @@ struct ChordDetailView: View {
       }
     }
   }
-  
-  // start counting down
+
   func startCountdown() {
-    countdownTimer?.invalidate()
-    isCountingDown = true
-    countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-      if countdown > 1 {
-        countdown -= 1
-      } else {
-        isCountingDown = false
-        timer.invalidate()
-        audio.startRecording()
-        startDuration()
+      countdownTimer?.invalidate()
+      isCountingDown = true
+      countdown = 3 // Start from 3 seconds
+      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+          if self.countdown > 1 {
+              self.countdown -= 1
+          } else {
+              self.isCountingDown = false
+              self.countdownTimer?.invalidate()
+              self.startDuration() // Call startDuration to manage recording time
+          }
       }
-    }
-    countdown = 3
   }
-  
-  func startDuration(){
-    durationTimer?.invalidate()
-    durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){ timer in
-      if duration > 1{
-        duration -= 1
-      } else{
-        timer.invalidate()
+
+  func startDuration() {
+      durationTimer?.invalidate() // Clear any existing timer
+      duration = 5 // Start from 5 seconds for recording duration
+      durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+          if self.duration > 1 {
+              self.duration -= 1
+          } else {
+              // Duration is up, stop recording and proceed
+              self.durationTimer?.invalidate()
+              self.audio.stopRecording() { predictedChord in
+                // Inside startDuration(), change the DispatchQueue block to:
+                DispatchQueue.main.async {
+                    let success = predictedChord == self.chord.chord_name
+                    if success { self.chord.completed = true }
+                    self.isSuccess = success // Set isSuccess state variable
+                    self.showResultView = true
+                }
+              }
+          }
       }
-    }
-    duration = 5
+      audio.startRecording(for: 5) { predictedChord in
+          // ... handle completion
+      }
   }
-  
+
+
   private func requestMicrophoneAccess() {
     if #available(iOS 17.0, *) {
       AVAudioApplication.requestRecordPermission { granted in

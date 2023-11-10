@@ -359,13 +359,24 @@ struct ChordDetailView: View {
               self.audio.stopRecording() { predictedChord in
                 // Inside startDuration(), change the DispatchQueue block to:
                 DispatchQueue.main.async {
-                    let success = predictedChord == self.chord.chord_name
-                    if success { self.chord.completed = true }
-                    self.isSuccess = success // Set isSuccess state variable
-                    self.showResultView = true
+                            let success = predictedChord == self.chord.chord_name
+                            if success {
+                                self.chord.completed = true
+                                // Save the context here
+                                if let context = self.chord.managedObjectContext {
+                                    do {
+                                        try context.save()
+                                    } catch {
+                                        // Handle the error appropriately
+                                        print("Failed to save context: \(error)")
+                                    }
+                                }
+                            }
+                            self.isSuccess = success // Set isSuccess state variable
+                            self.showResultView = true
+                        }
+                    }
                 }
-              }
-          }
       }
       audio.startRecording(for: 5) { predictedChord in
           // ... handle completion

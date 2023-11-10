@@ -139,7 +139,7 @@ struct ChordDetailView: View {
           }.padding(.leading, 300)
         }.padding(.top, -10)
         
-        // MARK: - Recording Button -b
+        // MARK: - Recording Button -
         
         // record chord button, begin counting down/stop recording
         Button {
@@ -377,9 +377,7 @@ struct ChordDetailView: View {
     if #available(iOS 17.0, *) {
       AVAudioApplication.requestRecordPermission { granted in
         hasMicAccess = granted
-        if granted {
-          startCountdown()
-        } else {
+        if !granted {
           displayNotification = true
         }
       }

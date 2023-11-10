@@ -151,15 +151,6 @@ struct ChordDetailView: View {
               requestMicrophoneAccess()
             }
           }
-//            } else if audio.status == .recording {
-//                audio.stopRecording { predictedChord in
-//                    DispatchQueue.main.async {
-//                        let isSuccess = predictedChord == self.chord.chord_name
-//                        self.resultMessage = isSuccess ? "Correct! It's a \(predictedChord) chord." : "Try again! That was not a \(self.chord.chord_name ?? "") chord."
-//                        self.showResultView = true // If you're using a NavigationLink to navigate
-//                    }
-//                }
-//            }
         }
  label: {
           // pulse if iOS17 +

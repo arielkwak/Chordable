@@ -393,27 +393,6 @@ struct ChordDetailView: View {
       // ... handle completion
     }
   }
-
-// old code that gave us the issue of having to click the button twice
-//  private func requestMicrophoneAccess() {
-//    if #available(iOS 17.0, *) {
-//      AVAudioApplication.requestRecordPermission { granted in
-//        hasMicAccess = granted
-//        if !granted {
-//          displayNotification = true
-//        }
-//      }
-//    } else {
-//      // For iOS versions prior to 17, use AVAudioSession to request microphone access
-//       AVAudioSession.sharedInstance().requestRecordPermission { granted in
-//         hasMicAccess = granted
-//         if !granted {
-//            displayNotification = true
-//         }
-//      }
-//    }
-//  }
-  
   
   private func requestMicrophoneAccess() {
       AVAudioSession.sharedInstance().requestRecordPermission { granted in

@@ -180,6 +180,9 @@ struct ChordsView: View {
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
         }
+        .onAppear {
+          viewController.fetchChords()
+        }
       }
       .background(Color.black)
     }

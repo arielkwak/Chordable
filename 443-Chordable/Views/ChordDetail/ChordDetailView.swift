@@ -20,7 +20,7 @@ struct ChordDetailView: View {
   @State var countdownTimer: Timer?
   @State var durationTimer: Timer?
   @State private var showResultView = false
-  @State private var isSuccess = false // Change the type of this to Bool
+  @State private var isSuccess = false
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -71,6 +71,7 @@ struct ChordDetailView: View {
           .clipShape(RoundedRectangle(cornerRadius: 30))
           .padding(.bottom, 20)
           .padding(.top, 50)
+          .disabled(isCountingDown || audio.isRecordingActive)
           
           Text("Strum the highlighted strings!")
             .font(.custom("Barlow-Bold", size: 14))
@@ -109,6 +110,7 @@ struct ChordDetailView: View {
                 .padding()
               }
             }
+            .disabled(isCountingDown || audio.isRecordingActive)
           }
           .padding(.trailing, 300)
           .padding(.top, 20)
@@ -141,6 +143,7 @@ struct ChordDetailView: View {
                 .padding()
               }
             }
+            .disabled(isCountingDown || audio.isRecordingActive)
           }.padding(.leading, 300)
         }.padding(.top, -10)
         
@@ -234,16 +237,18 @@ struct ChordDetailView: View {
       }
       .padding(.bottom, 70)
       .padding(.top, -20)
-      .navigationBarBackButtonHidden(true)
-      .navigationBarItems(leading: Button(action: {
-        self.presentationMode.wrappedValue.dismiss()
+      .navigationBarBackButtonHidden(true) // Always hide the default back button
+      .navigationBarItems(leading: (!isCountingDown && !audio.isRecordingActive) ? AnyView(Button(action: {
+          self.presentationMode.wrappedValue.dismiss()
       }) {
-        Image(systemName: "chevron.backward")
-          .foregroundColor(.white)
-        Text("Chords")
-          .font(.custom("Barlow-Regular", size: 16))
-          .foregroundColor(.white)
-      })
+          HStack {
+              Image(systemName: "chevron.backward")
+                  .foregroundColor(.white)
+              Text("Chords")
+                  .font(.custom("Barlow-Regular", size: 16))
+                  .foregroundColor(.white)
+          }
+      }) : AnyView(EmptyView()))
       .background(Color.black)
       
       if isCountingDown{
@@ -353,58 +358,81 @@ struct ChordDetailView: View {
   }
 
   func startDuration() {
-      durationTimer?.invalidate() // Clear any existing timer
-      duration = 5 // Start from 5 seconds for recording duration
-      durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-          if self.duration > 1 {
-              self.duration -= 1
-          } else {
-              // Duration is up, stop recording and proceed
-              self.durationTimer?.invalidate()
-              self.audio.stopRecording() { predictedChord in
-                // Inside startDuration(), change the DispatchQueue block to:
-                DispatchQueue.main.async {
-                            let success = predictedChord == self.chord.chord_name
-                            if success {
-                                self.chord.completed = true
-                                // Save the context here
-                                if let context = self.chord.managedObjectContext {
-                                    do {
-                                        try context.save()
-                                    } catch {
-                                        // Handle the error appropriately
-                                        print("Failed to save context: \(error)")
-                                    }
-                                }
-                            }
-                            self.isSuccess = success // Set isSuccess state variable
-                            self.showResultView = true
-                        }
-                    }
+    durationTimer?.invalidate() // Clear any existing timer
+    audio.isRecordingActive = true
+    duration = 5 // Start from 5 seconds for recording duration
+    durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+      if self.duration > 1 {
+        self.duration -= 1
+      } else {
+        // Duration is up, stop recording and proceed
+        self.durationTimer?.invalidate()
+        self.audio.stopRecording() { predictedChord in
+          // Inside startDuration(), change the DispatchQueue block to:
+          DispatchQueue.main.async {
+            let success = predictedChord == self.chord.chord_name
+            if success {
+              self.chord.completed = true
+              // Save the context here
+              if let context = self.chord.managedObjectContext {
+                do {
+                  try context.save()
+                } catch {
+                  // Handle the error appropriately
+                  print("Failed to save context: \(error)")
                 }
-      }
-      audio.startRecording(for: 5) { predictedChord in
-          // ... handle completion
-      }
-  }
-
-
-  private func requestMicrophoneAccess() {
-    if #available(iOS 17.0, *) {
-      AVAudioApplication.requestRecordPermission { granted in
-        hasMicAccess = granted
-        if !granted {
-          displayNotification = true
+              }
+            }
+            self.isSuccess = success // Set isSuccess state variable
+            self.showResultView = true
+          }
         }
       }
-    } else {
-      // For iOS versions prior to 17, use AVAudioSession to request microphone access
-       AVAudioSession.sharedInstance().requestRecordPermission { granted in
-         hasMicAccess = granted
-         if !granted {
-            displayNotification = true
-         }
-      }
+    }
+    audio.startRecording(for: 5) { predictedChord in
+      // ... handle completion
     }
   }
+
+// old code that gave us the issue of having to click the button twice
+//  private func requestMicrophoneAccess() {
+//    if #available(iOS 17.0, *) {
+//      AVAudioApplication.requestRecordPermission { granted in
+//        hasMicAccess = granted
+//        if !granted {
+//          displayNotification = true
+//        }
+//      }
+//    } else {
+//      // For iOS versions prior to 17, use AVAudioSession to request microphone access
+//       AVAudioSession.sharedInstance().requestRecordPermission { granted in
+//         hasMicAccess = granted
+//         if !granted {
+//            displayNotification = true
+//         }
+//      }
+//    }
+//  }
+  
+  
+  private func requestMicrophoneAccess() {
+      AVAudioSession.sharedInstance().requestRecordPermission { granted in
+          DispatchQueue.main.async {
+              self.hasMicAccess = granted
+              if granted {
+                  // Initiate the countdown only if the microphone access is granted and if it is not already counting down.
+                  if !self.isCountingDown {
+                      self.startCountdown()
+                  }
+              } else {
+                  // Alert the user that microphone access is required
+                  self.displayNotification = true
+              }
+          }
+      }
+  }
+
+
 }
+
+

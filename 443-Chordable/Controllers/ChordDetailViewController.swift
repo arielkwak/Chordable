@@ -16,6 +16,7 @@ enum ChordDetailError: Error, Equatable {
 
 class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
+  @Published var isRecordingActive: Bool = false
   
   func viewDidLoad() {
     // configure audio permissions
@@ -91,22 +92,35 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
       setupRecorder()
-      audioRecorder?.record()
-      status = .recording
       
-      Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] timer in
-          self?.stopRecording(completion: completion)
+      // Check if the recorder is prepared to record and start recording, otherwise handle the error
+      if let recorder = audioRecorder, recorder.prepareToRecord() {
+          recorder.record()
+          status = .recording
+          
+          // Start a timer for the duration of the recording
+          timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
+              self?.stopRecording(completion: completion)
+          }
+      } else {
+          print("Recorder not ready or setup failed.")
+          status = .stopped
+          completion("Error") // Indicate an error or a specific string to notify of the setup failure
       }
   }
+
 
   
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .stopped
-
-      // Simulate an API call delay if needed using DispatchQueue.main.asyncAfter
-      let mockChordResponse: ChordResponse = Bundle.main.decode(ChordResponse.self, from: "mock_chord_output.json")
-      completion(mockChordResponse.chord)
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { // We can adjust the delay as needed
+          self.isRecordingActive = false
+          // Simulate fetching and processing the response
+          let mockChordResponse: ChordResponse = Bundle.main.decode(ChordResponse.self, from: "mock_chord_output.json")
+          completion(mockChordResponse.chord)
+      }
   }
 }
 
@@ -121,4 +135,5 @@ extension ChordDetailViewController {
       }
     }
   }
+  
 }

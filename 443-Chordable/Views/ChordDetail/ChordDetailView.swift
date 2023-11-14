@@ -10,17 +10,8 @@ import AVFoundation
 
 struct ChordDetailView: View {
   @ObservedObject var audio: ChordDetailViewController
-//  @State var hasMicAccess = false
-//  @State var displayNotification = false
-//  @State var countdown = 3
-//  @State var isCountingDown = false
-//  @State var duration = 5
   @State var fingerButtonPressed = false
   @State var holdingButtonPressed = false
-//  @State var countdownTimer: Timer?
-//  @State var durationTimer: Timer?
-//  @State private var showResultView = false
-//  @State private var isSuccess = false
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   let chord: Chord
@@ -349,77 +340,15 @@ struct ChordDetailView: View {
 
   func startCountdown() {
     audio.startCountdown()
-//      countdownTimer?.invalidate()
-//      isCountingDown = true
-//      countdown = 3 // Start from 3 seconds
-//      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-//          if self.countdown > 1 {
-//              self.countdown -= 1
-//          } else {
-//              self.isCountingDown = false
-//              self.countdownTimer?.invalidate()
-//              self.startDuration() // Call startDuration to manage recording time
-//          }
-//      }
   }
 
   func startDuration() {
     audio.startDuration()
-//    durationTimer?.invalidate() // Clear any existing timer
-//    audio.isRecordingActive = true
-//    duration = 5 // Start from 5 seconds for recording duration
-//    durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-//      if self.duration > 1 {
-//        self.duration -= 1
-//      } else {
-//        // Duration is up, stop recording and proceed
-//        self.durationTimer?.invalidate()
-//        self.audio.stopRecording() { predictedChord in
-//          // Inside startDuration(), change the DispatchQueue block to:
-//          DispatchQueue.main.async {
-//            let success = predictedChord == self.chord.chord_name
-//            if success {
-//              self.chord.completed = true
-//              // Save the context here
-//              if let context = self.chord.managedObjectContext {
-//                do {
-//                  try context.save()
-//                } catch {
-//                  // Handle the error appropriately
-//                  print("Failed to save context: \(error)")
-//                }
-//              }
-//            }
-//            self.isSuccess = success // Set isSuccess state variable
-//            self.showResultView = true
-//          }
-//        }
-//      }
-//    }
-//    audio.startRecording(for: 5) { predictedChord in
-//      // ... handle completion
-//    }
   }
   
   private func requestMicrophoneAccess() {
     audio.requestMicrophoneAccess()
-//      AVAudioSession.sharedInstance().requestRecordPermission { granted in
-//          DispatchQueue.main.async {
-//              self.hasMicAccess = granted
-//              if granted {
-//                  // Initiate the countdown only if the microphone access is granted and if it is not already counting down.
-//                  if !self.isCountingDown {
-//                      self.startCountdown()
-//                  }
-//              } else {
-//                  // Alert the user that microphone access is required
-//                  self.displayNotification = true
-//              }
-//          }
-//      }
   }
-
-
 }
 
 

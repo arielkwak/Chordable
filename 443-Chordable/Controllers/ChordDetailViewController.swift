@@ -136,7 +136,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       }
   }
   
-  // MARK: - Start Countdown -
+  // MARK: - Start Countdown and Duration Timer -
   
   // 3 second countdown
   func startCountdown() {

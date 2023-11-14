@@ -30,6 +30,7 @@
 		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
 		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
 		35C434B22AFDC40300DAC3BE /* mock_chord_output.json in Resources */ = {isa = PBXBuildFile; fileRef = 35C434A82AFDBB0E00DAC3BE /* mock_chord_output.json */; };
+		415BEEDE2B016E1900DF0D66 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BEEDD2B016E1900DF0D66 /* ChordDetailViewController.swift */; };
 		41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */; };
 		41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
@@ -89,6 +90,7 @@
 		35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordResponse.swift; sourceTree = "<group>"; };
 		35C434B02AFDBD6200DAC3BE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		415BEEDD2B016E1900DF0D66 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 		41DC27252AFDFD130052F2B8 /* 443-ChordableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "443-ChordableTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableTests.swift; sourceTree = "<group>"; };
 		41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatusClass.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */,
 				41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */,
+				415BEEDD2B016E1900DF0D66 /* ChordDetailViewController.swift */,
 			);
 			path = "443-ChordableTests";
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415BEEDE2B016E1900DF0D66 /* ChordDetailViewController.swift in Sources */,
 				41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */,
 				41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */,
 			);

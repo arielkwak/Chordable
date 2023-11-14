@@ -9,6 +9,11 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
+enum ChordDetailError: Error, Equatable {
+  case fileNotFound(chordName: String)
+  case chordFileError
+}
+
 class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   
@@ -30,11 +35,10 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   // MARK: - Playing Audio -
   
   // playing audio
-  func playChord(chordName: String) {
+  func playChord(chordName: String) throws {
     // change audio file path for each chord
     guard let asset  = NSDataAsset(name: "\(chordName)_audio") else {
-      print("File not found for chord: \(chordName)")
-      return
+      throw ChordDetailError.fileNotFound(chordName: chordName)
     }
     do {
       audioPlayer = try AVAudioPlayer(data: asset.data, fileTypeHint:"wav")
@@ -42,8 +46,9 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       status = .playing
       audioPlayer?.play()
       status = .stopped
-    } catch {
+    } catch ChordDetailError.chordFileError {
       print("Error playing chord file")
+      throw ChordDetailError.chordFileError
     }
   }
   

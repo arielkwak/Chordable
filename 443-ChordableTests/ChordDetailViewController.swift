@@ -6,30 +6,42 @@
 //
 
 import XCTest
+@testable import _43_Chordable
 
-final class ChordDetailViewController: XCTestCase {
-
-    override func setUpWithError() throws {
+final class ChordDetailViewControllerTest: XCTestCase {
+  
+  var chordDetailViewController: ChordDetailViewController!
+  
+    override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+      super.setUp()
+      chordDetailViewController = ChordDetailViewController()
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+      chordDetailViewController = nil
+      super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+  func testPlayChord() throws {
+    // Play chord with valid chord name
+    let goodChordName = "Bm"
+    try chordDetailViewController.playChord(chordName: goodChordName)
+    XCTAssertEqual(chordDetailViewController.status, .stopped)
+    
+  }
+  
+  func testPlayChordInvalid() throws {
+    // Play chord with invalid chord name
+    let badChordName = "Bminor"
+    XCTAssertThrowsError(try chordDetailViewController.playChord(chordName: badChordName)) { error in
+      guard let chordError = error as? ChordDetailError else {
+        XCTFail("Expected ChordDetailError, but got \(type(of: error))")
+        return
+      }
+      XCTAssertEqual(chordError, ChordDetailError.fileNotFound(chordName: badChordName))
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+  }
 
 }

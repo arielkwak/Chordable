@@ -33,7 +33,12 @@ struct ChordDetailView: View {
           // play chord audio
           
           Button(action: {
-            audio.playChord(chordName: "\(chord.chord_name ?? "")")
+            do {
+              try audio.playChord(chordName: "\(chord.chord_name ?? "")")
+            } catch {
+              print("Error in playing chord: \(error)")
+            }
+            
           }){
             HStack{
               let chordParts = (chord.displayable_name ?? "").components(separatedBy: "#")

@@ -17,7 +17,16 @@ enum ChordDetailError: Error, Equatable {
 class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .stopped
   @Published var isRecordingActive: Bool = false
-  
+  @Published var hasMicAccess = false
+  @Published var displayNotification = false
+  @Published var countdown = 3
+  @Published var isCountingDown = false
+  @Published var duration = 5
+  @Published var countdownTimer: Timer?
+  @Published var durationTimer: Timer?
+  @Published var isSuccess = false
+  @Published var showResultView = false
+
   func viewDidLoad() {
     // configure audio permissions
     let session = AVAudioSession.sharedInstance()
@@ -32,6 +41,12 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
   var timer: Timer?
+  let chord: Chord
+  
+  init(chord: Chord) {
+    self.chord = chord
+    super.init()
+  }
   
   // MARK: - Playing Audio -
   
@@ -108,8 +123,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
           completion("Error") // Indicate an error or a specific string to notify of the setup failure
       }
   }
-
-
   
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
@@ -120,6 +133,79 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
           // Simulate fetching and processing the response
           let mockChordResponse: ChordResponse = Bundle.main.decode(ChordResponse.self, from: "mock_chord_output.json")
           completion(mockChordResponse.chord)
+      }
+  }
+  
+  // MARK: - Start Countdown -
+  
+  // 3 second countdown
+  func startCountdown() {
+      countdownTimer?.invalidate()
+      isCountingDown = true
+      countdown = 3 // Start from 3 seconds
+      countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+          if self.countdown > 1 {
+              self.countdown -= 1
+          } else {
+              self.isCountingDown = false
+              self.countdownTimer?.invalidate()
+              self.startDuration() // Call startDuration to manage recording time
+          }
+      }
+  }
+  
+  // 5 seconds recording
+  func startDuration() {
+    durationTimer?.invalidate()
+    isRecordingActive = true
+    duration = 5
+    durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+      if self.duration > 1 {
+        self.duration -= 1
+      } else {
+        // stop recording at the end of 5 seconds
+        self.durationTimer?.invalidate()
+        self.stopRecording() { predictedChord in
+          DispatchQueue.main.async {
+            let success = predictedChord == self.chord.chord_name
+            if success {
+              self.chord.completed = true
+              // Save the context here
+              if let context = self.chord.managedObjectContext {
+                do {
+                  try context.save()
+                } catch {
+                  // Handle the error
+                  print("Failed to save context: \(error)")
+                }
+              }
+            }
+            self.isSuccess = success
+            self.showResultView = true
+          }
+        }
+      }
+    }
+    startRecording(for: 5) { predictedChord in
+      // ... handle completion
+    }
+  }
+  
+  // MARK: - Microphone Permissions -
+  func requestMicrophoneAccess() {
+      AVAudioSession.sharedInstance().requestRecordPermission { granted in
+          DispatchQueue.main.async {
+              self.hasMicAccess = granted
+              if granted {
+                  // Initiate the countdown only if the microphone access is granted and if it is not already counting down
+                  if !self.isCountingDown {
+                      self.startCountdown()
+                  }
+              } else {
+                  // Alert the user that microphone access is required
+                  self.displayNotification = true
+              }
+          }
       }
   }
 }
@@ -135,5 +221,4 @@ extension ChordDetailViewController {
       }
     }
   }
-  
 }

@@ -12,34 +12,46 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    @FetchRequest(
-        entity: UserInfo.entity(),
-        sortDescriptors: [],
-        predicate: nil
-    ) var userInfo: FetchedResults<UserInfo>
+  @FetchRequest(
+    entity: UserInfo.entity(),
+    sortDescriptors: [],
+    predicate: nil
+  ) var userInfo: FetchedResults<UserInfo>
 
-    var body: some View {
+  var body: some View {
+    NavigationView {
+      VStack(spacing: 10) {
         VStack {
-            if let user = userInfo.first {
-                Text("Welcome, \(user.user_name ?? "User")")
-                    .font(.largeTitle)
-                    .padding()
-            } else {
-                Text("Welcome")
-                    .font(.largeTitle)
-                    .padding()
-            }
-            Spacer()
+          if let user = userInfo.first {
+            Text("Welcome, \(user.user_name ?? "User")")
+              .padding(.top,30)
+              .padding(.bottom, 10)
+              .font(.custom("Barlow-Bold", size: 32))
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .foregroundColor(.white)
+              .padding(.leading, 25)
+          } else {
+            Text("Welcome")
+              .padding(.top,30)
+              .padding(.bottom, 10)
+              .font(.custom("Barlow-Bold", size: 32))
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .foregroundColor(.white)
+              .padding(.leading, 25)
+          }
         }
-        .padding(.top, 30)
-        .navigationTitle("Home")
+        
+        ZStack{
+          Color.gray  
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
+        
+          Rectangle()
+            .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color(red: 190/255, green: 180/255, blue: 255/255), Color.black]), startPoint: .leading, endPoint: .trailing))
+            .frame(height: 5)
+            .padding(.horizontal, 30)
+        }
+      }.background(Color.black.edgesIgnoringSafeArea(.all))
     }
+  }
 }
-//
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//        }
-//    }
-//}

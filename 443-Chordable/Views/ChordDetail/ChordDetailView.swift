@@ -64,7 +64,7 @@ struct ChordDetailView: View {
           .padding(.top, 50)
           .disabled(audio.isCountingDown || audio.isRecordingActive)
           
-          Text("Strum the highlighted strings!")
+          Text("Strum the purple strings!")
             .font(.custom("Barlow-Bold", size: 14))
             .padding(.bottom, 20)
             .foregroundStyle(Color.white)

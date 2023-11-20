@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		352D3C662AF70CA9005BC35B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D3C652AF70CA9005BC35B /* WelcomeView.swift */; };
+		354C88FF2B0A9BA700663340 /* uspopLabels in Resources */ = {isa = PBXBuildFile; fileRef = 354C88FE2B0A9BA700663340 /* uspopLabels */; };
+		354C89012B0AE86100663340 /* songGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = 354C89002B0AAA2200663340 /* songGenres.json */; };
+		354C89032B0AEB7700663340 /* songGenresResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C89022B0AEB7700663340 /* songGenresResponse.swift */; };
+		354C89052B0AF90C00663340 /* SongsForGenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C89042B0AF90C00663340 /* SongsForGenreViewController.swift */; };
+		354C89082B0AF97E00663340 /* SongForGenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C89072B0AF97E00663340 /* SongForGenresView.swift */; };
+		354C890B2B0AFF8800663340 /* SongLearningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C890A2B0AFF8800663340 /* SongLearningView.swift */; };
+		354C890D2B0B000600663340 /* SongLearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C890C2B0B000600663340 /* SongLearningViewController.swift */; };
 		35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */; };
 		35B244142AEEF8E800F04453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244132AEEF8E800F04453 /* Assets.xcassets */; };
 		35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B244162AEEF8E800F04453 /* Preview Assets.xcassets */; };
@@ -66,6 +73,13 @@
 
 /* Begin PBXFileReference section */
 		352D3C652AF70CA9005BC35B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		354C88FE2B0A9BA700663340 /* uspopLabels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = uspopLabels; sourceTree = "<group>"; };
+		354C89002B0AAA2200663340 /* songGenres.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = songGenres.json; sourceTree = "<group>"; };
+		354C89022B0AEB7700663340 /* songGenresResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songGenresResponse.swift; sourceTree = "<group>"; };
+		354C89042B0AF90C00663340 /* SongsForGenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsForGenreViewController.swift; sourceTree = "<group>"; };
+		354C89072B0AF97E00663340 /* SongForGenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongForGenresView.swift; sourceTree = "<group>"; };
+		354C890A2B0AFF8800663340 /* SongLearningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLearningView.swift; sourceTree = "<group>"; };
+		354C890C2B0B000600663340 /* SongLearningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLearningViewController.swift; sourceTree = "<group>"; };
 		35B2440C2AEEF8E700F04453 /* 443-Chordable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "443-Chordable.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B2440F2AEEF8E700F04453 /* _43_ChordableApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableApp.swift; sourceTree = "<group>"; };
 		35B244132AEEF8E800F04453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +155,42 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		354C89092B0AFF7300663340 /* SongViews */ = {
+			isa = PBXGroup;
+			children = (
+				354C89072B0AF97E00663340 /* SongForGenresView.swift */,
+				354C890A2B0AFF8800663340 /* SongLearningView.swift */,
+			);
+			path = SongViews;
+			sourceTree = "<group>";
+		};
+		354C890E2B0B000A00663340 /* SongControllers */ = {
+			isa = PBXGroup;
+			children = (
+				354C89042B0AF90C00663340 /* SongsForGenreViewController.swift */,
+				354C890C2B0B000600663340 /* SongLearningViewController.swift */,
+			);
+			path = SongControllers;
+			sourceTree = "<group>";
+		};
+		354C890F2B0B001200663340 /* ChordControllers */ = {
+			isa = PBXGroup;
+			children = (
+				35B244342AEF0E3F00F04453 /* ChordsViewController.swift */,
+				41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */,
+			);
+			path = ChordControllers;
+			sourceTree = "<group>";
+		};
+		354C89102B0B004700663340 /* ChordViews */ = {
+			isa = PBXGroup;
+			children = (
+				35B244382AEF102400F04453 /* ChordDetailView.swift */,
+				35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */,
+			);
+			path = ChordViews;
+			sourceTree = "<group>";
+		};
 		35B244032AEEF8E600F04453 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +212,7 @@
 		35B2440E2AEEF8E700F04453 /* 443-Chordable */ = {
 			isa = PBXGroup;
 			children = (
+				354C88FE2B0A9BA700663340 /* uspopLabels */,
 				35C434A72AFDBAF700DAC3BE /* Resources */,
 				F0D97C122AF372F800AF16B6 /* Fonts */,
 				F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */,
@@ -214,9 +265,9 @@
 		35B2442A2AEF09DC00F04453 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				35C434AB2AFDBB7D00DAC3BE /* Result */,
+				354C89102B0B004700663340 /* ChordViews */,
+				354C89092B0AFF7300663340 /* SongViews */,
 				352D3C642AF70C9B005BC35B /* Welcome */,
-				35B244372AEF101300F04453 /* ChordDetail */,
 				35B2442B2AEF09E900F04453 /* Tabs */,
 			);
 			path = Views;
@@ -236,8 +287,8 @@
 		35B244322AEF0E0B00F04453 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				35B244342AEF0E3F00F04453 /* ChordsViewController.swift */,
-				41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */,
+				354C890F2B0B001200663340 /* ChordControllers */,
+				354C890E2B0B000A00663340 /* SongControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,16 +303,9 @@
 				35B244442AEF406300F04453 /* SongChordInstance.swift */,
 				41FB94342AF0B4A600409446 /* AudioStatus.swift */,
 				35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */,
+				354C89022B0AEB7700663340 /* songGenresResponse.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		35B244372AEF101300F04453 /* ChordDetail */ = {
-			isa = PBXGroup;
-			children = (
-				35B244382AEF102400F04453 /* ChordDetailView.swift */,
-			);
-			path = ChordDetail;
 			sourceTree = "<group>";
 		};
 		35C434A72AFDBAF700DAC3BE /* Resources */ = {
@@ -269,16 +313,9 @@
 			children = (
 				35C434A82AFDBB0E00DAC3BE /* mock_chord_output.json */,
 				35C434B02AFDBD6200DAC3BE /* Helper.swift */,
+				354C89002B0AAA2200663340 /* songGenres.json */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		35C434AB2AFDBB7D00DAC3BE /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */,
-			);
-			path = Result;
 			sourceTree = "<group>";
 		};
 		41DC27262AFDFD130052F2B8 /* 443-ChordableTests */ = {
@@ -403,6 +440,8 @@
 				F0D97C312AF3730F00AF16B6 /* Barlow-LightItalic.ttf in Resources */,
 				F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */,
 				F0D97C2F2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf in Resources */,
+				354C88FF2B0A9BA700663340 /* uspopLabels in Resources */,
+				354C89012B0AE86100663340 /* songGenres.json in Resources */,
 				F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */,
 				35C434B22AFDC40300DAC3BE /* mock_chord_output.json in Resources */,
 				F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */,
@@ -441,14 +480,19 @@
 				35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */,
 				35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */,
 				35B244432AEF404B00F04453 /* UserInfo.swift in Sources */,
+				354C890B2B0AFF8800663340 /* SongLearningView.swift in Sources */,
+				354C89052B0AF90C00663340 /* SongsForGenreViewController.swift in Sources */,
 				35B244352AEF0E3F00F04453 /* ChordsViewController.swift in Sources */,
 				35B244452AEF406300F04453 /* SongChordInstance.swift in Sources */,
 				35B244262AEF065C00F04453 /* SongDataInitializer.swift in Sources */,
 				35B244312AEF0A0900F04453 /* SongsView.swift in Sources */,
 				35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */,
+				354C89032B0AEB7700663340 /* songGenresResponse.swift in Sources */,
+				354C890D2B0B000600663340 /* SongLearningViewController.swift in Sources */,
 				35B244192AEEF8E800F04453 /* Persistence.swift in Sources */,
 				35B244392AEF102400F04453 /* ChordDetailView.swift in Sources */,
 				41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */,
+				354C89082B0AF97E00663340 /* SongForGenresView.swift in Sources */,
 				35B244102AEEF8E700F04453 /* _43_ChordableApp.swift in Sources */,
 				35B2443B2AEF168B00F04453 /* MainTabView.swift in Sources */,
 				35B2441C2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld in Sources */,
@@ -601,7 +645,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 478H4CYQSN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-43-Chordable-Info.plist";
@@ -632,7 +676,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 478H4CYQSN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-43-Chordable-Info.plist";

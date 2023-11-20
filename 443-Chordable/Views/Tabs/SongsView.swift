@@ -6,22 +6,26 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SongsView: View {
+    let genres = ["Pop", "Rock", "R&B / Soul", "Folk & Country", "Alternative"]
+    @Environment(\.managedObjectContext) var context
+
     var body: some View {
-      VStack {
-          Text("Welcome, this is the songs tab")
-              .font(.largeTitle)
-              .padding()
+        NavigationView {
+            VStack {
+                Text("Welcome, this is the songs tab")
+                    .font(.largeTitle)
+                    .padding()
 
-          Spacer()
-      }
-      .navigationTitle("Home")
-    }
-}
-
-struct SongsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongsView()
+                List(genres, id: \.self) { genre in
+                    NavigationLink(destination: SongsForGenreView(controller: SongsForGenreViewController(context: context, genre: genre))) {
+                        Text(genre)
+                    }
+                }
+            }
+            .navigationTitle("Genres")
+        }
     }
 }

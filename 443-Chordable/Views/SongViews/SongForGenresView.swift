@@ -12,15 +12,13 @@ struct SongsForGenreView: View {
     @Environment(\.managedObjectContext) var context
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(controller.songs, id: \.song_id) { song in
-                    NavigationLink(destination: SongLearningView(controller: SongLearningViewController(context: context, song: song))) {
-                        Text(song.title ?? "Unknown Title")
-                    }
+        List {
+            ForEach(controller.sortedSongs, id: \.song_id) { song in
+                NavigationLink(destination: SongLearningView(controller: SongLearningViewController(context: context, song: song))) {
+                    Text(song.title ?? "Unknown Title")
                 }
             }
-            .navigationTitle("Songs in \(controller.genre)")
         }
+        .navigationTitle("Songs in \(controller.genre)")
     }
 }

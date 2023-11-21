@@ -15,17 +15,15 @@ struct SongsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Welcome, this is the songs tab")
-                    .font(.largeTitle)
-                    .padding()
 
                 List(genres, id: \.self) { genre in
                     NavigationLink(destination: SongsForGenreView(controller: SongsForGenreViewController(context: context, genre: genre))) {
                         Text(genre)
                     }
                 }
+                .padding(.top, 30)
             }
-            .navigationTitle("Genres")
+            .navigationTitle("Songs")
         }
     }
 }

@@ -106,7 +106,7 @@ class SongDataInitializer {
         guard let chordBase = parts.first else { return nil }
 
         let simplifiedBase = flatToSharp[chordBase] ?? chordBase
-        let isMinor = parts.count > 1 && (parts[1].lowercased().contains("min") || parts[1] == "7")
+        let isMinor = parts.count > 1 && (parts[1].lowercased().contains("min"))
 
         return simplifiedBase + (isMinor ? "m" : "")
     }

@@ -19,6 +19,10 @@ class SongsForGenreViewController: ObservableObject {
         self.genre = genre  // Set the genre here
         fetchSongs(forGenre: genre)
     }
+  
+    var sortedSongs: [Song] {
+        songs.sorted { ($0.title ?? "") < ($1.title ?? "") }
+    }
 
     private func fetchSongs(forGenre genre: String) {
         let request: NSFetchRequest<Song> = Song.fetchRequest()

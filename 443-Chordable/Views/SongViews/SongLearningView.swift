@@ -11,19 +11,41 @@ struct SongLearningView: View {
     @ObservedObject var controller: SongLearningViewController
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(controller.songChordInstances, id: \.song_chord_instance_id) { instance in
-                    NavigationLink(destination: ChordDetailView(chord: instance.chord!)) {
-                        VStack(alignment: .leading) {
-                            Text(instance.chord?.chord_name ?? "Unknown Chord")
-                            Text("Start Time: \(instance.start_time)")
-                            Text("End Time: \(instance.end_time)")
-                        }
-                    }
+        VStack {
+            // Display the current chord
+            Text(controller.currentChords[0]?.chord?.displayable_name ?? "No Chord")
+                .font(.largeTitle)
+
+            // Display the next three chords
+            HStack {
+                ForEach(1..<4) { index in
+                    Text(controller.currentChords[index]?.chord?.displayable_name ?? "No Chord")
                 }
             }
-            .navigationTitle(controller.song.title ?? "Song Details")
+
+            // Play/Pause Button
+            Button(action: controller.playPauseToggled) {
+                Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
+
+            // Progress Bar
+            ProgressBar(progress: controller.progress)
+        }
+        .navigationTitle(controller.song.title ?? "Song Details")
+    }
+}
+
+struct ProgressBar: View {
+    var progress: Float
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Rectangle()
+                .frame(width: geometry.size.width * CGFloat(progress), height: 10)
+                .foregroundColor(.blue)
+                .cornerRadius(5)
         }
     }
 }

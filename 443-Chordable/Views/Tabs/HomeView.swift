@@ -8,9 +8,6 @@
 import SwiftUI
 import CoreData
 
-import SwiftUI
-import CoreData
-
 struct HomeView: View {
   @FetchRequest(
     entity: UserInfo.entity(),

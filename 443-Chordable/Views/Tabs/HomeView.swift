@@ -38,11 +38,21 @@ struct HomeView: View {
               .foregroundColor(.white)
               .padding(.leading, 25)
           }
-          Text("Random Quote")
+          if let (artist, quote) = quotes.getRandomQuote(){
+            Text("\(quote)")
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundColor(.white)
             .padding(.leading, 25)
-        }.padding(.bottom, 80)
+            .font(.custom("Barlow-Italic", size: 24))
+            
+            Text("-\(artist)")
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .foregroundColor(.white)
+            .padding(.trailing, 25)
+            .padding(.top, 5)
+            .font(.custom("Barlow-Italic", size: 20))
+          }
+        }.padding(.bottom, 60)
         
         ZStack{
           Rectangle()

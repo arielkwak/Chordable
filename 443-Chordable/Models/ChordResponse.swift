@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct ChordResponse: Codable {
+struct ChordResponse: Decodable {
     let chord: String
 }

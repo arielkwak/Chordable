@@ -22,12 +22,11 @@ struct ChordDetailView: View {
   }
 
   var body: some View {
+    
     ZStack{
       VStack{
         VStack {
           // MARK: - Hear Chord Example and Name -
-          // play chord audio
-          
           Button(action: {
             audio.playChord(chordName: "\(chord.chord_name ?? "")")
           }){

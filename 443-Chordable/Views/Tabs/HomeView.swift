@@ -15,6 +15,8 @@ struct HomeView: View {
     predicate: nil
   ) var userInfo: FetchedResults<UserInfo>
 
+  let quotes = Quote.Quotes()
+  
   var body: some View {
     NavigationView {
       VStack(spacing: 10) {
@@ -36,11 +38,23 @@ struct HomeView: View {
               .foregroundColor(.white)
               .padding(.leading, 25)
           }
-          Text("Random Quote")
-            .frame(maxWidth: .infinity, alignment: .leading)
+          if let (artist, quote) = quotes.getRandomQuote(){
+            (Text("“").font(.custom("Chango-Regular", size: 25)) +
+            Text("\(quote)").font(.custom("Barlow-Italic", size: 20)) +
+            Text("”").font(.custom("Chango-Regular", size: 25)))
             .foregroundColor(.white)
-            .padding(.leading, 25)
-        }.padding(.bottom, 80)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 25)            
+            .padding(.trailing, 10)
+            
+            Text("-\(artist)")
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .foregroundColor(.white)
+            .padding(.trailing, 25)
+            .font(.custom("Barlow-Italic", size: 17))
+            .padding(.top, 3)
+          }
+        }.padding(.bottom, 60)
         
         ZStack{
           Rectangle()

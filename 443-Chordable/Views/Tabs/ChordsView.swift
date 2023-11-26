@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct ChordsView: View {
-  @ObservedObject var viewController: ChordsViewController
+    @ObservedObject var viewController: ChordsViewController
+    @State private var selectedChord: Chord?
+    @State private var isChordDetailActive = false
   
   var body: some View {
     NavigationView {
@@ -138,7 +140,11 @@ struct ChordsView: View {
                     ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
                       let displayableName = chord.displayable_name ?? "Unknown Chord"
                       let chordParts = displayableName.components(separatedBy: "#")
-                      NavigationLink(destination: ChordDetailView(chord: chord)) {
+//                      NavigationLink(destination: ChordDetailView(chord: chord)) {
+                      Button(action: {
+                          self.selectedChord = chord
+                          self.isChordDetailActive = true
+                      }) {
                         VStack {
                           HStack {
                             if let firstPart = chordParts.first {
@@ -166,9 +172,7 @@ struct ChordsView: View {
                         .padding(.vertical, 10)
                         .background(Color.black)
                         .cornerRadius(15)
-                        //                    .onTapGesture {
-                        //                      viewController.completeChord(chord)
-                        //                    }
+                        
                       }
                     }
                   }
@@ -179,7 +183,16 @@ struct ChordsView: View {
             .frame(minHeight: 520)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
-        }
+          // Conditional NavigationLink
+          if let selectedChord = selectedChord {
+              NavigationLink(
+                  destination: ChordDetailView(chord: selectedChord),
+                  isActive: $isChordDetailActive
+              ) {
+                  EmptyView()
+              }.hidden()
+          }
+      }
         .onAppear {
           viewController.fetchChords()
         }

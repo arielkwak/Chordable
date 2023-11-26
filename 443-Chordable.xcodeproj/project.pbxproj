@@ -59,6 +59,7 @@
 		F0D97C342AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C222AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf */; };
 		F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */; };
 		F0D97C362AF3730F00AF16B6 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */; };
+		F0DF8DA72B12F25B00841509 /* Chango-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		F0D97C222AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
 		F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-MediumItalic.ttf"; sourceTree = "<group>"; };
+		F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chango-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 				F0D97C192AF3730F00AF16B6 /* Barlow-BoldItalic.ttf */,
 				F0D97C1D2AF3730F00AF16B6 /* Barlow-ExtraBold.ttf */,
 				F0D97C152AF3730E00AF16B6 /* Barlow-ExtraBoldItalic.ttf */,
+				F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */,
 				F0D97C212AF3730F00AF16B6 /* Barlow-ExtraLight.ttf */,
 				F0D97C1E2AF3730F00AF16B6 /* Barlow-ExtraLightItalic.ttf */,
 				F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */,
@@ -446,6 +449,7 @@
 				35C434B22AFDC40300DAC3BE /* mock_chord_output.json in Resources */,
 				F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */,
 				F0D97C2C2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf in Resources */,
+				F0DF8DA72B12F25B00841509 /* Chango-Regular.ttf in Resources */,
 				F0D97C262AF3730F00AF16B6 /* Barlow-Black.ttf in Resources */,
 				F0D97C342AF3730F00AF16B6 /* Barlow-SemiBoldItalic.ttf in Resources */,
 				35B244172AEEF8E800F04453 /* Preview Assets.xcassets in Resources */,
@@ -645,7 +649,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
-				DEVELOPMENT_TEAM = 478H4CYQSN;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-43-Chordable-Info.plist";
@@ -676,7 +680,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"443-Chordable/Preview Content\"";
-				DEVELOPMENT_TEAM = 478H4CYQSN;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "-43-Chordable-Info.plist";

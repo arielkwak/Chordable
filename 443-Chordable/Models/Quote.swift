@@ -17,7 +17,7 @@ extension Quote {
             "Louis Armstrong":["Musicians don’t retire; they stop when there’s no more music in them."],
             "Billy Joel":["Musicians want to be the loud voice for so many quiet hearts."],
             "Nicki Minaj":["Your victory is right around the corner. Never give up."],
-            "Elton John":["Music has healing power. It has the ability to take people out of themselves for a few hours"],
+            "Ed Sheeran":["Be original; don't be scared of being bold!"],
         ]
 
         func getRandomQuote() -> (String, String)? {

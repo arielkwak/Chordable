@@ -39,18 +39,20 @@ struct HomeView: View {
               .padding(.leading, 25)
           }
           if let (artist, quote) = quotes.getRandomQuote(){
-            Text("\(quote)")
-            .frame(maxWidth: .infinity, alignment: .leading)
+            (Text("“").font(.custom("Chango-Regular", size: 25)) +
+            Text("\(quote)").font(.custom("Barlow-Italic", size: 20)) +
+            Text("”").font(.custom("Chango-Regular", size: 25)))
             .foregroundColor(.white)
-            .padding(.leading, 25)
-            .font(.custom("Barlow-Italic", size: 24))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 25)            
+            .padding(.trailing, 10)
             
             Text("-\(artist)")
             .frame(maxWidth: .infinity, alignment: .trailing)
             .foregroundColor(.white)
             .padding(.trailing, 25)
-            .padding(.top, 5)
-            .font(.custom("Barlow-Italic", size: 20))
+            .font(.custom("Barlow-Italic", size: 17))
+            .padding(.top, 3)
           }
         }.padding(.bottom, 60)
         

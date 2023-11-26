@@ -15,6 +15,8 @@ struct HomeView: View {
     predicate: nil
   ) var userInfo: FetchedResults<UserInfo>
 
+  let quotes = Quote.Quotes()
+  
   var body: some View {
     NavigationView {
       VStack(spacing: 10) {

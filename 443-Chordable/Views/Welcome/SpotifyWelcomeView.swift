@@ -12,7 +12,7 @@ import Combine
 struct SpotifyWelcomeView: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @EnvironmentObject var onboardingState: OnboardingState // Now using the shared state
-  @State var userName: String = ""
+  @Binding var userName: String
   
   @EnvironmentObject var spotify: Spotify
   @State private var cancellables: Set<AnyCancellable> = []
@@ -118,6 +118,7 @@ struct SpotifyWelcomeView: View {
         }
   
   private func addUserAndContinue() {
+    print("in add user")
       
       let newUser = UserInfo(context: managedObjectContext)
       newUser.user_id = UUID()
@@ -125,15 +126,13 @@ struct SpotifyWelcomeView: View {
       newUser.num_chords_completed = 0
       newUser.day_streak = 0
       newUser.num_songs_unlocked = 0
-      
-    if isAuthorized {
+    
       do {
         try managedObjectContext.save()
         onboardingState.completeOnboarding() // Updates the shared onboarding state
       } catch {
         print("Could not save user: \(error)")
       }
-    }
         
   }
 

@@ -78,7 +78,7 @@ struct WelcomeView: View {
             // Conditional display of the 'Continue' button
             if !userName.isEmpty {
               NavigationLink(
-                destination: SpotifyWelcomeView(isAuthorized: $isAuthorized)) {
+                destination: SpotifyWelcomeView(userName: $userName, isAuthorized: $isAuthorized)) {
                   HStack {
                     Text("Continue")
                       .fontWeight(.bold)

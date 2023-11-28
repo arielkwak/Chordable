@@ -8,21 +8,30 @@
 // _43_ChordableApp.swift
 // _43_ChordableApp.swift
 import SwiftUI
+import SpotifyWebAPI
 
 @main
 struct _43_ChordableApp: App {
     let persistenceController = PersistenceController.shared
     @ObservedObject var onboardingState = OnboardingState() // Changed to @ObservedObject
+    @StateObject var spotify = Spotify()
+    @State private var isAuthorized = false
+  
+    init() {
+      SpotifyAPILogHandler.bootstrap()
+    }
 
     var body: some Scene {
         WindowGroup {
             if onboardingState.hasCompletedOnboarding {
-                MainTabView()
+                MainTabView(isAuthorized: $isAuthorized)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(spotify)
             } else {
-                WelcomeView()
+                WelcomeView(isAuthorized: $isAuthorized)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .environmentObject(onboardingState)
+                    .environmentObject(spotify)
             }
         }
     }

@@ -36,6 +36,8 @@
 		35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */; };
 		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
 		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
+		41C2C9162B159B44004C10F7 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9152B159B44004C10F7 /* SpotifyAPI */; };
+		41C2C9192B159B5D004C10F7 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9182B159B5D004C10F7 /* KeychainAccess */; };
 		41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */; };
 		41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
@@ -134,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41C2C9192B159B5D004C10F7 /* KeychainAccess in Frameworks */,
+				41C2C9162B159B44004C10F7 /* SpotifyAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +372,10 @@
 			dependencies = (
 			);
 			name = "443-Chordable";
+			packageProductDependencies = (
+				41C2C9152B159B44004C10F7 /* SpotifyAPI */,
+				41C2C9182B159B5D004C10F7 /* KeychainAccess */,
+			);
 			productName = "443-Chordable";
 			productReference = 35B2440C2AEEF8E700F04453 /* 443-Chordable.app */;
 			productType = "com.apple.product-type.application";
@@ -418,6 +426,10 @@
 				Base,
 			);
 			mainGroup = 35B244032AEEF8E600F04453;
+			packageReferences = (
+				41C2C9142B159B44004C10F7 /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
+				41C2C9172B159B5D004C10F7 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 35B2440D2AEEF8E700F04453 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -777,6 +789,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		41C2C9142B159B44004C10F7 /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.4;
+			};
+		};
+		41C2C9172B159B5D004C10F7 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		41C2C9152B159B44004C10F7 /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 41C2C9142B159B44004C10F7 /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			productName = SpotifyAPI;
+		};
+		41C2C9182B159B5D004C10F7 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 41C2C9172B159B5D004C10F7 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		35B2441A2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld */ = {

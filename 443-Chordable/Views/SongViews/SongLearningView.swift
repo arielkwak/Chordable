@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SpotifyWebAPI
+import Combine
 
 struct SongLearningView: View {
     @ObservedObject var controller: SongLearningViewController
+    @EnvironmentObject var spotify: Spotify
 
     var body: some View {
         VStack {
@@ -29,7 +32,8 @@ struct SongLearningView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
             }
-
+            Toggle("Play along!", isOn: $controller.playAlong)
+          
             // Progress Bar
             ProgressBar(progress: controller.progress)
         }

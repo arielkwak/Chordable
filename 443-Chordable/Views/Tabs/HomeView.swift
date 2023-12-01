@@ -106,10 +106,15 @@ struct HomeView: View {
             HStack{
               let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
               let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
-              Text("\(percentageCompleted)%")
-                  .foregroundColor(.white)
-                  .font(.custom("Barlow-Italic", size: 24))
-                  .padding(.leading, 35)
+
+              CircularProgressView(progress: Double(percentageCompleted)/100.0)
+              .frame(width: 100, height: 100)
+              .padding(.leading, 35)
+
+              // Text("\(percentageCompleted)%")
+              //     .foregroundColor(.white)
+              //     .font(.custom("Barlow-Italic", size: 24))
+              //     .padding(.leading, 10)
               Spacer()
               Text("Chords\nCompleted")
                 .foregroundColor(.white)
@@ -126,6 +131,31 @@ struct HomeView: View {
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))
+    }
+  }
+}
+
+struct CircularProgressView: View {
+  var progress: Double
+
+  var body: some View {
+    ZStack {
+      Circle()
+      .stroke(lineWidth: 20)
+      .opacity(0.3)
+      .foregroundColor(Color.white)
+      .overlay(
+        withAnimation(.linear) {
+          Circle()
+          .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+          .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+          .foregroundColor(Color.white)
+          .rotationEffect(Angle(degrees: 270.0))
+        }
+      )
+      Text("\(Int(progress * 100))%") 
+      .font(.custom("Barlow-Italic", size: 24))
+      .foregroundColor(.white)
     }
   }
 }

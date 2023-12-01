@@ -16,6 +16,7 @@ struct HomeView: View {
   ) var userInfo: FetchedResults<UserInfo>
 
   let quotes = Quote.Quotes()
+  @EnvironmentObject var homeModel: HomeModel
   
   var body: some View {
     NavigationView {
@@ -52,9 +53,8 @@ struct HomeView: View {
             .foregroundColor(.white)
             .padding(.trailing, 25)
             .font(.custom("Barlow-Italic", size: 17))
-            .padding(.top, 3)
           }
-        }.padding(.bottom, 60)
+        }.padding(.bottom, 50)
         
         ZStack{
           Rectangle()
@@ -75,6 +75,32 @@ struct HomeView: View {
           .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
           .offset(y: -33)
           .edgesIgnoringSafeArea(.all)
+
+          // MARK: Content within rectangle  
+          VStack{
+            // Streak
+            HStack {
+              Text("\(homeModel.streak)")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-BlackItalic", size: 45))
+                .padding(.leading, 35)
+              Spacer()
+              Text("Day (s)  Streak!")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Italic", size: 24))
+                .padding(.leading, 10)
+                .padding(.top, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+              Text("🔥")
+                .font(.custom("Barlow-Black", size: 45))
+                .padding(.trailing, 35)
+            }
+            .frame(height: 90)
+            .background(Color.black)
+            .cornerRadius(15)
+            .padding(.horizontal, 30)
+            .offset(y: -190)
+          }
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))

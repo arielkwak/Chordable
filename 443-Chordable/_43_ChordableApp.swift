@@ -16,6 +16,7 @@ struct _43_ChordableApp: App {
     @ObservedObject var onboardingState = OnboardingState() // Changed to @ObservedObject
     @StateObject var spotify = Spotify()
     @State private var isAuthorized = false
+    @StateObject var homeModel = HomeModel()
   
     init() {
       SpotifyAPILogHandler.bootstrap()
@@ -27,11 +28,19 @@ struct _43_ChordableApp: App {
                 MainTabView(isAuthorized: $isAuthorized)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .environmentObject(spotify)
+                    .environmentObject(homeModel)
+                    .onAppear(perform: {
+                        homeModel.appOpened()
+                    })
             } else {
                 WelcomeView(isAuthorized: $isAuthorized)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .environmentObject(onboardingState)
                     .environmentObject(spotify)
+                    .environmentObject(homeModel)
+                    .onAppear(perform: {
+                        homeModel.appOpened()
+                    })
             }
         }
     }

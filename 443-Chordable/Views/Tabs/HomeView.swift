@@ -17,6 +17,7 @@ struct HomeView: View {
 
   let quotes = Quote.Quotes()
   @EnvironmentObject var homeModel: HomeModel
+  @Environment(\.managedObjectContext) var managedObjectContext
   
   var body: some View {
     NavigationView {
@@ -82,13 +83,13 @@ struct HomeView: View {
             HStack {
               Text("\(homeModel.streak)")
                 .foregroundColor(.white)
-                .font(.custom("Barlow-BlackItalic", size: 45))
+                .font(.custom("Barlow-BlackItalic", size: 50))
                 .padding(.leading, 35)
               Spacer()
               Text("Day (s)  Streak!")
                 .foregroundColor(.white)
                 .font(.custom("Barlow-Italic", size: 24))
-                .padding(.leading, 10)
+                .padding(.leading, 5)
                 .padding(.top, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
               Text("🔥")
@@ -99,11 +100,62 @@ struct HomeView: View {
             .background(Color.black)
             .cornerRadius(15)
             .padding(.horizontal, 30)
-            .offset(y: -190)
-          }
+            .padding(.bottom, 10)
+
+            // chord completion
+            HStack{
+              let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
+              let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
+
+              CircularProgressView(progress: Double(percentageCompleted)/100.0)
+              .frame(width: 120, height: 120)
+              .padding(.leading, 35)
+
+              Spacer()
+              Text("Chords\nCompleted")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Italic", size: 24))
+                .multilineTextAlignment(.center)
+                .padding(.trailing, 35)
+            }
+            .frame(maxWidth: .infinity) 
+            .frame(height: 180)
+            .background(Color.black)
+            .cornerRadius(15)
+            .padding(.horizontal, 30)
+          }.offset(y: -100)
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))
     }
   }
+}
+
+struct CircularProgressView: View {
+    var progress: Double
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(lineWidth: 20)
+                .foregroundColor(Color.white)
+
+            Circle()
+                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+                .stroke(AngularGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255), Color(red: 36/255, green: 0, blue: 255/255)]), center: .center), style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+                .rotationEffect(Angle(degrees: 270.0))
+
+            HStack{
+                Text("\(Int(progress * 100))") 
+                    .font(.custom("Barlow-BlackItalic", size: 48))
+                    .foregroundColor(.white)
+
+                Text("%")
+                    .font(.custom("Barlow-BlackItalic", size: 16))
+                    .foregroundColor(.white)
+                    .padding(.leading, -5)
+                    .padding(.top, 20)
+            }
+        }
+    }
 }

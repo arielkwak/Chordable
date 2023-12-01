@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreData
+
 class HomeModel: ObservableObject {
     
     @Published var lastOpened: Date?
@@ -15,7 +17,6 @@ class HomeModel: ObservableObject {
     }
 
     func appOpened() {
-        print("Entered appOpened function")
         let now = Date()
         if let lastOpened = lastOpened {
             let calendar = Calendar.current
@@ -27,8 +28,18 @@ class HomeModel: ObservableObject {
         } else {
             streak = 1
         }
-        print("\(streak)")
         lastOpened = now
+    }
 
+    func fetchChords(context: NSManagedObjectContext) -> (total: Int, completed: Int) {
+        let fetchRequest: NSFetchRequest<Chord> = Chord.fetchRequest()
+        do {
+            let chords = try context.fetch(fetchRequest)
+            let completedChords = chords.filter { $0.completed }
+            return (chords.count, completedChords.count)
+        } catch {
+            print("Failed to fetch chords: \(error)")
+            return (0, 0)
+        }
     }
 }

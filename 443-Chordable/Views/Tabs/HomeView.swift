@@ -17,6 +17,7 @@ struct HomeView: View {
 
   let quotes = Quote.Quotes()
   @EnvironmentObject var homeModel: HomeModel
+  @Environment(\.managedObjectContext) var managedObjectContext
   
   var body: some View {
     NavigationView {
@@ -99,8 +100,29 @@ struct HomeView: View {
             .background(Color.black)
             .cornerRadius(15)
             .padding(.horizontal, 30)
-            .offset(y: -190)
-          }
+            .padding(.bottom, 15)
+
+            // chord completion
+            HStack{
+              let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
+              let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
+              Text("\(percentageCompleted)%")
+                  .foregroundColor(.white)
+                  .font(.custom("Barlow-Italic", size: 24))
+                  .padding(.leading, 35)
+              Spacer()
+              Text("Chords\nCompleted")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Italic", size: 24))
+                .multilineTextAlignment(.center)
+                .padding(.trailing, 35)
+            }
+            .frame(maxWidth: .infinity) 
+            .frame(height: 150)
+            .background(Color.black)
+            .cornerRadius(15)
+            .padding(.horizontal, 30)
+          }.offset(y: -100)
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))

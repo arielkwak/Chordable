@@ -123,7 +123,46 @@ struct HomeView: View {
             .background(Color.black)
             .cornerRadius(15)
             .padding(.horizontal, 30)
-          }.offset(y: -100)
+            .padding(.bottom, 10)
+            
+            // song unlocked
+            HStack{
+              let songData = homeModel.fetchSongs(context: managedObjectContext)
+              VStack{
+                CustomProgressBar(value: Float(songData.unlocked), total: Float(songData.total))
+                  .padding(.top, 10)
+
+                HStack{
+                  Spacer()
+                  Text("\(songData.total) Songs")
+                  .foregroundColor(.white)
+                  .font(.custom("Barlow-Italic", size: 14))
+                  .padding(.trailing, 35)
+                }
+
+                HStack{
+                  Text("\(songData.unlocked)")
+                  .foregroundColor(.white) 
+                  .font(.custom("Barlow-BlackItalic", size: 45))
+                  .padding(.leading, 35)
+
+                  Text("Songs Unlocked")
+                  .foregroundColor(.white)
+                  .font(.custom("Barlow-Italic", size: 16))
+                  .padding(.leading, 5)
+                  .padding(.top, 10)
+                  
+                  Spacer()
+                }.padding(.top, -20)
+              }
+            }
+            .frame(maxWidth: .infinity) 
+            .frame(height: 120)
+            .background(Color.black)
+            .cornerRadius(15)
+            .padding(.horizontal, 30)
+            
+          }.offset(y: -30)
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))
@@ -132,30 +171,59 @@ struct HomeView: View {
 }
 
 struct CircularProgressView: View {
-    var progress: Double
+  var progress: Double
 
-    var body: some View {
-        ZStack {
-            Circle()
-                .stroke(lineWidth: 20)
-                .foregroundColor(Color.white)
+  var body: some View {
+    ZStack {
+      Circle()
+        .stroke(lineWidth: 20)
+        .foregroundColor(Color.white)
 
-            Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(AngularGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255), Color(red: 36/255, green: 0, blue: 255/255)]), center: .center), style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                .rotationEffect(Angle(degrees: 270.0))
+      Circle()
+        .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+        .stroke(AngularGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255), Color(red: 36/255, green: 0, blue: 255/255)]), center: .center), style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+        .rotationEffect(Angle(degrees: 270.0))
 
-            HStack{
-                Text("\(Int(progress * 100))") 
-                    .font(.custom("Barlow-BlackItalic", size: 48))
-                    .foregroundColor(.white)
+      HStack{
+        Text("\(Int(progress * 100))") 
+            .font(.custom("Barlow-BlackItalic", size: 48))
+            .foregroundColor(.white)
 
-                Text("%")
-                    .font(.custom("Barlow-BlackItalic", size: 16))
-                    .foregroundColor(.white)
-                    .padding(.leading, -5)
-                    .padding(.top, 20)
-            }
-        }
+        Text("%")
+            .font(.custom("Barlow-BlackItalic", size: 16))
+            .foregroundColor(.white)
+            .padding(.leading, -5)
+            .padding(.top, 20)
+      }
     }
+  }
+}
+
+struct CustomProgressBar: View {
+  var value: Float
+  var total: Float
+
+  var body: some View {
+    ProgressView(value: value, total: total)
+      .progressViewStyle(CustomProgressViewStyle())
+      .frame(height: 15)
+      .padding(.horizontal, 35)
+  }
+}
+
+struct CustomProgressViewStyle: ProgressViewStyle {
+  func makeBody(configuration: Configuration) -> some View {
+    GeometryReader { geometry in
+      ZStack(alignment: .leading) {
+        Rectangle()
+          .foregroundColor(Color.white)
+          .frame(width: geometry.size.width, height: geometry.size.height)
+        Rectangle()
+          .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255), Color(red: 36/255, green: 0, blue: 255/255)]), startPoint: .leading, endPoint: .trailing))
+          .frame(width: geometry.size.width * CGFloat(configuration.fractionCompleted ?? 0), height: geometry.size.height)
+          .animation(.easeIn, value: configuration.fractionCompleted)
+      }
+      .cornerRadius(10)
+    }
+  }
 }

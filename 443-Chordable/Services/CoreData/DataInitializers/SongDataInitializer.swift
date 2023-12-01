@@ -44,6 +44,7 @@ class SongDataInitializer {
 
     private func createSongRecord(from song: URL, artist: URL, album: URL, into context: NSManagedObjectContext) -> Song? {
         let genreMappings = loadGenreMappings()
+        let URIMappings = loadURIMappings()
         let songTitleWithID = song.deletingPathExtension().lastPathComponent
         let songTitleComponents = songTitleWithID.split(separator: "-")
         guard songTitleComponents.count >= 2 else { return nil }
@@ -64,6 +65,7 @@ class SongDataInitializer {
                                 .trimmingCharacters(in: .whitespacesAndNewlines)
         songEntry.audio_file = "\(songTitle).wav"
         songEntry.genre = genreMappings[songTitle] ?? "Unknown"
+        songEntry.uri = genreMappings[songTitle] ?? "Unknown"
 
         return songEntry
     }
@@ -98,6 +100,11 @@ class SongDataInitializer {
         let genreMappings: [String: String] = Bundle.main.decode([String: String].self, from: "songGenres.json")
         return genreMappings
     }
+  
+    private func loadURIMappings() -> [String: String] {
+        let uriMappings: [String: String] = Bundle.main.decode([String: String].self, from: "spotify.json")
+        return uriMappings
+      }
 
   
     func simplifyChordName(_ chordString: String) -> String? {

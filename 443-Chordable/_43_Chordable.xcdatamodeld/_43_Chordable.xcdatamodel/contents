@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Chord" representedClassName="Chord" syncable="YES" codeGenerationType="class">
         <attribute name="chord_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="chord_name" optional="YES" attributeType="String"/>
@@ -22,6 +22,7 @@
         <attribute name="song_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unlocked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String"/>
         <relationship name="songChordInstances" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SongChordInstance" inverseName="song" inverseEntity="SongChordInstance"/>
     </entity>
     <entity name="SongChordInstance" representedClassName="SongChordInstance" syncable="YES" codeGenerationType="class">

@@ -42,4 +42,17 @@ class HomeModel: ObservableObject {
             return (0, 0)
         }
     }
+  
+    func fetchSongs(context: NSManagedObjectContext) -> (total: Int, unlocked: Int) {
+        let fetchRequest: NSFetchRequest<Song> = Song.fetchRequest()
+        do {
+            let songs = try context.fetch(fetchRequest)
+            let unlockedSongs = songs.filter { $0.unlocked }
+            return (songs.count, unlockedSongs.count)
+        } catch {
+            print("Failed to fetch songs: \(error)")
+            return (0, 0)
+        }
+    }
+  
 }

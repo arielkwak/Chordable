@@ -16,6 +16,7 @@ struct HomeView: View {
   ) var userInfo: FetchedResults<UserInfo>
 
   let quotes = Quote.Quotes()
+  @EnvironmentObject var homeModel: HomeModel
   
   var body: some View {
     NavigationView {
@@ -75,6 +76,23 @@ struct HomeView: View {
           .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
           .offset(y: -33)
           .edgesIgnoringSafeArea(.all)
+
+          // MARK: Content within rectangle  
+          VStack{
+            // Streak
+            Rectangle()
+            .fill(Color.black) 
+            .frame(height: 50) 
+            .cornerRadius(15)
+            .overlay(
+              Text("\(homeModel.streak)")
+                  .foregroundColor(.white)
+                  .onAppear {
+                  print("HomeView appeared with streak: \(homeModel.streak)") // This will print the streak when HomeView appears
+                }
+            )
+            .padding(.horizontal, 25) 
+          }
         }
 
       }.background(Color.black.edgesIgnoringSafeArea(.all))

@@ -53,9 +53,8 @@ struct HomeView: View {
             .foregroundColor(.white)
             .padding(.trailing, 25)
             .font(.custom("Barlow-Italic", size: 17))
-            .padding(.top, 3)
           }
-        }.padding(.bottom, 60)
+        }.padding(.bottom, 50)
         
         ZStack{
           Rectangle()
@@ -80,18 +79,27 @@ struct HomeView: View {
           // MARK: Content within rectangle  
           VStack{
             // Streak
-            Rectangle()
-            .fill(Color.black) 
-            .frame(height: 50) 
-            .cornerRadius(15)
-            .overlay(
+            HStack {
               Text("\(homeModel.streak)")
-                  .foregroundColor(.white)
-                  .onAppear {
-                  print("HomeView appeared with streak: \(homeModel.streak)") // This will print the streak when HomeView appears
-                }
-            )
-            .padding(.horizontal, 25) 
+                .foregroundColor(.white)
+                .font(.custom("Barlow-BlackItalic", size: 45))
+                .padding(.leading, 35)
+              Spacer()
+              Text("Day (s)  Streak!")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Italic", size: 24))
+                .padding(.leading, 10)
+                .padding(.top, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+              Text("🔥")
+                .font(.custom("Barlow-Black", size: 45))
+                .padding(.trailing, 35)
+            }
+            .frame(height: 90)
+            .background(Color.black)
+            .cornerRadius(15)
+            .padding(.horizontal, 30)
+            .offset(y: -190)
           }
         }
 

@@ -12,7 +12,7 @@ struct SongsView: View {
   let genres = ["Pop", "Rock", "R&B / Soul", "Folk & Country", "Alternative"]
   @Environment(\.managedObjectContext) var context
   @EnvironmentObject var homeModel: HomeModel
-
+  
   var body: some View {
     NavigationView {
       ScrollView{
@@ -91,6 +91,7 @@ struct SongsView: View {
               
               VStack{
                 ForEach(genres, id: \.self) { genre in
+                  let unlockedSongs = SongModel.fetchUnlockedSongsForGenre(context: context, genre: genre)
                   NavigationLink(destination: SongsForGenreView(controller: SongsForGenreViewController(context: context, genre: genre))) {
                     if genre == "R&B / Soul" {
                       Image("R&B : Soul")
@@ -103,11 +104,16 @@ struct SongsView: View {
                         .frame(width:85, height:85)
                         .padding(.leading, 30)
                     }
-                    Text(genre)
-                      .frame(maxWidth: .infinity, alignment: .leading)
-                      .foregroundColor(.white)
-                      .font(.custom("Barlow-Bold", size: 24))
-                      .padding(.leading, 25)
+                    VStack(alignment: .leading) {
+                      Text(genre)
+                        .foregroundColor(.white)
+                        .font(.custom("Barlow-Bold", size: 24))
+                      Text("\(unlockedSongs) songs unlocked")
+                        .foregroundColor(.white)
+                        .font(.custom("Barlow-Regular", size: 18))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 25)
                   }
                   .frame(height: 85)
                   .padding(.bottom, 25)

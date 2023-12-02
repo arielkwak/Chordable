@@ -68,6 +68,8 @@
 		F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */; };
 		F0D97C362AF3730F00AF16B6 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */; };
 		F0DF8DA72B12F25B00841509 /* Chango-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */; };
+		F0FE5CF12B196D850040C5A5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FE5CF02B196D850040C5A5 /* Home.swift */; };
+		F0FE5CF22B196D850040C5A5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FE5CF02B196D850040C5A5 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,7 @@
 		F0D97C232AF3730F00AF16B6 /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
 		F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-MediumItalic.ttf"; sourceTree = "<group>"; };
 		F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chango-Regular.ttf"; sourceTree = "<group>"; };
+		F0FE5CF02B196D850040C5A5 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +329,7 @@
 				41FB94342AF0B4A600409446 /* AudioStatus.swift */,
 				35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */,
 				354C89022B0AEB7700663340 /* songGenresResponse.swift */,
+				F0FE5CF02B196D850040C5A5 /* Home.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -521,6 +525,7 @@
 				41C2C9272B15AA78004C10F7 /* SpotifyWelcomeView.swift in Sources */,
 				41C2C91C2B159C7F004C10F7 /* Spotify.swift in Sources */,
 				41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */,
+				F0FE5CF12B196D850040C5A5 /* Home.swift in Sources */,
 				35B2442F2AEF0A0000F04453 /* ChordsView.swift in Sources */,
 				35B2442D2AEF09F600F04453 /* HomeView.swift in Sources */,
 				35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */,
@@ -556,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */,
+				F0FE5CF22B196D850040C5A5 /* Home.swift in Sources */,
 				41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

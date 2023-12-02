@@ -6,7 +6,24 @@
 //
 
 import Foundation
+import CoreData
 
-extension Song {
-    
+class SongModel: ObservableObject {
+    @NSManaged public var genre: String?
+    @NSManaged public var unlocked: Bool
+
+    init() {
+    }
+
+    static func fetchUnlockedSongsForGenre(context: NSManagedObjectContext, genre: String) -> Int {
+        let fetchRequest: NSFetchRequest<Song> = Song.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "genre == %@ AND unlocked == true", genre)
+        do {
+            let songs = try context.fetch(fetchRequest)
+            return songs.count
+        } catch {
+            print("Failed to fetch songs: \(error)")
+            return 0
+        }
+    }
 }

@@ -11,7 +11,6 @@ import CoreData
 struct SongsView: View {
     let genres = ["Pop", "Rock", "R&B / Soul", "Folk & Country", "Alternative"]
     @Environment(\.managedObjectContext) var context
-//    @EnvironmentObject var spotify: Spotify
 
     var body: some View {
         NavigationView {

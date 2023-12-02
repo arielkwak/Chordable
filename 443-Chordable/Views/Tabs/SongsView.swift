@@ -3,7 +3,7 @@
 //  443-Chordable
 //
 //  Created by Owen Gometz on 10/29/23.
-// https://open.spotify.com/track/6wn2nmFn3wDuiMldRiuRuL?si=56b04b63d98d460a
+// 
 
 import SwiftUI
 import CoreData
@@ -23,7 +23,6 @@ struct SongsView: View {
                     }
                 }
                 .padding(.top, 30)
-              Spacer()
             }
             .navigationTitle("Songs")
         }

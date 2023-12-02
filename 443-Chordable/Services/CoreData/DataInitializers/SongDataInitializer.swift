@@ -53,6 +53,7 @@ class SongDataInitializer {
         let songTitle = String(songTitleComponents[1])
                             .replacingOccurrences(of: "_", with: " ")
                             .trimmingCharacters(in: .whitespacesAndNewlines)
+                            .capitalized
         
         let songEntry = Song(context: context)
         songEntry.song_id = UUID()
@@ -65,7 +66,7 @@ class SongDataInitializer {
                                 .trimmingCharacters(in: .whitespacesAndNewlines)
         songEntry.audio_file = "\(songTitle).wav"
         songEntry.genre = genreMappings[songTitle] ?? "Unknown"
-        songEntry.uri = genreMappings[songTitle] ?? "Unknown"
+        songEntry.uri = URIMappings[songTitle] ?? "Unknown"
 
         return songEntry
     }

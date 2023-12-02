@@ -36,6 +36,7 @@
 		35C434AD2AFDBB8B00DAC3BE /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AC2AFDBB8B00DAC3BE /* ResultView.swift */; };
 		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
 		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
+		418F71A22B1BC73400244397 /* spotify.json in Resources */ = {isa = PBXBuildFile; fileRef = 418F71A12B1A4FB400244397 /* spotify.json */; };
 		41C2C9162B159B44004C10F7 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9152B159B44004C10F7 /* SpotifyAPI */; };
 		41C2C9192B159B5D004C10F7 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9182B159B5D004C10F7 /* KeychainAccess */; };
 		41C2C91C2B159C7F004C10F7 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C91B2B159C7F004C10F7 /* Spotify.swift */; };
@@ -483,6 +484,7 @@
 				354C88FF2B0A9BA700663340 /* uspopLabels in Resources */,
 				354C89012B0AE86100663340 /* songGenres.json in Resources */,
 				F0D97C352AF3730F00AF16B6 /* Barlow-Italic.ttf in Resources */,
+				418F71A22B1BC73400244397 /* spotify.json in Resources */,
 				F0D97C2D2AF3730F00AF16B6 /* Barlow-Medium.ttf in Resources */,
 				F0D97C2C2AF3730F00AF16B6 /* Barlow-ThinItalic.ttf in Resources */,
 				F0DF8DA72B12F25B00841509 /* Chango-Regular.ttf in Resources */,

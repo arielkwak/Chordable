@@ -97,13 +97,10 @@ struct SongsView: View {
                   }
                 }
               }
-              .frame(maxWidth: .infinity, maxHeight: .infinity)
+              VStack{}
+              .frame(maxWidth: .infinity)
+              .frame(height: 150)
             }
-            .background(
-              Rectangle()
-                .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
-                .edgesIgnoringSafeArea(.all)
-            )
           }
         }
       }.background(Color.black)

@@ -87,19 +87,32 @@ struct SongsView: View {
               .background(Color.black)
               .cornerRadius(15)
               .padding(.horizontal, 30)
+              .padding(.bottom, 20)
               
-              VStack {
+              VStack{
                 ForEach(genres, id: \.self) { genre in
                   NavigationLink(destination: SongsForGenreView(controller: SongsForGenreViewController(context: context, genre: genre))) {
+                    if genre == "R&B / Soul" {
+                      Image("R&B : Soul")
+                      .resizable()
+                      .frame(width:85, height:85)
+                      .padding(.leading, 30)
+                    } else {
+                      Image("\(genre)")
+                        .resizable()
+                        .frame(width:85, height:85)
+                        .padding(.leading, 30)
+                    }
                     Text(genre)
                       .frame(maxWidth: .infinity, alignment: .leading)
-                      .padding()
+                      .foregroundColor(.white)
+                      .font(.custom("Barlow-Bold", size: 24))
+                      .padding(.leading, 25)
                   }
+                  .frame(height: 85)
+                  .padding(.bottom, 25)
                 }
               }
-              VStack{}
-              .frame(maxWidth: .infinity)
-              .frame(height: 150)
             }
           }
         }

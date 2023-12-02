@@ -38,37 +38,24 @@ struct LoginView: ViewModifier {
     /// so that the animation can be seen.
     @State private var finishedViewLoadDelay = false
     
-    let backgroundGradient = LinearGradient(
-        gradient: Gradient(
-            colors: [
-                Color(red: 0.467, green: 0.765, blue: 0.267),
-                Color(red: 0.190, green: 0.832, blue: 0.437)
-            ]
-        ),
-        startPoint: .leading, endPoint: .trailing
-    )
-    
-    var spotifyLogo: ImageName {
-        colorScheme == .dark ? .spotifyLogoWhite
-                : .spotifyLogoBlack
-    }
-    
     func body(content: Content) -> some View {
-        content
-            .blur(
-                radius: spotify.isAuthorized && !Self.debugAlwaysShowing ? 0 : 3
-            )
-            .overlay(
-                ZStack {
-                    if !spotify.isAuthorized || Self.debugAlwaysShowing {
-                        Color.black.opacity(0.25)
-                            .edgesIgnoringSafeArea(.all)
-                        if self.finishedViewLoadDelay || Self.debugAlwaysShowing {
-                            loginView
-                        }
-                    }
+            ZStack {
+              if !spotify.isAuthorized || Self.debugAlwaysShowing {
+                Color.black.edgesIgnoringSafeArea(.all)
+                Image("start_page_background_image")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+                
+                let gradient = Gradient(colors: [Color.black, Color.black.opacity(0.6), Color.clear])
+                let linearGradient = LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+                
+                linearGradient.edgesIgnoringSafeArea(.all)
+                if self.finishedViewLoadDelay || Self.debugAlwaysShowing {
+                  loginView
                 }
-            )
+              }
+            }
             .onAppear {
                 // After the app first launches, add a short delay before
                 // showing this view so that the animation can be seen.
@@ -83,24 +70,40 @@ struct LoginView: ViewModifier {
     var loginView: some View {
         spotifyButton
             .overlay(retrievingTokensView)
-//            .transition(
-//                AnyTransition.scale(scale: 1.2)
-//                    .combined(with: .opacity)
-//            )
     }
     
     var spotifyButton: some View {
-
+      VStack{
+        VStack(alignment: .leading, spacing: 16){
+          Text("Connect to Spotify")
+            .font(.custom("Barlow-Bold", size: 35))
+            .foregroundColor(.white)
+            .padding(.top, 10)
+            .padding(.bottom, 5)
+            .padding(.leading, 20)
+          
+          Text("To get started, we need to connect to your Spotify account")
+            .font(.custom("Barlow-Regular", size: 20))
+            .foregroundColor(.white)
+            .padding(.bottom, 70)
+            .padding(.horizontal, 20)
+        }
+        
+        Image("spotify logo green")
+          .resizable()
+          .frame(width: 180, height: 180)
+          .padding(.bottom, 70)
+        
         Button(action: spotify.authorize) {
-            HStack {
-                Text("Connect with Spotify")
-                .font(.custom("Barlow-Medium", size: 20))
-                .padding(.horizontal, 25)
-            }
-            .padding()
-            .background(.white)
-            .clipShape(Capsule())
-            .shadow(radius: 5)
+          HStack {
+            Text("Connect with Spotify")
+              .font(.custom("Barlow-Medium", size: 20))
+              .padding(.horizontal, 25)
+          }
+          .padding()
+          .background(.white)
+          .clipShape(Capsule())
+          .shadow(radius: 5)
         }
         .accessibility(identifier: "Connect with Spotify Identifier")
         .buttonStyle(PlainButtonStyle())
@@ -109,7 +112,7 @@ struct LoginView: ViewModifier {
         // tokens is currently in progress.
         .allowsHitTesting(!spotify.isRetrievingTokens)
         .padding(.bottom, 5)
-        
+      }.offset(y: -90)
     }
     
     var retrievingTokensView: some View {

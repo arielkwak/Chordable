@@ -109,8 +109,8 @@ struct SongsView: View {
                         .foregroundColor(.white)
                         .font(.custom("Barlow-Bold", size: 24))
                       Text("\(unlockedSongs) songs unlocked")
-                        .foregroundColor(.white)
-                        .font(.custom("Barlow-Regular", size: 18))
+                        .foregroundColor(Color(red: 255, green: 255, blue: 255))
+                        .font(.custom("Barlow-Italic", size: 16))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 25)

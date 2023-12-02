@@ -34,37 +34,51 @@ struct LoginView: ViewModifier {
 
     @EnvironmentObject var spotify: Spotify
 
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     /// After the app first launches, add a short delay before showing this view
     /// so that the animation can be seen.
     @State private var finishedViewLoadDelay = false
     
     func body(content: Content) -> some View {
-            ZStack {
-              if !spotify.isAuthorized || Self.debugAlwaysShowing {
-                Color.black.edgesIgnoringSafeArea(.all)
-                Image("start_page_background_image")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .edgesIgnoringSafeArea(.all)
-                
-                let gradient = Gradient(colors: [Color.black, Color.black.opacity(0.6), Color.clear])
-                let linearGradient = LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
-                
-                linearGradient.edgesIgnoringSafeArea(.all)
-                if self.finishedViewLoadDelay || Self.debugAlwaysShowing {
-                  loginView
-                }
-              }
-            }
-            .onAppear {
-                // After the app first launches, add a short delay before
-                // showing this view so that the animation can be seen.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    withAnimation(LoginView.animation) {
-                        self.finishedViewLoadDelay = true
-                    }
-                }
-            }
+      ZStack {
+        if !spotify.isAuthorized || Self.debugAlwaysShowing {
+          Color.black.edgesIgnoringSafeArea(.all)
+          Image("start_page_background_image")
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .edgesIgnoringSafeArea(.all)
+          
+          let gradient = Gradient(colors: [Color.black, Color.black.opacity(0.6), Color.clear])
+          let linearGradient = LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
+          
+          linearGradient.edgesIgnoringSafeArea(.all)
+          if self.finishedViewLoadDelay || Self.debugAlwaysShowing {
+            loginView
+          }
+        }
+      }
+      .onAppear {
+        // After the app first launches, add a short delay before
+        // showing this view so that the animation can be seen.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+          withAnimation(LoginView.animation) {
+            self.finishedViewLoadDelay = true
+          }
+        }
+      }
+      .navigationBarBackButtonHidden(true)
+       .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+              Image(systemName: "chevron.backward")
+                  .foregroundColor(.white)
+              Text("Back")
+                  .font(.custom("Barlow-Regular", size: 16))
+                  .foregroundColor(.white)
+          }
+        })
     }
     
     var loginView: some View {
@@ -96,7 +110,7 @@ struct LoginView: ViewModifier {
         
         Button(action: spotify.authorize) {
           HStack {
-            Text("Connect with Spotify")
+            Text("Connect to Spotify")
               .font(.custom("Barlow-Medium", size: 20))
               .padding(.horizontal, 25)
           }
@@ -105,7 +119,7 @@ struct LoginView: ViewModifier {
           .clipShape(Capsule())
           .shadow(radius: 5)
         }
-        .accessibility(identifier: "Connect with Spotify Identifier")
+        .accessibility(identifier: "Connect to Spotify Identifier")
         .buttonStyle(PlainButtonStyle())
         // Prevent the user from trying to login again
         // if a request to retrieve the access and refresh

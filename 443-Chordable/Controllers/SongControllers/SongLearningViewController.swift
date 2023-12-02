@@ -7,11 +7,14 @@
 
 import Foundation
 import CoreData
+import SpotifyWebAPI
 
 class SongLearningViewController: ObservableObject {
     @Published var currentChords: [SongChordInstance?] = [nil, nil, nil, nil] // Current and next 3 chords
     @Published var isPlaying = false
     @Published var progress: Float = 0.0 // For progress bar
+    @Published var playAlong = false
+  
 
     private let context: NSManagedObjectContext
     private var timer: Timer?

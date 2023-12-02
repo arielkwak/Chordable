@@ -42,6 +42,7 @@ extension SpotifyAPI where AuthorizationManager: SpotifyScopeAuthorizationManage
                     ?? usableDevices.first
             
             if let deviceId = device?.id {
+                print("got device ID: \(deviceId)")
                 return self.play(playbackRequest, deviceId: deviceId)
             }
             else {

@@ -268,6 +268,12 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
             completion("Error")  // Return "Error" if data is invalid
             return
         }
+        
+        // debugging code
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("Raw server response: \(responseString)")
+        }
+        // end of begunning code
 
         // Attempt to decode this JSON into a Swift struct called ChordResponse
         do {

@@ -97,19 +97,22 @@ struct ChordsOverlayView: View {
                 VStack {
                     Text("Chords for \(song.title ?? "Unknown Song")").font(.headline)
 
-                    ScrollView(.horizontal, showsIndicators: true) {
-                        HStack {
-                            ForEach(song.getUniqueChords(context: context), id: \.chord_id) { chord in
-                                Button(action: {
-                                    self.selectedChord = chord
-                                    self.isChordDetailActive = true
-                                }) {
-                                    Text(chord.chord_name ?? "Unknown Chord")
-                                        .padding(.horizontal)
-                                }
+                  ScrollView(.horizontal, showsIndicators: true) {
+                    HStack {
+                        ForEach(song.getUniqueChords(context: context), id: \.chord_id) { chord in
+                            Button(action: {
+                                self.selectedChord = chord
+                                self.isChordDetailActive = true
+                            }) {
+                              Text(chord.chord_name ?? "Unknown Chord")
+                                .foregroundColor(chord.completed ? .green : .red)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.2)))
                             }
+                            .padding(.horizontal, 4)
                         }
                     }
+                  }
 
                     Button("Close") {
                         isPresented = false

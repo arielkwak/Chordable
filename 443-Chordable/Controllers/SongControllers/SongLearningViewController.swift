@@ -15,6 +15,8 @@ class SongLearningViewController: ObservableObject {
     @Published var progress: Float = 0.0 // For progress bar
     @Published var playAlong = false
   
+    @Published var secondsToNextChord: Float? // Added line
+  
 
     private let context: NSManagedObjectContext
     private var timer: Timer?
@@ -74,7 +76,13 @@ class SongLearningViewController: ObservableObject {
         for i in 1...3 {
             currentChords[i] = (i - 1) < upcomingChords.count ? upcomingChords[i - 1] : nil
         }
-    }
+      
+        if let nextChord = upcomingChords.first {
+            secondsToNextChord = nextChord.start_time - elapsedTime
+        } else {
+            secondsToNextChord = nil
+        }
+      }
 
 
     private func fetchSongChordInstances() {

@@ -91,7 +91,6 @@ struct SongsView: View {
               
               VStack{
                 ForEach(genres, id: \.self) { genre in
-                  let unlockedSongs = SongModel.fetchUnlockedSongsForGenre(context: context, genre: genre)
                   NavigationLink(destination: SongsForGenreView(controller: SongsForGenreViewController(context: context, genre: genre))) {
                     if genre == "R&B / Soul" {
                       Image("R&B : Soul")
@@ -108,9 +107,6 @@ struct SongsView: View {
                       Text(genre)
                         .foregroundColor(.white)
                         .font(.custom("Barlow-Bold", size: 24))
-                      Text("\(unlockedSongs) songs unlocked")
-                        .foregroundColor(Color(red: 255, green: 255, blue: 255))
-                        .font(.custom("Barlow-Italic", size: 16))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 25)

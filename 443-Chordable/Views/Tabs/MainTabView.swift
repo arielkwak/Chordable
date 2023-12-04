@@ -2,6 +2,9 @@ import SwiftUI
 
 struct MainTabView: View {
     @State private var selectedTab: Int = 1
+    @EnvironmentObject var spotify: Spotify
+    @Binding var isAuthorized: Bool
+    @EnvironmentObject var homeModel: HomeModel
 
     var body: some View {
         VStack(spacing: 0) { // Remove the Spacer and set spacing to 0

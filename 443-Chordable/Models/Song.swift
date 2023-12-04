@@ -9,20 +9,11 @@ import Foundation
 import CoreData
 
 extension Song {
-    func isUnlocked() -> Bool {
-        // Logic to determine if the song is unlocked
-        let allChordsCompleted = self.songChordInstances?.allSatisfy { instance in
-            guard let chordInstance = instance as? SongChordInstance,
-                  let chord = chordInstance.chord else { return false }
-            return chord.completed
-        } ?? false
-        return allChordsCompleted
-    }
-
     static func filterSongs(songs: [Song], searchText: String, tabSelection: Int) -> [Song] {
         return songs.filter { song in
             let matchesSearchText = searchText.isEmpty || (song.title?.lowercased().contains(searchText.lowercased()) ?? false)
-            let isUnlocked = song.isUnlocked()
+            // Directly use the 'unlocked' attribute of the Song entity
+            let isUnlocked = song.unlocked
             return matchesSearchText && ((tabSelection == 0 && !isUnlocked) || (tabSelection == 1 && isUnlocked))
         }
     }
@@ -53,4 +44,18 @@ extension Song {
             return []
         }
     }
-}
+    static func updateLockedSongs(context: NSManagedObjectContext) {
+        let songRequest: NSFetchRequest<Song> = Song.fetchRequest()
+        do {
+            let songs = try context.fetch(songRequest)
+            for song in songs {
+                let chords = song.getUniqueChords(context: context)
+                let isUnlocked = chords.allSatisfy { $0.completed }
+                song.unlocked = isUnlocked
+            }
+            try context.save()
+        } catch {
+            print("Error updating locked songs: \(error)")
+        }
+    }
+  }

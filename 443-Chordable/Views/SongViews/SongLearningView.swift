@@ -18,6 +18,12 @@ struct SongLearningView: View {
 
     var body: some View {
         VStack {
+          
+            if let secondsToNextChord = controller.secondsToNextChord {
+                Text("Switch chord in \(String(format: "%.1f", secondsToNextChord))...") // Updated line
+                    .font(.headline)
+            }
+          
             // Display the current chord
             Text(controller.currentChords[0]?.chord?.displayable_name ?? "No Chord")
                 .font(.largeTitle)

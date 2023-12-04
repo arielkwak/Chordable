@@ -203,6 +203,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
                   if let context = self.chord.managedObjectContext {
                       do {
                           try context.save()
+                          Song.updateLockedSongs(context: context)
                       } catch {
                           // Handle the error
                           print("Failed to save context: \(error)")

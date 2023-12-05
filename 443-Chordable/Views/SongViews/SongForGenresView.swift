@@ -162,16 +162,27 @@ struct SongsForGenreView: View {
                   Button(action: {
                     handleSongSelection(song)
                   }) {
-                    VStack(alignment: .leading) {
-                      Text((song.title ?? "Unknown Song").trimmingCharacters(in: .whitespacesAndNewlines))
-                        .font(.custom("Barlow-Bold", size: 20))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.leading)
+                    HStack{
+                      VStack(alignment: .leading) {
+                        Text((song.title ?? "Unknown Song").trimmingCharacters(in: .whitespacesAndNewlines))
+                          .font(.custom("Barlow-Bold", size: 20))
+                          .foregroundColor(.white)
+                          .multilineTextAlignment(.leading)
+                        
+                        Text((song.artist ?? "Unknown Artist").trimmingCharacters(in: .whitespacesAndNewlines))
+                          .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
+                          .font(.custom("Barlow-Regular", size: 16))
+                      }
+                      .frame(maxWidth: .infinity, alignment: .leading)
+                      .padding(.leading, 3)
                       
-                      Text((song.artist ?? "Unknown Artist").trimmingCharacters(in: .whitespacesAndNewlines))
-                        .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
-                        .font(.custom("Barlow-Regular", size: 16))
-                    }.frame(maxWidth: .infinity, alignment: .leading) 
+                      if controller.selectedTab == 0 {
+                        Image("locked_icon")
+                          .resizable()
+                          .frame(width: 22, height: 27)
+                          .padding(.horizontal, 5)
+                      }
+                    }.padding(.horizontal, 10)
                   }
                 }.padding(.vertical, 5)
               }

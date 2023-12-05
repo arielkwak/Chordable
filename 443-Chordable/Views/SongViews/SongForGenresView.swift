@@ -9,71 +9,98 @@ import SwiftUI
 import CoreData
 
 struct SongsForGenreView: View {
-    @ObservedObject var controller: SongsForGenreViewController
-    @Environment(\.managedObjectContext) var context
-    @State private var showingChordsOverlay = false
-    @State private var selectedSong: Song?
-    @State private var isNavigatingToSongLearning = false
-    @State private var refreshView: Bool = false
+  @ObservedObject var controller: SongsForGenreViewController
+  @Environment(\.managedObjectContext) var context
+  @State private var showingChordsOverlay = false
+  @State private var selectedSong: Song?
+  @State private var isNavigatingToSongLearning = false
+  @State private var refreshView: Bool = false
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    var body: some View {
-        ZStack {
-            VStack {
-                // Search Bar
-                TextField("Search Songs", text: $controller.searchText)
-                    .padding(7)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-
-                // Segmented Picker for Locked/Unlocked
-                Picker("Songs", selection: $controller.selectedTab) {
-                    Text("Locked").tag(0)
-                    Text("Unlocked").tag(1)
+  var body: some View {
+    VStack(spacing: 10) {
+      VStack {
+        Text("Songs in \(controller.genre)")
+          .padding(.top,10)
+          .padding(.bottom, 10)
+          .font(.custom("Barlow-Bold", size: 32))
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .kerning(1.6)
+          .foregroundColor(.white)
+          .padding(.leading, 25)
+      }
+      .background(Color.black)
+      
+      ZStack {
+        VStack {
+          // Search Bar
+          TextField("Search Songs", text: $controller.searchText)
+            .padding(7)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal)
+          
+          // Segmented Picker for Locked/Unlocked
+          Picker("Songs", selection: $controller.selectedTab) {
+            Text("Locked").tag(0)
+            Text("Unlocked").tag(1)
+          }
+          .pickerStyle(SegmentedPickerStyle())
+          .padding()
+          
+          // Songs List
+          List {
+            ForEach(controller.sortedSongs, id: \.song_id) { song in
+              HStack {
+                SongCellView(song: song)
+                Button(action: {
+                  handleSongSelection(song)
+                }) {
+                  Text(song.title ?? "Unknown Title")
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-
-                // Songs List
-                List {
-                    ForEach(controller.sortedSongs, id: \.song_id) { song in
-                      HStack {
-                        SongCellView(song: song)
-                        Button(action: {
-                          handleSongSelection(song)
-                        }) {
-                          Text(song.title ?? "Unknown Title")
-                        }
-                      }
-                    }
-                }
-
-                // Conditional NavigationLink for SongLearningView
-                if isNavigatingToSongLearning, let song = selectedSong {
-                    NavigationLink(
-                      destination: SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song),
-                        isActive: $isNavigatingToSongLearning
-                    ) {
-                        EmptyView()
-                    }
-                    .hidden()
-                }
+              }
             }
-            .navigationTitle("Songs in \(controller.genre)")
-            .onChange(of: controller.selectedTab) { _ in
-                controller.applyFilters()
+          }
+          
+          // Conditional NavigationLink for SongLearningView
+          if isNavigatingToSongLearning, let song = selectedSong {
+            NavigationLink(
+              destination: SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song),
+              isActive: $isNavigatingToSongLearning
+            ) {
+              EmptyView()
             }
-            .onChange(of: controller.searchText) { _ in
-                controller.applyFilters()
-            }
-
-            // Chords Overlay
-            if showingChordsOverlay, let song = selectedSong {
-                ChordsOverlayView(song: song, context: context, isPresented: $showingChordsOverlay)
-            }
+            .hidden()
+          }
         }
-        .id(refreshView) // Use the refreshView variable to force refresh the view
+        .onChange(of: controller.selectedTab) { _ in
+          controller.applyFilters()
+        }
+        .onChange(of: controller.searchText) { _ in
+          controller.applyFilters()
+        }
+        
+        // Chords Overlay
+        if showingChordsOverlay, let song = selectedSong {
+          ChordsOverlayView(song: song, context: context, isPresented: $showingChordsOverlay)
+        }
+      }
+      .id(refreshView) // Use the refreshView variable to force refresh the view
     }
+    .background(Color.black.edgesIgnoringSafeArea(.all))
+    .navigationBarBackButtonHidden(true)
+    .navigationBarItems(leading: Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+      }) {
+        HStack {
+          Image(systemName: "chevron.backward")
+              .foregroundColor(.white)
+          Text("Genre Playlists")
+              .font(.custom("Barlow-Regular", size: 16))
+              .foregroundColor(.white)
+      }
+    })
+  }
 
     private func handleSongSelection(_ song: Song) {
         selectedSong = song

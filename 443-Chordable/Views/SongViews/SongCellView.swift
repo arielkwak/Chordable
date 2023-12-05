@@ -78,28 +78,21 @@ struct SongCellView: View {
         }, receiveValue: { album in
           print("received album: \(album.name)")
           self.album = album
-        })
-      
-//      self.albumCancellable = spotify.api.album(self.albumURI ?? "")
-//        .sink(receiveCompletion: { completion in
-//          print("album completion for \(song.title):", completion, terminator: "\n\n\n")
-//        }, receiveValue: { album in
-//          self.album = album
-//        })
-      
-      guard let spotifyImage = album?.images?.largest else {
-        print("No image :(")
-        return
-      }
-      
-      self.loadImageCancellable = spotifyImage.load()
-        .receive(on: RunLoop.main)
-        .sink(
-          receiveCompletion: { _ in },
-          receiveValue: { image in
-            self.image = image
+          
+          guard let spotifyImage = self.album?.images?.largest else {
+            print("Did not find album image")
+            return
           }
-        )
+          self.loadImageCancellable = spotifyImage.load()
+            .receive(on: RunLoop.main)
+            .sink(
+              receiveCompletion: { _ in },
+              receiveValue: { image in
+                self.image = image
+              }
+            )
+          
+        })
     }
       
   }

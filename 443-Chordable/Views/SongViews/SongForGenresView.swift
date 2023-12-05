@@ -182,7 +182,9 @@ struct SongsForGenreView: View {
                           .frame(width: 22, height: 27)
                           .padding(.horizontal, 5)
                       }
-                    }.padding(.horizontal, 10)
+                    }
+                    .padding(.leading, 10)
+                    .padding(.trailing, 25)
                   }
                 }.padding(.vertical, 5)
               }

@@ -33,20 +33,125 @@ struct SongsForGenreView: View {
       
       ZStack {
         VStack {
-          // Search Bar
-          TextField("Search Songs", text: $controller.searchText)
-            .padding(7)
-            .background(Color(.systemGray6))
-            .cornerRadius(8)
-            .padding(.horizontal)
-          
-          // Segmented Picker for Locked/Unlocked
-          Picker("Songs", selection: $controller.selectedTab) {
-            Text("Locked").tag(0)
-            Text("Unlocked").tag(1)
+          ZStack{
+            Color.black
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
+            
+            VStack{
+              Rectangle()
+                .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color(red: 190/255, green: 180/255, blue: 255/255), Color.black]), startPoint: .leading, endPoint: .trailing))
+                .frame(height: 5)
+                .padding(.horizontal, 30)
+              
+              VStack{
+                // Search Bar
+                HStack {
+                  Image(systemName: "magnifyingglass")
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 15)
+                    
+                  TextField("Search for songs...", text: $controller.searchText)
+                    .padding(.vertical, 10)
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .font(Font.custom("Barlow-regular", size: 16))
+                }
+                .background(Color.white)
+                .cornerRadius(8)
+                .padding(.horizontal, 30)
+                .padding(.vertical, 30)
+                
+                // Segmented Picker for Locked/Unlocked
+                HStack{
+                  // button styling for Locked
+                  Button(action: {
+                    controller.selectedTab = 0
+                  }) {
+                    Text("Locked")
+                      .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                      .padding(.trailing, 50)
+                      .overlay { controller.selectedTab == 0 ?
+                        LinearGradient(
+                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Locked")
+                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                            .padding(.trailing, 50)
+                        )
+                        :
+                        LinearGradient(
+                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Locked")
+                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                            .padding(.trailing, 50)
+                        )
+                      }
+                    }
+
+                    // button styling for Unlocked
+                    Button(action: {
+                      controller.selectedTab = 1
+                    }) {
+                        Text("Unlocked")
+                          .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          .padding(.leading, 50)
+                          .overlay { controller.selectedTab == 1 ?
+                            LinearGradient(
+                              colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                              startPoint: .leading,
+                              endPoint: .trailing
+                            )
+                            .mask(
+                              Text("Unlocked")
+                                .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                                .padding(.leading, 50)
+                            )
+                            :
+                            LinearGradient(
+                              colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                              startPoint: .leading,
+                              endPoint: .trailing
+                            )
+                            .mask(
+                              Text("Unlocked")
+                                .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                                .padding(.leading, 50)
+                            )
+                          }
+                      }
+                }.padding([.leading, .trailing])
+                
+                // underline for buttons when pressed 
+//                Spacer()
+                GeometryReader { geometry in
+                    HStack {
+                        Rectangle()
+                            .fill(controller.selectedTab == 0 ?
+                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                                AnyShapeStyle(Color.clear)
+                            )
+                            .frame(width: geometry.size.width / 2, height: 5)
+                        Spacer()
+                        Rectangle()
+                            .fill(controller.selectedTab == 1 ?
+                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                                AnyShapeStyle(Color.clear)
+                            )
+                            .frame(width: geometry.size.width / 2, height: 5)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                }.padding(.bottom, -30)
+              }
+            }
           }
-          .pickerStyle(SegmentedPickerStyle())
-          .padding()
           
           // Songs List
           List {
@@ -61,6 +166,7 @@ struct SongsForGenreView: View {
               }
             }
           }
+          .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
           
           // Conditional NavigationLink for SongLearningView
           if isNavigatingToSongLearning, let song = selectedSong {

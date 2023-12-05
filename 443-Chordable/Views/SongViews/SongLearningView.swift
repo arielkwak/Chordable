@@ -42,18 +42,32 @@ struct SongLearningView: View {
               .frame(maxWidth: .infinity, alignment: .leading)
               .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
               .padding(.leading, 25)
+              .padding(.top, 2)
               .font(.custom("Barlow-Regular", size: 16))
           }
+          
+          // play along toggle 
+          VStack(alignment: .trailing) {
+            Text("Play along!")
+              .foregroundColor(.white)
+              .font(.custom("Barlow-Regular", size: 16))
+            Toggle(isOn: $controller.playAlong) { EmptyView() }
+              .toggleStyle(GradientToggleStyle())
+              .padding(.trailing, 10)
+          }
+          .frame(maxWidth: .infinity, alignment: .trailing)
+          .padding(.trailing, 25)
           .padding(.bottom, 35)
             
           if let secondsToNextChord = controller.secondsToNextChord {
-              Text("Switch chord in \(String(format: "%.1f", secondsToNextChord)) second(s)") // Updated line
-                  .font(.headline)
-                  .foregroundColor(.white)
+            Text("Switch in \(String(format: "%.1f", secondsToNextChord)) second(s)") // Updated line
+              .font(.headline)
+              .font(.custom("Barlow-Bold", size: 32))
+              .foregroundColor(.white)
           }
         
           // Display the current chord
-          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No Chord")
+          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No/nChord")
               .font(.largeTitle)
               .foregroundColor(.white)
 
@@ -71,9 +85,6 @@ struct SongLearningView: View {
                   .resizable()
                   .frame(width: 50, height: 50)
           }
-          
-          Toggle("Play along!", isOn: $controller.playAlong)
-            .foregroundColor(.white)
         
           // Progress Bar
           ProgressBar(progress: controller.progress)
@@ -182,4 +193,32 @@ struct ProgressBar: View {
                 .cornerRadius(5)
         }
     }
+}
+
+struct GradientToggleStyle: ToggleStyle {
+  var colors: [Color] = [Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1)]
+  var offColor: Color = Color.gray
+  
+  func makeBody(configuration: Self.Configuration) -> some View {
+    HStack {
+      configuration.label
+      
+      Button(action: { configuration.isOn.toggle() }) {
+        if configuration.isOn {
+          RoundedRectangle(cornerRadius: 16, style: .continuous)
+            .fill(LinearGradient(gradient: Gradient(colors: colors), startPoint: .leading, endPoint: .trailing))
+        } else {
+          RoundedRectangle(cornerRadius: 16, style: .continuous)
+            .fill(offColor)
+        }
+      }
+      .frame(width: 50, height: 30)
+      .overlay(
+        Circle()
+          .fill(Color.white)
+          .padding(3)
+          .offset(x: configuration.isOn ? 10 : -10)
+      )
+    }
+  }
 }

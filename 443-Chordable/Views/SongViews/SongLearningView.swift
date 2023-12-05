@@ -17,6 +17,7 @@ struct SongLearningView: View {
     @State private var alert: AlertItem? = nil
     let song: Song
     @Environment(\.managedObjectContext) var context
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         VStack {
@@ -27,24 +28,26 @@ struct SongLearningView: View {
               .foregroundColor(.white)
               .padding(.leading, 25)
               .font(.custom("Barlow-Bold", size: 24))
+              .padding(.top, 15)
             
             // artists
             Text(controller.song.artist ?? "")
               .frame(maxWidth: .infinity, alignment: .leading)
               .foregroundColor(.white)
-              .padding(.leading, 16)
-              .font(.custom("Barlow-SemiBold", size: 24))
+              .padding(.leading, 25)
+              .font(.custom("Barlow-SemiBold", size: 16))
             
             // Chords needed
             Text("Chords: "+song.getUniqueChords(context: context).map { $0.chord_name ?? "Unknown Chord" }.joined(separator: ", "))
               .frame(maxWidth: .infinity, alignment: .leading)
-              .foregroundColor(.white)
-              .padding(.leading, 16)
+              .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
+              .padding(.leading, 25)
               .font(.custom("Barlow-Regular", size: 16))
           }
+          .padding(.bottom, 35)
             
           if let secondsToNextChord = controller.secondsToNextChord {
-              Text("Switch chord in \(String(format: "%.1f", secondsToNextChord))...") // Updated line
+              Text("Switch chord in \(String(format: "%.1f", secondsToNextChord)) second(s)") // Updated line
                   .font(.headline)
                   .foregroundColor(.white)
           }
@@ -68,6 +71,7 @@ struct SongLearningView: View {
                   .resizable()
                   .frame(width: 50, height: 50)
           }
+          
           Toggle("Play along!", isOn: $controller.playAlong)
             .foregroundColor(.white)
         
@@ -75,6 +79,18 @@ struct SongLearningView: View {
           ProgressBar(progress: controller.progress)
         }
         .background(Color.black.edgesIgnoringSafeArea(.all))
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+          }) {
+            HStack {
+              Image(systemName: "chevron.backward")
+                  .foregroundColor(.white)
+              Text("Songs")
+                  .font(.custom("Barlow-Regular", size: 16))
+                  .foregroundColor(.white)
+          }
+        })
     }
   
   func startPlayPause() {

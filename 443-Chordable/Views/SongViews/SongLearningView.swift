@@ -118,7 +118,7 @@ struct SongLearningView: View {
           }
           .frame(maxWidth: .infinity, alignment: .leading)
           .padding(.leading, 25)
-          .padding(.bottom, 5)
+          .padding(.bottom, 10)
 
           // Progress Bar
           ProgressBar(progress: controller.progress)
@@ -229,18 +229,42 @@ struct SongLearningView: View {
 }
 
 
-struct ProgressBar: View {
-    var progress: Float
-    
-    var body: some View {
-        GeometryReader { geometry in
-            Rectangle()
-                .frame(width: geometry.size.width * CGFloat(progress), height: 10)
-                .foregroundColor(.blue)
-                .cornerRadius(5)
-        }
-    }
-}
+ struct ProgressBar: View {
+   var progress: Float
+  
+   var body: some View {
+     GeometryReader { geometry in
+       Rectangle()
+           .foregroundColor(Color(red: 114 / 255, green: 114 / 255, blue: 114 / 255))
+           .cornerRadius(5)
+           .padding(.horizontal, 25)
+           .frame(height:10)
+       Rectangle()
+         .frame(width: geometry.size.width * CGFloat(progress), height: 10)
+         .foregroundColor(.white)
+         .cornerRadius(5)
+         .padding(.horizontal, 25)
+     }
+   }
+ }
+
+//struct ProgressBar: View {
+//    var progress: Float
+//
+//    var body: some View {
+//        ZStack(alignment: .leading) {
+//            Rectangle()
+//                .foregroundColor(Color(red: 114 / 255, green: 114 / 255, blue: 114 / 255))
+//                .cornerRadius(5)
+//            Rectangle()
+//                .frame(width: CGFloat(self.progress) * UIScreen.main.bounds.width)
+//                .foregroundColor(.white)
+//                .cornerRadius(5)
+//        }
+//        .frame(height: 10)
+//        .padding(.horizontal, 25)
+//    }
+//}
 
 struct GradientToggleStyle: ToggleStyle {
   var colors: [Color] = [Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1)]

@@ -125,9 +125,14 @@ struct SongLearningView: View {
           
           // Play/Pause Button
           Button(action: startPlayPause) {
-            Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
-              .resizable()
-              .frame(width: 50, height: 50)
+            ZStack{
+              Circle()
+                .fill(Color.white)
+                .frame(width: 60, height: 60)
+              Image(systemName: controller.isPlaying ? "pause.fill" : "play.fill")
+                .font(.system(size: 30))
+                .foregroundColor(Color(.black))
+            }
           }
           .offset(y: -60)
         }

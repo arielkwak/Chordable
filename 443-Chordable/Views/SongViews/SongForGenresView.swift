@@ -191,6 +191,7 @@ struct SongsForGenreView: View {
             }
             .padding(.leading, 25)
             .padding(.top, 15)
+            .padding(.bottom, 130)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
           .frame(minHeight: 520)

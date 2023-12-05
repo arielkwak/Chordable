@@ -15,38 +15,66 @@ struct SongLearningView: View {
     @State private var playRequestCancellable: AnyCancellable? = nil
     @State private var pauseRequestCancellable: AnyCancellable? = nil
     @State private var alert: AlertItem? = nil
+    let song: Song
+    @Environment(\.managedObjectContext) var context
 
     var body: some View {
         VStack {
-          
-            if let secondsToNextChord = controller.secondsToNextChord {
-                Text("Switch chord in \(String(format: "%.1f", secondsToNextChord))...") // Updated line
-                    .font(.headline)
-            }
-          
-            // Display the current chord
-            Text(controller.currentChords[0]?.chord?.displayable_name ?? "No Chord")
-                .font(.largeTitle)
+          VStack{
+            // song title
+            Text(controller.song.title ?? "No title")
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .foregroundColor(.white)
+              .padding(.leading, 25)
+              .font(.custom("Barlow-Bold", size: 24))
+            
+            // artists
+            Text(controller.song.artist ?? "")
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .foregroundColor(.white)
+              .padding(.leading, 16)
+              .font(.custom("Barlow-SemiBold", size: 24))
+            
+            // Chords needed
+            Text("Chords: "+song.getUniqueChords(context: context).map { $0.chord_name ?? "Unknown Chord" }.joined(separator: ", "))
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .foregroundColor(.white)
+              .padding(.leading, 16)
+              .font(.custom("Barlow-Regular", size: 16))
+          }
+            
+          if let secondsToNextChord = controller.secondsToNextChord {
+              Text("Switch chord in \(String(format: "%.1f", secondsToNextChord))...") // Updated line
+                  .font(.headline)
+                  .foregroundColor(.white)
+          }
+        
+          // Display the current chord
+          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No Chord")
+              .font(.largeTitle)
+              .foregroundColor(.white)
 
-            // Display the next three chords
-            HStack {
-                ForEach(1..<4) { index in
-                    Text(controller.currentChords[index]?.chord?.displayable_name ?? "No Chord")
-                }
-            }
+          // Display the next three chords
+          HStack {
+              ForEach(1..<4) { index in
+                  Text(controller.currentChords[index]?.chord?.displayable_name ?? "No Chord")
+                  .foregroundColor(.white)
+              }
+          }
 
-            // Play/Pause Button
-            Button(action: startPlayPause) {
-                Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-            }
-            Toggle("Play along!", isOn: $controller.playAlong)
-          
-            // Progress Bar
-            ProgressBar(progress: controller.progress)
+          // Play/Pause Button
+          Button(action: startPlayPause) {
+              Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
+                  .resizable()
+                  .frame(width: 50, height: 50)
+          }
+          Toggle("Play along!", isOn: $controller.playAlong)
+            .foregroundColor(.white)
+        
+          // Progress Bar
+          ProgressBar(progress: controller.progress)
         }
-        .navigationTitle(controller.song.title ?? "Song Details")
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
   
   func startPlayPause() {

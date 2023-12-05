@@ -32,8 +32,9 @@ struct SongCellView: View {
     HStack {
       image
         .resizable()
-        .aspectRatio(contentMode: .fit)
-        .cornerRadius(5)
+        .aspectRatio(contentMode: .fill)
+        .frame(width: 63, height: 63)
+        .clipped()
       
     }
     .onAppear(perform: loadImage)
@@ -41,13 +42,6 @@ struct SongCellView: View {
   
   func getTrack(songURI: String) -> AnyPublisher<Track, Error> {
     return spotify.api.track(songURI)
-//      .sink(receiveCompletion: { completion in
-//        print("song URI completion for \(song.title):", completion, terminator: "\n\n\n")
-//      }, receiveValue: { track in
-//        print("song album URI:", track.album?.uri)
-//        self.albumURI = track.album?.uri ?? ""
-//      })
-    
   }
   
   func getAlbum(albumURI: String) -> AnyPublisher<Album, Error> {
@@ -62,13 +56,6 @@ struct SongCellView: View {
     self.didRequestImage = true
     
     if let songURI = song.uri {
-//      self.trackCancellable = spotify.api.track(songURI)
-//        .sink(receiveCompletion: { completion in
-//          print("song URI completion for \(song.title):", completion, terminator: "\n\n\n")
-//        }, receiveValue: { track in
-//          print("song album URI:", track.album?.uri)
-//          self.albumURI = track.album?.uri ?? ""
-//        })
       self.trackCancellable = getTrack(songURI: songURI)
         .flatMap { track in
           return getAlbum(albumURI: track.album?.uri ?? "")
@@ -76,7 +63,6 @@ struct SongCellView: View {
         .sink(receiveCompletion: { completion in
           print("album completion for \(song.title):", completion, terminator: "\n\n\n")
         }, receiveValue: { album in
-          print("received album: \(album.name)")
           self.album = album
           
           guard let spotifyImage = self.album?.images?.largest else {

@@ -146,7 +146,7 @@ struct HomeView: View {
                   .font(.custom("Barlow-BlackItalic", size: 45))
                   .padding(.leading, 35)
 
-                  Text("Songs Unlocked")
+                  Text("Song(s) Unlocked")
                   .foregroundColor(.white)
                   .font(.custom("Barlow-Italic", size: 16))
                   .padding(.leading, 5)

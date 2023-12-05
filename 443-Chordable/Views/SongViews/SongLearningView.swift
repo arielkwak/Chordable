@@ -21,55 +21,72 @@ struct SongLearningView: View {
 
     var body: some View {
         VStack {
-          VStack{
-            // song title
-            Text(controller.song.title ?? "No title")
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .foregroundColor(.white)
-              .padding(.leading, 25)
-              .font(.custom("Barlow-Bold", size: 24))
-              .padding(.top, 15)
+          HStack{
+            VStack{
+              // song title
+              Text(controller.song.title ?? "No title")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white)
+                .padding(.leading, 25)
+                .font(.custom("Barlow-Bold", size: 24))
+                .padding(.top, 15)
+              
+              // artists
+              Text(controller.song.artist ?? "")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white)
+                .padding(.leading, 25)
+                .font(.custom("Barlow-SemiBold", size: 16))
+              
+              // Chords needed
+              Text("Chords: "+song.getUniqueChords(context: context).map { $0.chord_name ?? "Unknown Chord" }.joined(separator: ", "))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
+                .padding(.leading, 25)
+                .padding(.top, 2)
+                .font(.custom("Barlow-Regular", size: 16))
+            }
+
+            Spacer()
             
-            // artists
-            Text(controller.song.artist ?? "")
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .foregroundColor(.white)
-              .padding(.leading, 25)
-              .font(.custom("Barlow-SemiBold", size: 16))
-            
-            // Chords needed
-            Text("Chords: "+song.getUniqueChords(context: context).map { $0.chord_name ?? "Unknown Chord" }.joined(separator: ", "))
-              .frame(maxWidth: .infinity, alignment: .leading)
-              .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
-              .padding(.leading, 25)
-              .padding(.top, 2)
-              .font(.custom("Barlow-Regular", size: 16))
+            // play along toggle 
+            VStack(alignment: .trailing) {
+              Text("Play along!")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Regular", size: 16))
+              Toggle(isOn: $controller.playAlong) { EmptyView() }
+                .toggleStyle(GradientToggleStyle())
+                .padding(.trailing, 10)
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.trailing, 25)
+            .padding(.top, 15)
           }
-          
-          // play along toggle 
-          VStack(alignment: .trailing) {
-            Text("Play along!")
-              .foregroundColor(.white)
-              .font(.custom("Barlow-Regular", size: 16))
-            Toggle(isOn: $controller.playAlong) { EmptyView() }
-              .toggleStyle(GradientToggleStyle())
-              .padding(.trailing, 10)
-          }
-          .frame(maxWidth: .infinity, alignment: .trailing)
-          .padding(.trailing, 25)
           .padding(.bottom, 35)
             
+          // switch text
           if let secondsToNextChord = controller.secondsToNextChord {
             Text("Switch in \(String(format: "%.1f", secondsToNextChord)) second(s)") // Updated line
               .font(.headline)
               .font(.custom("Barlow-Bold", size: 32))
               .foregroundColor(.white)
+              .padding(.bottom, 25)
           }
         
           // Display the current chord
-          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No/nChord")
-              .font(.largeTitle)
-              .foregroundColor(.white)
+          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No\nChord")
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .frame(width: 200, height: 200)
+            .background(Color.clear)
+            .overlay(
+              Circle()
+                .stroke(
+                  LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
+                  lineWidth: 4
+                )
+            )
 
           // Display the next three chords
           HStack {

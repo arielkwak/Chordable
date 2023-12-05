@@ -37,6 +37,7 @@ struct SongsForGenreView: View {
                 // Songs List
                 List {
                     ForEach(controller.sortedSongs, id: \.song_id) { song in
+                      SongCellView(song: song)
                         Button(action: {
                             handleSongSelection(song)
                         }) {

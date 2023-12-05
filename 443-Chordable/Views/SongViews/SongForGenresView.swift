@@ -64,22 +64,22 @@ struct SongsForGenreView: View {
                 
                 // Segmented Picker for Locked/Unlocked
                 HStack{
-                  // button styling for Locked
+                  // button styling for Unlocked
                   Button(action: {
-                    controller.selectedTab = 0
+                    controller.selectedTab = 1
                   }) {
-                    Text("Locked")
-                      .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                    Text("Unlocked")
+                      .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                       .padding(.trailing, 50)
-                      .overlay { controller.selectedTab == 0 ?
+                      .overlay { controller.selectedTab == 1 ?
                         LinearGradient(
                           colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
                           startPoint: .leading,
                           endPoint: .trailing
                         )
                         .mask(
-                          Text("Locked")
-                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          Text("Unlocked")
+                            .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                             .padding(.trailing, 50)
                         )
                         :
@@ -89,29 +89,29 @@ struct SongsForGenreView: View {
                           endPoint: .trailing
                         )
                         .mask(
-                          Text("Locked")
-                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                          Text("Unlocked")
+                            .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                             .padding(.trailing, 50)
                         )
                       }
                     }
 
-                    // button styling for Unlocked
+                    // button styling for Locked
                     Button(action: {
-                      controller.selectedTab = 1
+                      controller.selectedTab = 0
                     }) {
-                        Text("Unlocked")
-                          .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                        Text("Locked")
+                          .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                           .padding(.leading, 50)
-                          .overlay { controller.selectedTab == 1 ?
+                          .overlay { controller.selectedTab == 0 ?
                             LinearGradient(
                               colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
                               startPoint: .leading,
                               endPoint: .trailing
                             )
                             .mask(
-                              Text("Unlocked")
-                                .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                              Text("Locked")
+                                .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                                 .padding(.leading, 50)
                             )
                             :
@@ -121,8 +121,8 @@ struct SongsForGenreView: View {
                               endPoint: .trailing
                             )
                             .mask(
-                              Text("Unlocked")
-                                .font(controller.selectedTab == 1 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                              Text("Locked")
+                                .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
                                 .padding(.leading, 50)
                             )
                           }
@@ -130,25 +130,25 @@ struct SongsForGenreView: View {
                 }.padding([.leading, .trailing])
                 
                 // underline for buttons when pressed 
-//                Spacer()
                 GeometryReader { geometry in
                     HStack {
-                        Rectangle()
-                            .fill(controller.selectedTab == 0 ?
-                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
-                                AnyShapeStyle(Color.clear)
-                            )
-                            .frame(width: geometry.size.width / 2, height: 5)
-                        Spacer()
                         Rectangle()
                             .fill(controller.selectedTab == 1 ?
                                 AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
                                 AnyShapeStyle(Color.clear)
                             )
                             .frame(width: geometry.size.width / 2, height: 5)
+                        Spacer()
+                        Rectangle()
+                            .fill(controller.selectedTab == 0 ?
+                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                                AnyShapeStyle(Color.clear)
+                            )
+                            .frame(width: geometry.size.width / 2, height: 5)
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                }.padding(.bottom, -30)
+                }
+                .offset(y: -50)
               }
             }
           }

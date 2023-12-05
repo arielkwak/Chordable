@@ -35,8 +35,8 @@ struct SongsForGenreView: View {
         VStack {
           ZStack{
             Color.black
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
+              .clipShape(RoundedRectangle(cornerRadius: 30))
+              .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
             
             VStack{
               Rectangle()
@@ -50,7 +50,7 @@ struct SongsForGenreView: View {
                   Image(systemName: "magnifyingglass")
                     .foregroundColor(.black)
                     .padding(.horizontal, 15)
-                    
+                  
                   TextField("Search for songs...", text: $controller.searchText)
                     .padding(.vertical, 10)
                     .background(Color.white)
@@ -94,79 +94,90 @@ struct SongsForGenreView: View {
                             .padding(.trailing, 50)
                         )
                       }
-                    }
-
-                    // button styling for Locked
-                    Button(action: {
-                      controller.selectedTab = 0
-                    }) {
-                        Text("Locked")
-                          .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                          .padding(.leading, 50)
-                          .overlay { controller.selectedTab == 0 ?
-                            LinearGradient(
-                              colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
-                              startPoint: .leading,
-                              endPoint: .trailing
-                            )
-                            .mask(
-                              Text("Locked")
-                                .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                                .padding(.leading, 50)
-                            )
-                            :
-                            LinearGradient(
-                              colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
-                              startPoint: .leading,
-                              endPoint: .trailing
-                            )
-                            .mask(
-                              Text("Locked")
-                                .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
-                                .padding(.leading, 50)
-                            )
-                          }
+                  }
+                  
+                  // button styling for Locked
+                  Button(action: {
+                    controller.selectedTab = 0
+                  }) {
+                    Text("Locked")
+                      .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                      .padding(.leading, 50)
+                      .overlay { controller.selectedTab == 0 ?
+                        LinearGradient(
+                          colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255), Color(red: 127 / 255, green: 0, blue: 255 / 255)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Locked")
+                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                            .padding(.leading, 50)
+                        )
+                        :
+                        LinearGradient(
+                          colors: [Color(red: 0.63, green: 0.63, blue: 0.63), Color(red: 0.63, green: 0.63, blue: 0.63)],
+                          startPoint: .leading,
+                          endPoint: .trailing
+                        )
+                        .mask(
+                          Text("Locked")
+                            .font(controller.selectedTab == 0 ? .custom("Barlow-Bold", size: 22) : .custom("Barlow-Regular", size: 22))
+                            .padding(.leading, 50)
+                        )
                       }
+                  }
                 }.padding([.leading, .trailing])
                 
-                // underline for buttons when pressed 
+                // underline for buttons when pressed
                 GeometryReader { geometry in
-                    HStack {
-                        Rectangle()
-                            .fill(controller.selectedTab == 1 ?
-                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
-                                AnyShapeStyle(Color.clear)
-                            )
-                            .frame(width: geometry.size.width / 2, height: 5)
-                        Spacer()
-                        Rectangle()
-                            .fill(controller.selectedTab == 0 ?
-                                AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
-                                AnyShapeStyle(Color.clear)
-                            )
-                            .frame(width: geometry.size.width / 2, height: 5)
-                    }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                  HStack {
+                    Rectangle()
+                      .fill(controller.selectedTab == 1 ?
+                            AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                              AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                    Spacer()
+                    Rectangle()
+                      .fill(controller.selectedTab == 0 ?
+                            AnyShapeStyle(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing)) :
+                              AnyShapeStyle(Color.clear)
+                      )
+                      .frame(width: geometry.size.width / 2, height: 5)
+                  }
+                  .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                .offset(y: -50)
+                .offset(y: 6)
               }
             }
           }
           
           // Songs List
-          List {
-            ForEach(controller.sortedSongs, id: \.song_id) { song in
-              HStack {
-                SongCellView(song: song)
-                Button(action: {
-                  handleSongSelection(song)
-                }) {
-                  Text(song.title ?? "Unknown Title")
+          ScrollView{
+            LazyVStack(alignment: .leading) {
+              ForEach(controller.sortedSongs, id: \.song_id) { song in
+                HStack {
+                  SongCellView(song: song)
+                  Button(action: {
+                    handleSongSelection(song)
+                  }) {
+                    VStack{
+                      Text(song.title ?? "Unknown Title")
+                        .font(.custom("Barlow-Bold", size: 20))
+                        .foregroundColor(.white)
+                      
+                      Text(song.artist ?? "Unknown Artist")
+                        .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
+                        .font(.custom("Barlow-Regular", size: 16))
+                    }
+                  }
                 }
               }
-            }
+            }.padding(.leading, 25)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
+          .frame(minHeight: 520)
           
           // Conditional NavigationLink for SongLearningView
           if isNavigatingToSongLearning, let song = selectedSong {

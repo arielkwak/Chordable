@@ -37,11 +37,14 @@ struct SongsForGenreView: View {
                 // Songs List
                 List {
                     ForEach(controller.sortedSongs, id: \.song_id) { song in
+                      HStack {
+                        SongCellView(song: song)
                         Button(action: {
-                            handleSongSelection(song)
+                          handleSongSelection(song)
                         }) {
-                            Text(song.title ?? "Unknown Title")
+                          Text(song.title ?? "Unknown Title")
                         }
+                      }
                     }
                 }
 

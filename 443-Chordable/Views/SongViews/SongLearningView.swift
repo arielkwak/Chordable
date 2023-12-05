@@ -74,19 +74,20 @@ struct SongLearningView: View {
           }
         
           // Display the current chord
-          Text(controller.currentChords[0]?.chord?.displayable_name ?? "No\nChord")
-            .font(.largeTitle)
-            .foregroundColor(.white)
-            .multilineTextAlignment(.center)
-            .frame(width: 200, height: 200)
-            .background(Color.clear)
-            .overlay(
-              Circle()
-                .stroke(
-                  LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
-                  lineWidth: 4
-                )
-            )
+          let chordName = controller.currentChords[0]?.chord?.displayable_name ?? "No\nChord"
+          Text(chordName)
+          .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 45 : 96)) // Change the font size based on the text
+          .foregroundColor(.white)
+          .multilineTextAlignment(.center)
+          .frame(width: 230, height: 230)
+          .background(Color.clear)
+          .overlay(
+            Circle()
+              .stroke(
+                LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
+                lineWidth: 4
+              )
+          ).padding(.bottom, 60)
 
           // Display the next three chords
           HStack {

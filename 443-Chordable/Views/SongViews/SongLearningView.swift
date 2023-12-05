@@ -70,7 +70,7 @@ struct SongLearningView: View {
               .font(.headline)
               .font(.custom("Barlow-Bold", size: 32))
               .foregroundColor(.white)
-              .padding(.bottom, 25)
+              .padding(.bottom, 15)
           }
         
           // Display the current chord
@@ -79,7 +79,7 @@ struct SongLearningView: View {
           .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 45 : 96)) // Change the font size based on the text
           .foregroundColor(.white)
           .multilineTextAlignment(.center)
-          .frame(width: 230, height: 230)
+          .frame(width: 175, height: 175)
           .background(Color.clear)
           .overlay(
             Circle()
@@ -87,25 +87,49 @@ struct SongLearningView: View {
                 LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
                 lineWidth: 4
               )
-          ).padding(.bottom, 60)
+          ).padding(.bottom, 35)
 
           // Display the next three chords
-          HStack {
+          VStack(alignment: .leading){
+            HStack {
+              Text("Coming up chords")
+                .foregroundColor(.white)
+                .font(.custom("Barlow-Regular", size: 16))
+              Spacer()
+            }
+            HStack {
               ForEach(1..<4) { index in
-                  Text(controller.currentChords[index]?.chord?.displayable_name ?? "No Chord")
+                let chordName = controller.currentChords[index]?.chord?.displayable_name ?? "No\nChord"
+                Text(chordName)
+                  .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 15 : 30))
                   .foregroundColor(.white)
+                  .multilineTextAlignment(.center)
+                  .frame(width: 60, height: 60)
+                  .background(Color.clear)
+                  .overlay(
+                    Circle()
+                      .stroke(
+                        LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
+                        lineWidth: 2
+                      )
+                  )
               }
+            }
           }
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .padding(.leading, 25)
+          .padding(.bottom, 5)
 
-          // Play/Pause Button
-          Button(action: startPlayPause) {
-              Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
-                  .resizable()
-                  .frame(width: 50, height: 50)
-          }
-        
           // Progress Bar
           ProgressBar(progress: controller.progress)
+          
+          // Play/Pause Button
+          Button(action: startPlayPause) {
+            Image(systemName: controller.isPlaying ? "pause.circle" : "play.circle")
+              .resizable()
+              .frame(width: 50, height: 50)
+          }
+          .offset(y: -60)
         }
         .background(Color.black.edgesIgnoringSafeArea(.all))
         .navigationBarBackButtonHidden(true)

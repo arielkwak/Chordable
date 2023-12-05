@@ -21,7 +21,7 @@ struct SongsForGenreView: View {
     VStack(spacing: 10) {
       VStack {
         Text("Songs in \(controller.genre)")
-          .padding(.top,10)
+          .padding(.top,90)
           .padding(.bottom, 10)
           .font(.custom("Barlow-Bold", size: 32))
           .frame(maxWidth: .infinity, alignment: .leading)
@@ -162,19 +162,22 @@ struct SongsForGenreView: View {
                   Button(action: {
                     handleSongSelection(song)
                   }) {
-                    VStack{
-                      Text(song.title ?? "Unknown Title")
+                    VStack(alignment: .leading) {
+                      Text((song.title ?? "Unknown Song").trimmingCharacters(in: .whitespacesAndNewlines))
                         .font(.custom("Barlow-Bold", size: 20))
                         .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
                       
-                      Text(song.artist ?? "Unknown Artist")
+                      Text((song.artist ?? "Unknown Artist").trimmingCharacters(in: .whitespacesAndNewlines))
                         .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
                         .font(.custom("Barlow-Regular", size: 16))
-                    }
+                    }.frame(maxWidth: .infinity, alignment: .leading) 
                   }
-                }
+                }.padding(.vertical, 5)
               }
-            }.padding(.leading, 25)
+            }
+            .padding(.leading, 25)
+            .padding(.top, 15)
           }
           .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
           .frame(minHeight: 520)

@@ -20,7 +20,7 @@ struct SongsForGenreView: View {
   var body: some View {
     VStack(spacing: 10) {
       VStack {
-        Text("Songs in \(controller.genre)")
+        Text("\(controller.genre)")
           .padding(.top,90)
           .padding(.bottom, 10)
           .font(.custom("Barlow-Bold", size: 32))

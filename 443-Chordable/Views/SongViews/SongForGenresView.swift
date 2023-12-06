@@ -51,7 +51,7 @@ struct SongsForGenreView: View {
                 // Conditional NavigationLink for SongLearningView
                 if isNavigatingToSongLearning, let song = selectedSong {
                     NavigationLink(
-                        destination: SongLearningView(controller: SongLearningViewController(context: context, song: song)),
+                      destination: SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song),
                         isActive: $isNavigatingToSongLearning
                     ) {
                         EmptyView()

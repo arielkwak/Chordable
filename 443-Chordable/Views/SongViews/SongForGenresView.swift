@@ -18,7 +18,6 @@ struct SongsForGenreView: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
   var body: some View {
-    NavigationStack{
       VStack(spacing: 10) {
         VStack {
           Text("\(controller.genre)")
@@ -197,10 +196,14 @@ struct SongsForGenreView: View {
             }
             .background(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
             .frame(minHeight: 520)
-            .navigationDestination(isPresented: $isNavigatingToSongLearning) {
-                if let song = selectedSong {
-                    SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song)
+            if isNavigatingToSongLearning, let song = selectedSong {
+                NavigationLink(
+                  destination: SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song),
+                    isActive: $isNavigatingToSongLearning
+                ) {
+                    EmptyView()
                 }
+                .hidden()
             }
           }
           .onChange(of: controller.selectedTab) { _ in
@@ -230,8 +233,7 @@ struct SongsForGenreView: View {
                 .foregroundColor(.white)
         }
       })
-    }.navigationBarBackButtonHidden(true)
-  }
+    }
 
   private func handleSongSelection(_ song: Song) {
       selectedSong = song
@@ -329,10 +331,15 @@ struct ChordsOverlayView: View {
                 .background(Color(red: 0.25, green: 0.25, blue: 0.25))
                 .cornerRadius(10)
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
-                .navigationDestination(isPresented: $isChordDetailActive) {
-                    if let selectedChord = selectedChord {
-                        ChordDetailView(chord: selectedChord)
+                
+                if let selectedChord = selectedChord {
+                    NavigationLink(
+                        destination: ChordDetailView(chord: selectedChord),
+                        isActive: $isChordDetailActive
+                    ) {
+                        EmptyView()
                     }
+                    .hidden()
                 }
             }
         }

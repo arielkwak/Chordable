@@ -191,7 +191,16 @@ struct HomeView: View {
               .edgesIgnoringSafeArea(.all)
     
             VStack{
-              Text("Chords Incomplete vs Complete")
+              Text("App Overview:")
+                .font(.custom("Barlow-Bold", size: 30))
+                .foregroundColor(Color.white)
+                .padding(.top, 10)
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 25)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 30)
+              
+              Text("How to complete a chord:")
                 .font(.custom("Barlow-Bold", size: 24))
                 .foregroundColor(Color.white)
                 .padding(.top, 10)
@@ -200,7 +209,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
               
                           
-              Text("When you are able to successfully complete the chord, the incomplete chord will be marked completed and move to the completed section.")
+              Text("Utilize our “try it” feature by clicking on the chord you want to complete. You will have 5 seconds to record yourself playing 1 strum if the desired chord, and the app will determine if you played it right. If you did, Congrats! You have completed the chord")
                 .font(.custom("Barlow-Medium", size: 16))
                 .padding(.top, 10)
                 .padding(.horizontal, 25)
@@ -209,14 +218,14 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 30)
               
-              Text("Songs Unlocked vs Locked")
+              Text("How to unlock songs:")
                 .font(.custom("Barlow-Bold", size: 24))
                 .foregroundColor(Color.white)
                 .multilineTextAlignment(.leading)
                 .padding(.leading, 25)
                 .frame(maxWidth: .infinity, alignment: .leading)
               
-              Text("A song can be unlocked when all the chords required for that song are completed. Complete more chords to play more songs!")
+              Text("Click on a locked song to find out what chords are needed for that song. Once you have completed all the chords in that song, you have unlocked it!")
                 .font(.custom("Barlow-Medium", size: 16))
                 .padding(.top, 10)
                 .padding(.horizontal, 25)

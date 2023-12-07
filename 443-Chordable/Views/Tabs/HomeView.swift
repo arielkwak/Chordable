@@ -209,7 +209,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
               
                           
-              Text("Utilize our “try it” feature by clicking on the chord you want to complete. You will have 5 seconds to record yourself playing 1 strum if the desired chord, and the app will determine if you played it right. If you did, Congrats! You have completed the chord")
+              Text("Utilize our “try it” feature by clicking on the chord you want to complete. You will have 5 seconds to record yourself playing 1 strum of the desired chord, and the app will determine if you played it right. If you did, Congrats! You have completed the chord.")
                 .font(.custom("Barlow-Medium", size: 16))
                 .padding(.top, 10)
                 .padding(.horizontal, 25)

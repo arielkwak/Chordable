@@ -200,7 +200,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
               
                           
-              Text("When you are able to successfully complete the chord, the incomplete chord will be moved to the complete chord.")
+              Text("When you are able to successfully complete the chord, the incomplete chord will be marked completed and move to the completed section.")
                 .font(.custom("Barlow-Medium", size: 16))
                 .padding(.top, 10)
                 .padding(.horizontal, 25)
@@ -216,7 +216,7 @@ struct HomeView: View {
                 .padding(.leading, 25)
                 .frame(maxWidth: .infinity, alignment: .leading)
               
-              Text("According to the chords completed, you will be able to unlock songs. Complete more chords to play more songs!")
+              Text("A song can be unlocked when all the chords required for that song are completed. Complete more chords to play more songs!")
                 .font(.custom("Barlow-Medium", size: 16))
                 .padding(.top, 10)
                 .padding(.horizontal, 25)

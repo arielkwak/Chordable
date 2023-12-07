@@ -115,6 +115,17 @@ struct ResultView: View {
         
       }
     }
-    .navigationBarTitle("Result", displayMode: .inline)
+    .navigationBarBackButtonHidden(true)
+    .navigationBarItems(leading: Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+      }) {
+        HStack {
+          Image(systemName: "chevron.backward")
+              .foregroundColor(.white)
+          Text("Back")
+              .font(.custom("Barlow-Regular", size: 16))
+              .foregroundColor(.white)
+      }
+    })
   }
 }

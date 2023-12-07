@@ -37,6 +37,9 @@
 		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
 		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
 		410AA5372B1EA13300AA0788 /* SongCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410AA5362B1EA13300AA0788 /* SongCellView.swift */; };
+		411C76CC2B1FF8D700E2EB73 /* HomeModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */; };
+		4165A7B12B1FFE7000BC22EA /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */; };
+		4165A7B32B20034800BC22EA /* _43_Chordable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35B2441A2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld */; };
 		418F71A22B1BC73400244397 /* spotify.json in Resources */ = {isa = PBXBuildFile; fileRef = 418F71A12B1A4FB400244397 /* spotify.json */; };
 		41C2C9162B159B44004C10F7 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9152B159B44004C10F7 /* SpotifyAPI */; };
 		41C2C9192B159B5D004C10F7 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9182B159B5D004C10F7 /* KeychainAccess */; };
@@ -47,7 +50,7 @@
 		41C2C9252B159E1A004C10F7 /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C9242B159E1A004C10F7 /* SpotifyAPIExtensions.swift */; };
 		41C2C9272B15AA78004C10F7 /* SpotifyWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C9262B15AA78004C10F7 /* SpotifyWelcomeView.swift */; };
 		41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */; };
-		41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */; };
+		41DC272F2AFDFD1D0052F2B8 /* AudioStatusTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
 		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
 		F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */; };
@@ -115,6 +118,8 @@
 		35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordResponse.swift; sourceTree = "<group>"; };
 		35C434B02AFDBD6200DAC3BE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		410AA5362B1EA13300AA0788 /* SongCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellView.swift; sourceTree = "<group>"; };
+		411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelTest.swift; sourceTree = "<group>"; };
+		4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		418F71A12B1A4FB400244397 /* spotify.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spotify.json; sourceTree = "<group>"; };
 		41C2C91B2B159C7F004C10F7 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		41C2C91E2B159D2C004C10F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -124,7 +129,7 @@
 		41C2C9262B15AA78004C10F7 /* SpotifyWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWelcomeView.swift; sourceTree = "<group>"; };
 		41DC27252AFDFD130052F2B8 /* 443-ChordableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "443-ChordableTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableTests.swift; sourceTree = "<group>"; };
-		41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatusClass.swift; sourceTree = "<group>"; };
+		41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatusTest.swift; sourceTree = "<group>"; };
 		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 		F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-43-Chordable-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -361,7 +366,9 @@
 			isa = PBXGroup;
 			children = (
 				41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */,
-				41DC272E2AFDFD1D0052F2B8 /* AudioStatusClass.swift */,
+				41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */,
+				411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */,
+				4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */,
 			);
 			path = "443-ChordableTests";
 			sourceTree = "<group>";
@@ -564,9 +571,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411C76CC2B1FF8D700E2EB73 /* HomeModelTest.swift in Sources */,
+				4165A7B12B1FFE7000BC22EA /* TestCoreDataStack.swift in Sources */,
 				41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */,
 				F0FE5CF22B196D850040C5A5 /* Home.swift in Sources */,
-				41DC272F2AFDFD1D0052F2B8 /* AudioStatusClass.swift in Sources */,
+				41DC272F2AFDFD1D0052F2B8 /* AudioStatusTest.swift in Sources */,
+				4165A7B32B20034800BC22EA /* _43_Chordable.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

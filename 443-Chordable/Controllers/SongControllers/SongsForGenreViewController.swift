@@ -14,7 +14,7 @@ class SongsForGenreViewController: ObservableObject {
   
     @Published var songs: [Song] = []
     @Published var filteredSongs: [Song] = []
-    @Published var selectedTab: Int = 0
+    @Published var selectedTab: Int = 1
     @Published var searchText: String = ""
 
     let context: NSManagedObjectContext

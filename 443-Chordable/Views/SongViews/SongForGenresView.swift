@@ -20,7 +20,7 @@ struct SongsForGenreView: View {
   var body: some View {
     VStack(spacing: 10) {
       VStack {
-        Text("Songs in \(controller.genre)")
+        Text("\(controller.genre)")
           .padding(.top,90)
           .padding(.bottom, 10)
           .font(.custom("Barlow-Bold", size: 32))
@@ -259,53 +259,81 @@ struct ChordsOverlayView: View {
                 Color.black.opacity(0.7).edgesIgnoringSafeArea(.all)
 
                 VStack {
-                    Text("Chords for \(song.title ?? "Unknown Song")").font(.headline)
+                  Text("Chords for \(song.title ?? "Unknown Song"):")
+                    .font(.custom("Barlow-BoldItalic", size: 18))
+                    
+                    .foregroundStyle(.white)
+                    .padding(.top, 10)
+                    .padding(.bottom, 3)
+                    .padding(.leading, 10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                   ScrollView(.horizontal, showsIndicators: true) {
                     HStack {
                         ForEach(song.getUniqueChords(context: context), id: \.chord_id) { chord in
-                            Button(action: {
-                                self.selectedChord = chord
-                                self.isChordDetailActive = true
-                            }) {
-                              Text(chord.chord_name ?? "Unknown Chord")
-                                .foregroundColor(chord.completed ? .green : .red)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.2)))
+                            let chordName = chord.chord_name ?? "Unknown Chord"
+                            let chordParts = chordName.components(separatedBy: "#")
+                            VStack {
+                              VStack {
+                                HStack{
+                                  if let firstPart = chordParts.first, let firstChar = firstPart.first {
+                                    Text(firstPart)
+                                      .foregroundColor(.white)
+                                      .font(.custom("Barlow-BlackItalic", size: 64))
+                                      .fixedSize(horizontal: false, vertical: true)
+                                  }
+                                  if chordParts.count > 1 {
+                                    Text("#")
+                                      .foregroundColor(.white)
+                                      .font(.custom("Barlow-BlackItalic", size: 32))
+                                      .fixedSize(horizontal: false, vertical: true)
+                                      .offset(x:-5, y: -10)
+                                  }
+                                }
+                                Text(chordName.hasSuffix("m") ? "Minor" : "Major")
+                                  .font(.custom("Barlow-Regular", size: 24))
+                                  .foregroundColor(.white)
+                                  .fixedSize(horizontal: false, vertical: true)
+                                  .padding(.bottom, 8)
+                              }
+                              .frame(width: 114, height: 130)
+                              .background(
+                                ZStack {
+                                  RoundedRectangle(cornerRadius: 18)
+                                    .fill(Color.black)
+                                  if chord.completed {
+                                    RoundedRectangle(cornerRadius: 18)
+                                      .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255)]), startPoint: .top, endPoint: .bottom))
+                                  }
+                                }
+                              )
                             }
                             .padding(.horizontal, 4)
                         }
-                    }
+                    }.padding(.horizontal, 10)
                   }
 
-                    Button("Close") {
-                        isPresented = false
-                    }
+                  Button("Close") {
+                      isPresented = false
+                  }
+                  .padding(.bottom, 10)
+                  .foregroundStyle(.white)
+                  .padding(.top, 3)
+                  .font(.custom("Barlow-Bold", size: 18))
                 }
-                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.2)
-                .background(Color.white)
+                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.35)
+                .background(Color(red: 0.25, green: 0.25, blue: 0.25))
                 .cornerRadius(10)
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
 
                 if let selectedChord = selectedChord {
-                    NavigationLink(
-                        destination: ChordDetailView(chord: selectedChord),
-                        isActive: $isChordDetailActive
-                    ) {
-                        EmptyView()
-                    }
-                    .hidden()
+                  NavigationLink(
+                    destination: ChordDetailView(chord: selectedChord)
+                      .onDisappear { self.selectedChord = nil },
+                    label: { EmptyView() }
+                  )
+                  .hidden()
                 }
-
-                Button(action: {
-                    isPresented = false
-                }) {
-                    Image(systemName: "xmark")
-                        .foregroundColor(.white)
-                        .font(.system(size: 34))
-                }
-                .padding()
-                .position(x: geometry.size.width - 20, y: 20) // Adjust as needed
             }
         }
     }

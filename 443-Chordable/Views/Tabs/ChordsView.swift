@@ -140,7 +140,6 @@ struct ChordsView: View {
                     ForEach(viewController.displayedChords.filter { $0.difficulty == difficulty }, id: \.self) { chord in
                       let displayableName = chord.displayable_name ?? "Unknown Chord"
                       let chordParts = displayableName.components(separatedBy: "#")
-//                      NavigationLink(destination: ChordDetailView(chord: chord)) {
                       Button(action: {
                           self.selectedChord = chord
                           self.isChordDetailActive = true

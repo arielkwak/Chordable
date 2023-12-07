@@ -271,13 +271,19 @@ struct ChordsOverlayView: View {
                   ScrollView(.horizontal, showsIndicators: true) {
                     HStack {
                         ForEach(song.getUniqueChords(context: context), id: \.chord_id) { chord in
-                            let chordName = chord.chord_name ?? "Unknown Chord"
-                            let chordParts = chordName.components(separatedBy: "#")
+                          let chordName = chord.chord_name ?? "Unknown Chord"
+                          let chordParts = chordName.components(separatedBy: "#")
+
+                          Button(action: {
+                            self.selectedChord = chord
+                            self.isChordDetailActive = true
+                          }) {
                             VStack {
                               VStack {
                                 HStack{
-                                  if let firstPart = chordParts.first, let firstChar = firstPart.first {
-                                    Text(firstPart)
+                                  if let firstPart = chordParts.first {
+                                    let firstChar = String(firstPart.prefix(1))
+                                    Text(firstChar)
                                       .foregroundColor(.white)
                                       .font(.custom("Barlow-BlackItalic", size: 64))
                                       .fixedSize(horizontal: false, vertical: true)
@@ -295,9 +301,9 @@ struct ChordsOverlayView: View {
                                   .foregroundColor(.white)
                                   .fixedSize(horizontal: false, vertical: true)
                                   .padding(.bottom, 8)
-                              }
-                              .frame(width: 114, height: 130)
-                              .background(
+                            }
+                            .frame(width: 114, height: 130)
+                            .background(
                                 ZStack {
                                   RoundedRectangle(cornerRadius: 18)
                                     .fill(Color.black)
@@ -309,7 +315,8 @@ struct ChordsOverlayView: View {
                               )
                             }
                             .padding(.horizontal, 4)
-                        }
+                          }
+                      }
                     }.padding(.horizontal, 10)
                   }
 
@@ -327,9 +334,12 @@ struct ChordsOverlayView: View {
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
 
                 if let selectedChord = selectedChord {
+                  // print("button tapped")
                   NavigationLink(
                     destination: ChordDetailView(chord: selectedChord)
-                      .onDisappear { self.selectedChord = nil },
+                      .onDisappear { 
+                        self.selectedChord = nil 
+                      },
                     label: { EmptyView() }
                   )
                   .hidden()

@@ -18,154 +18,225 @@ struct HomeView: View {
   let quotes = Quote.Quotes()
   @EnvironmentObject var homeModel: HomeModel
   @Environment(\.managedObjectContext) var managedObjectContext
+  @State var infoButtonPressed = false
   
   var body: some View {
     NavigationView {
-      VStack(spacing: 10) {
-        VStack {
-          if let user = userInfo.first {
-            Text("Welcome, \(user.user_name ?? "User")")
-              .padding(.top,30)
-              .padding(.bottom, 10)
-              .font(.custom("Barlow-Bold", size: 32))
-              .frame(maxWidth: .infinity, alignment: .leading)
+      ZStack{
+        VStack(spacing: 10) {
+          VStack {
+            HStack{
+              if let user = userInfo.first {
+                Text("Welcome, \(user.user_name ?? "User")")
+                  .padding(.top,30)
+                  .padding(.bottom, 10)
+                  .font(.custom("Barlow-Bold", size: 32))
+                  .foregroundColor(.white)
+                  .padding(.leading, 25)
+              } else {
+                Text("Welcome")
+                  .padding(.top,30)
+                  .padding(.bottom, 10)
+                  .font(.custom("Barlow-Bold", size: 32))
+                  .foregroundColor(.white)
+                  .padding(.leading, 25)
+              }
+              
+              Spacer()
+              
+              Button(action: {
+                infoButtonPressed = true
+              }){
+                Image(systemName: "info.circle.fill")
+                  .foregroundStyle(.white)
+                  .padding(.trailing, 25)
+                  .padding(.top, 15)
+                  .font(.system(size: 20))
+              }
+            }.padding(.horizontal, 10)
+
+            if let (artist, quote) = quotes.getRandomQuote(){
+              (Text("“").font(.custom("Chango-Regular", size: 25)) +
+              Text("\(quote)").font(.custom("Barlow-Italic", size: 20)) +
+              Text("”").font(.custom("Chango-Regular", size: 25)))
               .foregroundColor(.white)
-              .padding(.leading, 25)
-          } else {
-            Text("Welcome")
-              .padding(.top,30)
-              .padding(.bottom, 10)
-              .font(.custom("Barlow-Bold", size: 32))
               .frame(maxWidth: .infinity, alignment: .leading)
+              .padding(.leading, 25)            
+              .padding(.trailing, 10)
+              
+              Text("-\(artist)")
+              .frame(maxWidth: .infinity, alignment: .trailing)
               .foregroundColor(.white)
-              .padding(.leading, 25)
-          }
-          if let (artist, quote) = quotes.getRandomQuote(){
-            (Text("“").font(.custom("Chango-Regular", size: 25)) +
-            Text("\(quote)").font(.custom("Barlow-Italic", size: 20)) +
-            Text("”").font(.custom("Chango-Regular", size: 25)))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 25)            
-            .padding(.trailing, 10)
-            
-            Text("-\(artist)")
-            .frame(maxWidth: .infinity, alignment: .trailing)
-            .foregroundColor(.white)
-            .padding(.trailing, 25)
-            .font(.custom("Barlow-Italic", size: 17))
-          }
-        }.padding(.bottom, 50)
-        
-        ZStack{
-          Rectangle()
-          .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color(red: 190/255, green: 180/255, blue: 255/255), Color.black]), startPoint: .leading, endPoint: .trailing))
-          .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-          .offset(y: -38)
-          .edgesIgnoringSafeArea(.all)
-          .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
+              .padding(.trailing, 25)
+              .font(.custom("Barlow-Italic", size: 17))
+            }
+          }.padding(.bottom, 50)
           
-          // Full rectangle with no corner radius
-          Rectangle()
-          .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
-          .edgesIgnoringSafeArea(.all)
-
-          // Smaller rectangle with top corner radius
-          Rectangle()
-          .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
-          .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-          .offset(y: -33)
-          .edgesIgnoringSafeArea(.all)
-
-          // MARK: Content within rectangle  
-          VStack{
-            // Streak
-            HStack {
-              Text("\(homeModel.streak)")
-                .foregroundColor(.white)
-                .font(.custom("Barlow-BlackItalic", size: 50))
-                .padding(.leading, 35)
-              Spacer()
-              Text("Day (s)  Streak!")
-                .foregroundColor(.white)
-                .font(.custom("Barlow-Italic", size: 24))
-                .padding(.leading, 5)
-                .padding(.top, 10)
-                .frame(maxWidth: .infinity, alignment: .leading)
-              Text("🔥")
-                .font(.custom("Barlow-Black", size: 45))
-                .padding(.trailing, 35)
-            }
-            .frame(height: 90)
-            .background(Color.black)
-            .cornerRadius(15)
-            .padding(.horizontal, 30)
-            .padding(.bottom, 10)
-
-            // chord completion
-            HStack{
-              let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
-              let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
-
-              CircularProgressView(progress: Double(percentageCompleted)/100.0)
-              .frame(width: 120, height: 120)
-              .padding(.leading, 35)
-
-              Spacer()
-              Text("Chords\nCompleted")
-                .foregroundColor(.white)
-                .font(.custom("Barlow-Italic", size: 24))
-                .multilineTextAlignment(.center)
-                .padding(.trailing, 35)
-            }
-            .frame(maxWidth: .infinity) 
-            .frame(height: 180)
-            .background(Color.black)
-            .cornerRadius(15)
-            .padding(.horizontal, 30)
-            .padding(.bottom, 10)
+          ZStack{
+            Rectangle()
+            .fill(LinearGradient(gradient: Gradient(colors: [Color.black, Color(red: 190/255, green: 180/255, blue: 255/255), Color.black]), startPoint: .leading, endPoint: .trailing))
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .offset(y: -38)
+            .edgesIgnoringSafeArea(.all)
+            .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
             
-            // song unlocked
-            HStack{
-              let songData = homeModel.fetchSongs(context: managedObjectContext)
-              VStack{
-                CustomProgressBar(value: Float(songData.unlocked), total: Float(songData.total))
-                  .padding(.top, 10)
+            // Full rectangle with no corner radius
+            Rectangle()
+            .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
+            .edgesIgnoringSafeArea(.all)
 
-                HStack{
-                  Spacer()
-                  Text("\(songData.total) Songs")
+            // Smaller rectangle with top corner radius
+            Rectangle()
+            .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+            .offset(y: -33)
+            .edgesIgnoringSafeArea(.all)
+
+            // MARK: Content within rectangle  
+            VStack{
+              // Streak
+              HStack {
+                Text("\(homeModel.streak)")
                   .foregroundColor(.white)
-                  .font(.custom("Barlow-Italic", size: 14))
-                  .padding(.trailing, 35)
-                }
-
-                HStack{
-                  Text("\(songData.unlocked)")
-                  .foregroundColor(.white) 
-                  .font(.custom("Barlow-BlackItalic", size: 45))
+                  .font(.custom("Barlow-BlackItalic", size: 50))
                   .padding(.leading, 35)
-
-                  Text("Song(s) Unlocked")
+                Spacer()
+                Text("Day (s)  Streak!")
                   .foregroundColor(.white)
-                  .font(.custom("Barlow-Italic", size: 16))
+                  .font(.custom("Barlow-Italic", size: 24))
                   .padding(.leading, 5)
                   .padding(.top, 10)
-                  
-                  Spacer()
-                }.padding(.top, -20)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                Text("🔥")
+                  .font(.custom("Barlow-Black", size: 45))
+                  .padding(.trailing, 35)
               }
-            }
-            .frame(maxWidth: .infinity) 
-            .frame(height: 120)
-            .background(Color.black)
-            .cornerRadius(15)
-            .padding(.horizontal, 30)
-            
-          }.offset(y: -30)
-        }
+              .frame(height: 90)
+              .background(Color.black)
+              .cornerRadius(15)
+              .padding(.horizontal, 30)
+              .padding(.bottom, 10)
 
-      }.background(Color.black.edgesIgnoringSafeArea(.all))
+              // chord completion
+              HStack{
+                let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
+                let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
+
+                CircularProgressView(progress: Double(percentageCompleted)/100.0)
+                .frame(width: 120, height: 120)
+                .padding(.leading, 35)
+
+                Spacer()
+                Text("Chords\nCompleted")
+                  .foregroundColor(.white)
+                  .font(.custom("Barlow-Italic", size: 24))
+                  .multilineTextAlignment(.center)
+                  .padding(.trailing, 35)
+              }
+              .frame(maxWidth: .infinity) 
+              .frame(height: 180)
+              .background(Color.black)
+              .cornerRadius(15)
+              .padding(.horizontal, 30)
+              .padding(.bottom, 10)
+              
+              // song unlocked
+              HStack{
+                let songData = homeModel.fetchSongs(context: managedObjectContext)
+                VStack{
+                  CustomProgressBar(value: Float(songData.unlocked), total: Float(songData.total))
+                    .padding(.top, 10)
+
+                  HStack{
+                    Spacer()
+                    Text("\(songData.total) Songs")
+                    .foregroundColor(.white)
+                    .font(.custom("Barlow-Italic", size: 14))
+                    .padding(.trailing, 35)
+                  }
+
+                  HStack{
+                    Text("\(songData.unlocked)")
+                    .foregroundColor(.white) 
+                    .font(.custom("Barlow-BlackItalic", size: 45))
+                    .padding(.leading, 35)
+
+                    Text("Song(s) Unlocked")
+                    .foregroundColor(.white)
+                    .font(.custom("Barlow-Italic", size: 16))
+                    .padding(.leading, 5)
+                    .padding(.top, 10)
+                    
+                    Spacer()
+                  }.padding(.top, -20)
+                }
+              }
+              .frame(maxWidth: .infinity) 
+              .frame(height: 120)
+              .background(Color.black)
+              .cornerRadius(15)
+              .padding(.horizontal, 30)
+              
+            }
+            .offset(y: -30)
+            .padding(.top, 20)
+          }
+
+        }.background(Color.black.edgesIgnoringSafeArea(.all))
+
+        if infoButtonPressed {
+          ZStack(alignment: .topTrailing) { 
+            Color.black
+              .opacity(0.95)
+              .edgesIgnoringSafeArea(.all)
+    
+            VStack{
+              Text("Chords Incomplete vs Complete")
+                .font(.custom("Barlow-Bold", size: 24))
+                .foregroundColor(Color.white)
+                .padding(.top, 10)
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 25)
+                .frame(maxWidth: .infinity, alignment: .leading)
+              
+                          
+              Text("When you are able to successfully complete the chord, the incomplete chord will be moved to the complete chord.")
+                .font(.custom("Barlow-Medium", size: 16))
+                .padding(.top, 10)
+                .padding(.horizontal, 25)
+                .foregroundColor(Color.white)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 30)
+              
+              Text("Songs Unlocked vs Locked")
+                .font(.custom("Barlow-Bold", size: 24))
+                .foregroundColor(Color.white)
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 25)
+                .frame(maxWidth: .infinity, alignment: .leading)
+              
+              Text("According to the chords completed, you will be able to unlock songs. Complete more chords to play more songs!")
+                .font(.custom("Barlow-Medium", size: 16))
+                .padding(.top, 10)
+                .padding(.horizontal, 25)
+                .foregroundColor(Color.white)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            Button(action: {
+              infoButtonPressed = false
+            }){
+              Image(systemName: "xmark")
+                .foregroundColor(.white)
+                .font(.system(size: 34))
+            }
+            .padding()
+          }
+        }
+      }
     }
   }
 }

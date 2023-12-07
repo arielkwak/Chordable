@@ -172,6 +172,7 @@ struct SongsForGenreView: View {
                         Text((song.artist ?? "Unknown Artist").trimmingCharacters(in: .whitespacesAndNewlines))
                           .foregroundColor(Color(red: 161 / 255, green: 161 / 255, blue: 161 / 255))
                           .font(.custom("Barlow-Regular", size: 16))
+                          .multilineTextAlignment(.leading)
                       }
                       .frame(maxWidth: .infinity, alignment: .leading)
                       .padding(.leading, 3)
@@ -333,17 +334,15 @@ struct ChordsOverlayView: View {
                 .cornerRadius(10)
                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
 
-                if let selectedChord = selectedChord {
-                  // print("button tapped")
-                  NavigationLink(
-                    destination: ChordDetailView(chord: selectedChord)
-                      .onDisappear { 
-                        self.selectedChord = nil 
-                      },
-                    label: { EmptyView() }
-                  )
-                  .hidden()
-                }
+               if let selectedChord = selectedChord {
+                 NavigationLink(
+                   destination: ChordDetailView(chord: selectedChord),
+                   isActive: $isChordDetailActive
+                 ) {
+                   EmptyView()
+                 }
+                 .hidden()
+               }
             }
         }
     }

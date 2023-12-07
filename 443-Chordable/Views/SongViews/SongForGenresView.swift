@@ -271,26 +271,42 @@ struct ChordsOverlayView: View {
                   ScrollView(.horizontal, showsIndicators: true) {
                     HStack {
                         ForEach(song.getUniqueChords(context: context), id: \.chord_id) { chord in
-                            Button(action: {
-                                self.selectedChord = chord
-                                self.isChordDetailActive = true
-                            }) {
-                              Text(chord.chord_name ?? "Unknown Chord")
-                                .foregroundStyle(.white)
-                                .font(.custom("Barlow-BoldItalic", size: 30))
-                                .padding()
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(width: 110, height: 110)
-                                .background(
-                                  ZStack {
-                                    RoundedRectangle(cornerRadius: 18)
-                                      .fill(Color.black)
-                                    if chord.completed {
-                                      RoundedRectangle(cornerRadius: 18)
-                                        .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255)]), startPoint: .top, endPoint: .bottom))
-                                    }
+                            let chordName = chord.chord_name ?? "Unknown Chord"
+                            let chordParts = chordName.components(separatedBy: "#")
+                            VStack {
+                              VStack {
+                                HStack{
+                                  if let firstPart = chordParts.first, let firstChar = firstPart.first {
+                                    Text(firstPart)
+                                      .foregroundColor(.white)
+                                      .font(.custom("Barlow-BlackItalic", size: 64))
+                                      .fixedSize(horizontal: false, vertical: true)
                                   }
-                                )
+                                  if chordParts.count > 1 {
+                                    Text("#")
+                                      .foregroundColor(.white)
+                                      .font(.custom("Barlow-BlackItalic", size: 32))
+                                      .fixedSize(horizontal: false, vertical: true)
+                                      .offset(x:-5, y: -10)
+                                  }
+                                }
+                                Text(chordName.hasSuffix("m") ? "Minor" : "Major")
+                                  .font(.custom("Barlow-Regular", size: 24))
+                                  .foregroundColor(.white)
+                                  .fixedSize(horizontal: false, vertical: true)
+                                  .padding(.bottom, 8)
+                              }
+                              .frame(width: 114, height: 130)
+                              .background(
+                                ZStack {
+                                  RoundedRectangle(cornerRadius: 18)
+                                    .fill(Color.black)
+                                  if chord.completed {
+                                    RoundedRectangle(cornerRadius: 18)
+                                      .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 36/255, green: 0, blue: 255/255), Color(red: 127/255, green: 0, blue: 255/255)]), startPoint: .top, endPoint: .bottom))
+                                  }
+                                }
+                              )
                             }
                             .padding(.horizontal, 4)
                         }
@@ -305,10 +321,10 @@ struct ChordsOverlayView: View {
                   .padding(.top, 3)
                   .font(.custom("Barlow-Bold", size: 18))
                 }
-                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.3)
+                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.35)
                 .background(Color(red: 0.25, green: 0.25, blue: 0.25))
                 .cornerRadius(10)
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
 
                 if let selectedChord = selectedChord {
                   NavigationLink(

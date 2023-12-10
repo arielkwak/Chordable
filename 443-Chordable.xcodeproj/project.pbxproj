@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352BC6E22B23F4900008D9B2 /* ChordDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6E12B23F4900008D9B2 /* ChordDetailViewControllerTests.swift */; };
+		352BC6E92B24103A0008D9B2 /* AlertItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6E82B24103A0008D9B2 /* AlertItemTests.swift */; };
+		352BC6EC2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6EB2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift */; };
+		352BC6F12B241E330008D9B2 /* uspopLabels in Resources */ = {isa = PBXBuildFile; fileRef = 354C88FE2B0A9BA700663340 /* uspopLabels */; };
+		352BC6F22B2422590008D9B2 /* songGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = 354C89002B0AAA2200663340 /* songGenres.json */; };
+		352BC6F42B24234C0008D9B2 /* spotify.json in Resources */ = {isa = PBXBuildFile; fileRef = 418F71A12B1A4FB400244397 /* spotify.json */; };
+		352BC6F82B2526B50008D9B2 /* ImageNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6F72B2526B50008D9B2 /* ImageNamesTests.swift */; };
+		352BC6FE2B252A530008D9B2 /* ChordsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6FD2B252A530008D9B2 /* ChordsViewControllerTests.swift */; };
+		352BC7002B252C480008D9B2 /* SongLearningViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */; };
+		352BC70A2B266A810008D9B2 /* Initializer Tests in Resources */ = {isa = PBXBuildFile; fileRef = 352BC7092B266A810008D9B2 /* Initializer Tests */; };
+		352BC70D2B266AC40008D9B2 /* Model Tests in Resources */ = {isa = PBXBuildFile; fileRef = 352BC70C2B266AC30008D9B2 /* Model Tests */; };
 		352D3C662AF70CA9005BC35B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D3C652AF70CA9005BC35B /* WelcomeView.swift */; };
 		354C88FF2B0A9BA700663340 /* uspopLabels in Resources */ = {isa = PBXBuildFile; fileRef = 354C88FE2B0A9BA700663340 /* uspopLabels */; };
 		354C89012B0AE86100663340 /* songGenres.json in Resources */ = {isa = PBXBuildFile; fileRef = 354C89002B0AAA2200663340 /* songGenres.json */; };
@@ -37,9 +48,7 @@
 		35C434AF2AFDBBA400DAC3BE /* ChordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */; };
 		35C434B12AFDBD6200DAC3BE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C434B02AFDBD6200DAC3BE /* Helper.swift */; };
 		410AA5372B1EA13300AA0788 /* SongCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410AA5362B1EA13300AA0788 /* SongCellView.swift */; };
-		411C76CC2B1FF8D700E2EB73 /* HomeModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */; };
 		4165A7B12B1FFE7000BC22EA /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */; };
-		4165A7B32B20034800BC22EA /* _43_Chordable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35B2441A2AEEF8E800F04453 /* _43_Chordable.xcdatamodeld */; };
 		418F71A22B1BC73400244397 /* spotify.json in Resources */ = {isa = PBXBuildFile; fileRef = 418F71A12B1A4FB400244397 /* spotify.json */; };
 		41C2C9162B159B44004C10F7 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9152B159B44004C10F7 /* SpotifyAPI */; };
 		41C2C9192B159B5D004C10F7 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 41C2C9182B159B5D004C10F7 /* KeychainAccess */; };
@@ -49,8 +58,7 @@
 		41C2C9232B159DA7004C10F7 /* AlertItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C9222B159DA7004C10F7 /* AlertItems.swift */; };
 		41C2C9252B159E1A004C10F7 /* SpotifyAPIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C9242B159E1A004C10F7 /* SpotifyAPIExtensions.swift */; };
 		41C2C9272B15AA78004C10F7 /* SpotifyWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2C9262B15AA78004C10F7 /* SpotifyWelcomeView.swift */; };
-		41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */; };
-		41DC272F2AFDFD1D0052F2B8 /* AudioStatusTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */; };
+		41DC27282AFDFD130052F2B8 /* 443_ChordableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DC27272AFDFD130052F2B8 /* 443_ChordableTests.swift */; };
 		41FB94352AF0B4A600409446 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94342AF0B4A600409446 /* AudioStatus.swift */; };
 		41FB94372AF0B58D00409446 /* ChordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */; };
 		F0D97C252AF3730F00AF16B6 /* Barlow-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C132AF3730E00AF16B6 /* Barlow-BlackItalic.ttf */; };
@@ -73,7 +81,6 @@
 		F0D97C362AF3730F00AF16B6 /* Barlow-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D97C242AF3730F00AF16B6 /* Barlow-MediumItalic.ttf */; };
 		F0DF8DA72B12F25B00841509 /* Chango-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0DF8DA62B12F25B00841509 /* Chango-Regular.ttf */; };
 		F0FE5CF12B196D850040C5A5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FE5CF02B196D850040C5A5 /* Home.swift */; };
-		F0FE5CF22B196D850040C5A5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FE5CF02B196D850040C5A5 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +94,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		352BC6E12B23F4900008D9B2 /* ChordDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		352BC6E82B24103A0008D9B2 /* AlertItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItemTests.swift; sourceTree = "<group>"; };
+		352BC6EB2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsForGenreViewControllerTests.swift; sourceTree = "<group>"; };
+		352BC6F72B2526B50008D9B2 /* ImageNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamesTests.swift; sourceTree = "<group>"; };
+		352BC6FD2B252A530008D9B2 /* ChordsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordsViewControllerTests.swift; sourceTree = "<group>"; };
+		352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLearningViewControllerTests.swift; sourceTree = "<group>"; };
+		352BC7092B266A810008D9B2 /* Initializer Tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Initializer Tests"; sourceTree = "<group>"; };
+		352BC70C2B266AC30008D9B2 /* Model Tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Model Tests"; sourceTree = "<group>"; };
 		352D3C652AF70CA9005BC35B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		354C88FE2B0A9BA700663340 /* uspopLabels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = uspopLabels; sourceTree = "<group>"; };
 		354C89002B0AAA2200663340 /* songGenres.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = songGenres.json; sourceTree = "<group>"; };
@@ -118,7 +133,6 @@
 		35C434AE2AFDBBA400DAC3BE /* ChordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordResponse.swift; sourceTree = "<group>"; };
 		35C434B02AFDBD6200DAC3BE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		410AA5362B1EA13300AA0788 /* SongCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCellView.swift; sourceTree = "<group>"; };
-		411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelTest.swift; sourceTree = "<group>"; };
 		4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		418F71A12B1A4FB400244397 /* spotify.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spotify.json; sourceTree = "<group>"; };
 		41C2C91B2B159C7F004C10F7 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
@@ -128,8 +142,7 @@
 		41C2C9242B159E1A004C10F7 /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
 		41C2C9262B15AA78004C10F7 /* SpotifyWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyWelcomeView.swift; sourceTree = "<group>"; };
 		41DC27252AFDFD130052F2B8 /* 443-ChordableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "443-ChordableTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _43_ChordableTests.swift; sourceTree = "<group>"; };
-		41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatusTest.swift; sourceTree = "<group>"; };
+		41DC27272AFDFD130052F2B8 /* 443_ChordableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 443_ChordableTests.swift; sourceTree = "<group>"; };
 		41FB94342AF0B4A600409446 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		41FB94362AF0B58D00409446 /* ChordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDetailViewController.swift; sourceTree = "<group>"; };
 		F0D97C112AF34DF700AF16B6 /* -43-Chordable-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-43-Chordable-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -175,6 +188,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352BC6E02B23F47C0008D9B2 /* ChordTests */ = {
+			isa = PBXGroup;
+			children = (
+				352BC6E12B23F4900008D9B2 /* ChordDetailViewControllerTests.swift */,
+				352BC6FD2B252A530008D9B2 /* ChordsViewControllerTests.swift */,
+			);
+			path = ChordTests;
+			sourceTree = "<group>";
+		};
+		352BC6E72B2410280008D9B2 /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				352BC6E82B24103A0008D9B2 /* AlertItemTests.swift */,
+				352BC6F72B2526B50008D9B2 /* ImageNamesTests.swift */,
+			);
+			path = Spotify;
+			sourceTree = "<group>";
+		};
+		352BC6EA2B24124D0008D9B2 /* SongTests */ = {
+			isa = PBXGroup;
+			children = (
+				352BC6EB2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift */,
+				352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */,
+			);
+			path = SongTests;
+			sourceTree = "<group>";
+		};
 		352D3C642AF70C9B005BC35B /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,9 +405,12 @@
 		41DC27262AFDFD130052F2B8 /* 443-ChordableTests */ = {
 			isa = PBXGroup;
 			children = (
-				41DC27272AFDFD130052F2B8 /* _43_ChordableTests.swift */,
-				41DC272E2AFDFD1D0052F2B8 /* AudioStatusTest.swift */,
-				411C76CB2B1FF8D700E2EB73 /* HomeModelTest.swift */,
+				352BC70C2B266AC30008D9B2 /* Model Tests */,
+				352BC7092B266A810008D9B2 /* Initializer Tests */,
+				352BC6EA2B24124D0008D9B2 /* SongTests */,
+				352BC6E72B2410280008D9B2 /* Spotify */,
+				352BC6E02B23F47C0008D9B2 /* ChordTests */,
+				41DC27272AFDFD130052F2B8 /* 443_ChordableTests.swift */,
 				4165A7B02B1FFE7000BC22EA /* TestCoreDataStack.swift */,
 			);
 			path = "443-ChordableTests";
@@ -519,6 +562,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352BC70A2B266A810008D9B2 /* Initializer Tests in Resources */,
+				352BC70D2B266AC40008D9B2 /* Model Tests in Resources */,
+				352BC6F22B2422590008D9B2 /* songGenres.json in Resources */,
+				352BC6F42B24234C0008D9B2 /* spotify.json in Resources */,
+				352BC6F12B241E330008D9B2 /* uspopLabels in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,12 +619,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				411C76CC2B1FF8D700E2EB73 /* HomeModelTest.swift in Sources */,
+				352BC6FE2B252A530008D9B2 /* ChordsViewControllerTests.swift in Sources */,
+				352BC7002B252C480008D9B2 /* SongLearningViewControllerTests.swift in Sources */,
 				4165A7B12B1FFE7000BC22EA /* TestCoreDataStack.swift in Sources */,
-				41DC27282AFDFD130052F2B8 /* _43_ChordableTests.swift in Sources */,
-				F0FE5CF22B196D850040C5A5 /* Home.swift in Sources */,
-				41DC272F2AFDFD1D0052F2B8 /* AudioStatusTest.swift in Sources */,
-				4165A7B32B20034800BC22EA /* _43_Chordable.xcdatamodeld in Sources */,
+				352BC6F82B2526B50008D9B2 /* ImageNamesTests.swift in Sources */,
+				352BC6E22B23F4900008D9B2 /* ChordDetailViewControllerTests.swift in Sources */,
+				352BC6E92B24103A0008D9B2 /* AlertItemTests.swift in Sources */,
+				352BC6EC2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift in Sources */,
+				41DC27282AFDFD130052F2B8 /* 443_ChordableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

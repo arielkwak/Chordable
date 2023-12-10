@@ -9,12 +9,15 @@ import Foundation
 import CoreData
 
 class HomeModel: ObservableObject {
-    
+    // ADDING context and init function content for testing purposes
+    private let context: NSManagedObjectContext
+
+    init(context: NSManagedObjectContext) {
+        self.context = context
+    }
+  
     @Published var lastOpened: Date?
     @Published var streak: Int = 0
-
-    init() {
-    }
 
     func appOpened() {
         let now = Date()

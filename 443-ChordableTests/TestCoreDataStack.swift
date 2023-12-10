@@ -5,25 +5,33 @@
 //  Created by Minjoo Kim on 12/5/23.
 //
 
-import XCTest
 import CoreData
+import XCTest
 @testable import _43_Chordable
 
 final class TestCoreDataStack {
 
-      var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer
+
+    init() {
+        print("Initializing TestCoreDataStack...")
+        persistentContainer = NSPersistentContainer(name: "_43_Chordable")
+
         let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
-        
-        let container = NSPersistentContainer(name: "_43_Chordable")
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { _, error in
-          if let error = error as NSError? {
-            fatalError("Unresolved error \(error), \(error.userInfo)")
-          }
+        description.type = NSInMemoryStoreType // Using in-memory store
+        description.shouldAddStoreAsynchronously = false // Load synchronously for testing
+
+        persistentContainer.persistentStoreDescriptions = [description]
+
+        persistentContainer.loadPersistentStores { (storeDescription, error) in
+            if let error = error as NSError? {
+                print("Failed to load the persistent store: \(error), \(error.userInfo)")
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            } else {
+                print("Persistent store loaded successfully: \(storeDescription)")
+            }
         }
-        return container
-      }()
 
-
+        print("TestCoreDataStack initialized with in-memory store")
+    }
 }

@@ -80,7 +80,7 @@ final class Spotify: ObservableObject {
   @Published var currentUser: SpotifyUser? = nil
   
   /// The keychain to store the authorization information in.
-  let keychain = Keychain(service: "com.minjooki.chordable")
+  let keychain = Keychain(service: "com.minjooki1.chordable")
   
   /// An instance of `SpotifyAPI` that you use to make requests to the Spotify
   /// web API.

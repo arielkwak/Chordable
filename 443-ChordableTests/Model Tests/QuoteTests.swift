@@ -13,7 +13,6 @@ class QuoteTests: XCTestCase {
     func testGetRandomQuote() {
         let quotes = Quote.Quotes()
         
-        // Test several times to ensure randomness and consistency
         for _ in 1...10 {
             if let (artist, quote) = quotes.getRandomQuote() {
                 XCTAssertNotNil(quotes.quotes[artist], "Artist should exist in the dictionary")

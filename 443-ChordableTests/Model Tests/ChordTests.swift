@@ -2,9 +2,8 @@
 //  ChordTests.swift
 //  443-ChordableTests
 //
-//  Created by Owen Gometz on 12/8/23.
+//  Created by Owen Gometz on 12/10/23.
 //
-
 
 import XCTest
 import CoreData
@@ -43,19 +42,16 @@ class ChordTests: XCTestCase {
     }
 
     func testFetchChordsWithSingleCharacterAndSpace() {
-        // Scenario: "A " should return only A major/minor, excluding sharps
         let request = Chord.fetchChords(filteredBy: nil, completed: nil, searchText: "A ")
         XCTAssertEqual(request.predicate?.predicateFormat, "displayable_name ==[cd] \"a\"", "Predicate should match exact chord name filter")
     }
 
     func testFetchChordsWithMultipleSearchTerms() {
-      // Scenario: Multiple search terms, e.g., "A minor"
       let request = Chord.fetchChords(filteredBy: nil, completed: nil, searchText: "A minor")
       
-      // Constructing the expected predicate format string
-      let namePredicateFormat = "displayable_name ==[cd] \"A\""  // Capitalize "A"
+      let namePredicateFormat = "displayable_name ==[cd] \"A\""
       let qualityPredicateFormat = "quality CONTAINS[cd] \"minor\""
-      let expectedPredicateFormat = "\(namePredicateFormat) AND (\(qualityPredicateFormat))"  // Adjusted format
+      let expectedPredicateFormat = "\(namePredicateFormat) AND (\(qualityPredicateFormat))"
       
       XCTAssertEqual(request.predicate?.predicateFormat, expectedPredicateFormat, "Predicate should match combined name and quality filters")
     }

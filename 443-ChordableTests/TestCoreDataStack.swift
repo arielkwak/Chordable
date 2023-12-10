@@ -18,8 +18,8 @@ final class TestCoreDataStack {
         persistentContainer = NSPersistentContainer(name: "_43_Chordable")
 
         let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType // Using in-memory store
-        description.shouldAddStoreAsynchronously = false // Load synchronously for testing
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
 
         persistentContainer.persistentStoreDescriptions = [description]
 

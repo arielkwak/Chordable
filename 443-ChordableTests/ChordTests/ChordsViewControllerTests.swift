@@ -81,7 +81,6 @@ class ChordsViewControllerTests: XCTestCase {
         chord3.difficulty = "medium"
         chord3.completed = false
 
-        // Save the context to persist these mock chords
         do {
             try mockContext.save()
         } catch {

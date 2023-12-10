@@ -2,7 +2,7 @@
 //  SongDataInitializerTests.swift
 //  443-ChordableTests
 //
-//  Created by Owen Gometz on 12/8/23.
+//  Created by Owen Gometz on 12/10/23.
 //
 
 import XCTest
@@ -10,7 +10,6 @@ import CoreData
 @testable import _43_Chordable
 
 class SongDataInitializerTests: XCTestCase {
-
     var testCoreDataStack: TestCoreDataStack!
     var mockContext: NSManagedObjectContext!
     var chordInitializer: ChordDataInitializer!
@@ -20,15 +19,9 @@ class SongDataInitializerTests: XCTestCase {
         super.setUp()
         testCoreDataStack = TestCoreDataStack()
         mockContext = testCoreDataStack.persistentContainer.viewContext
-
-        // Initialize both chord and song initializers
         chordInitializer = ChordDataInitializer()
         songInitializer = SongDataInitializer()
-
-        // First, initialize chord data
         chordInitializer.initializeChordData(into: mockContext)
-
-        // Then, initialize song data
         songInitializer.initializeSongData(into: mockContext, bundle: Bundle(for: type(of: self)))
     }
 
@@ -57,5 +50,4 @@ class SongDataInitializerTests: XCTestCase {
             XCTFail("Error fetching song chord instances: \(error)")
         }
     }
-
 }

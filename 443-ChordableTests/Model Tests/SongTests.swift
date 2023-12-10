@@ -45,32 +45,25 @@ class SongExtensionTests: XCTestCase {
     }
 
     func testUpdateLockedSongs() {
-        // Initially, Beast of Burden and Moonlight Shadow are locked
         XCTAssertTrue(fetchSongWithTitle("Beast Of Burden")?.unlocked == false, "Beast of Burden should initially be locked")
         XCTAssertTrue(fetchSongWithTitle("Moonlight Shadow")?.unlocked == false, "Moonlight Shadow should initially be locked")
 
-        // Complete required chords
         completeChords(["E", "C#m", "B", "A"])
 
-        // Call updateLockedSongs method
         Song.updateLockedSongs(context: mockContext)
 
-        // Verify that Beast of Burden and Moonlight Shadow are unlocked
         XCTAssertTrue(fetchSongWithTitle("Beast Of Burden")?.unlocked == true, "Beast of Burden should be unlocked")
         XCTAssertTrue(fetchSongWithTitle("Moonlight Shadow")?.unlocked == true, "Moonlight Shadow should be unlocked")
     }
 
     func testFilterSongs() {
-        // Filter locked songs with searchText "Drive"
         let lockedSongs = Song.filterSongs(songs: fetchAllSongs(), searchText: "Drive", tabSelection: 0)
         XCTAssertEqual(lockedSongs.count, 1, "Should return only one song with title 'Drive'")
 
-        // Filter songs with genre "Alternative"
         let alternativeSongs = lockedSongs.filter { $0.genre == "Alternative" }
         XCTAssertTrue(alternativeSongs.count > 0, "Should return songs with genre 'Alternative'")
     }
 
-    // Helper methods
     private func printSongStatus(_ title: String) {
         if let song = fetchSongWithTitle(title) {
             print("\(title) - Unlocked: \(song.unlocked)")

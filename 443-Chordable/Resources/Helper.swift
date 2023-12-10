@@ -4,6 +4,8 @@
 //
 //  Created by Owen Gometz on 11/9/23.
 //
+//  Adapeted from https://github.com/67443-Mobile-Apps/PriceScan_JSON_Starter/blob/main/PriceCheck/Resources/Helper.swift
+//
 
 import Foundation
 

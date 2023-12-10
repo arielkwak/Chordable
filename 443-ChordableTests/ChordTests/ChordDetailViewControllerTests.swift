@@ -36,17 +36,13 @@ class ChordDetailViewControllerTests: XCTestCase {
     }
 
     func testInitialStatus() {
-        // Test the initial status of the view controller
         XCTAssertEqual(chordDetailVC.status, .stopped, "Initial status should be stopped")
         XCTAssertFalse(chordDetailVC.isRecordingActive, "Initial recording status should be false")
         XCTAssertFalse(chordDetailVC.displayNotification, "Initial displayNotification should be false")
-        // Add more assertions as needed
     }
 
     func testMicrophoneAccessRequest() {
-        // Setup a scenario where microphone access is assumed to be granted
-        // Note: This won't actually test the system's microphone access request
-        chordDetailVC.hasMicAccess = true // Manually setting it to true
+        chordDetailVC.hasMicAccess = true
 
         chordDetailVC.requestMicrophoneAccess()
 
@@ -59,7 +55,6 @@ class ChordDetailViewControllerTests: XCTestCase {
         XCTAssertEqual(chordDetailVC.countdown, 3, "Countdown should start at 3")
         XCTAssertTrue(chordDetailVC.isCountingDown, "Countdown flag should be true")
         
-        // Wait for the countdown to finish
         let expectation = XCTestExpectation(description: "Countdown")
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             expectation.fulfill()
@@ -88,7 +83,6 @@ class ChordDetailViewControllerTests: XCTestCase {
 
   
     func testStopRecording() {
-        // Setup: Start recording to create a file
         chordDetailVC.startRecording(for: 1) { _ in }
         let expectation = XCTestExpectation(description: "Recording")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -96,21 +90,17 @@ class ChordDetailViewControllerTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 3)
 
-        // Test: Stop recording
         chordDetailVC.stopRecording { predictedChord in
 //            XCTAssertFalse(self.chordDetailVC.isRecordingActive, "Recording should be stopped")
 //            XCTAssertNotNil(FileManager.default.contents(atPath: self.chordDetailVC.urlForMemo.path), "Recorded file should exist")
-            // Add more assertions as needed, e.g., checking the `predictedChord`
         }
     }
   
     func testStartDuration() {
-        // Setup: Begin the duration timer
         chordDetailVC.startDuration()
         XCTAssertEqual(chordDetailVC.duration, 5, "Duration should start at 5 seconds")
         XCTAssertTrue(chordDetailVC.isRecordingActive, "Recording should be active")
 
-        // Wait for the duration to finish
         let expectation = XCTestExpectation(description: "Duration")
         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             expectation.fulfill()
@@ -120,11 +110,7 @@ class ChordDetailViewControllerTests: XCTestCase {
 //        XCTAssertFalse(chordDetailVC.isRecordingActive, "Recording should be finished")
         XCTAssertEqual(chordDetailVC.duration, 0, "Duration should have counted down to 0")
 
-        // Additional check to ensure startRecording is called and handled properly
-        // This assumes that startRecording changes some state or publishes some results
-        // e.g., checking the `status` is set to .recording, or other relevant properties
 //        XCTAssertEqual(chordDetailVC.status, .recording, "Status should be '.recording' when recording starts")
-        // Add more assertions based on the expected behavior of startRecording
     }
 
 
@@ -154,9 +140,6 @@ class ChordDetailViewControllerTests: XCTestCase {
 //
 //        XCTAssertEqual(chordDetailVC.status, .playing, "Status should be '.playing' when audio is playing")
 //    }
-
-
-
 
 
 

@@ -85,7 +85,6 @@ class SongLearningViewControllerTests: XCTestCase {
 
         do {
             try mockContext.save()
-            // Assert that the song and chord instances are created correctly
             XCTAssertNotNil(mockSong, "Mock song should not be nil")
             XCTAssertNotNil(chordInstance1, "First chord instance should not be nil")
             XCTAssertNotNil(chordInstance2, "Second chord instance should not be nil")

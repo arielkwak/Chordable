@@ -1,15 +1,15 @@
 //
-//  AudioStatusClass.swift
+//  AudioStatusTests.swift
 //  443-ChordableTests
 //
-//  Created by Minjoo Kim on 11/9/23.
+//  Created by Owen Gometz on 12/10/23.
 //
 
 import XCTest
 @testable import _43_Chordable
 
 final class AudioStatusTest: XCTestCase {
-//
+
     override func setUpWithError() throws {
         print("AudioStatusTest: setUpWithError")
     }

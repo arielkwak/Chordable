@@ -36,17 +36,17 @@ class SongsForGenreViewControllerTests: XCTestCase {
         let song1 = Song(context: mockContext)
         song1.title = "A Song"
         song1.genre = "Rock"
-        song1.unlocked = true  // Ensure the song is marked as unlocked
+        song1.unlocked = true
 
         let song2 = Song(context: mockContext)
         song2.title = "B Song"
         song2.genre = "Pop"
-        song2.unlocked = true  // Ensure the song is marked as unlocked
+        song2.unlocked = true
       
         let song3 = Song(context: mockContext)
         song3.title = "C SAng"
         song3.genre = "Rock"
-        song3.unlocked = true  // Ensure the song is marked as unlocked
+        song3.unlocked = true
 
         do {
             try mockContext.save()

@@ -22,7 +22,6 @@ final class _43_ChordableTests: XCTestCase {
         let onboardingState = OnboardingState()
         let homeModel = HomeModel(context: PersistenceController.preview.container.viewContext)
         
-        // Simulate conditions before and after onboarding completion
         onboardingState.hasCompletedOnboarding = false
         XCTAssertFalse(homeModel.streak > 0, "Streak should be zero before app opened")
 
@@ -32,5 +31,18 @@ final class _43_ChordableTests: XCTestCase {
         onboardingState.completeOnboarding()
         XCTAssertTrue(onboardingState.hasCompletedOnboarding, "Onboarding should be marked as completed after calling completeOnboarding")
     }
+  
+    func testWelcomeViewPresentationLogic() {
+        let onboardingState = OnboardingState()
+        let homeModel = HomeModel(context: PersistenceController.preview.container.viewContext)
+
+        onboardingState.hasCompletedOnboarding = false
+        homeModel.appOpened()
+        XCTAssertFalse(onboardingState.hasCompletedOnboarding, "WelcomeView should be presented when onboarding is not completed")
+
+        onboardingState.completeOnboarding()
+        XCTAssertTrue(onboardingState.hasCompletedOnboarding, "WelcomeView should not be presented after completing onboarding")
+    }
+  
 
 }

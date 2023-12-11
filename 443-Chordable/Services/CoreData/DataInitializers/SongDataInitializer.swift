@@ -10,41 +10,43 @@ import CoreData
 
 class SongDataInitializer {
   
-    func initializeSongData(into context: NSManagedObjectContext) {
-      
-        guard let basePath = Bundle.main.resourceURL?.appendingPathComponent("uspopLabels") else {
-            print("Failed to find base path")
-            return
-        }
+  func initializeSongData(into context: NSManagedObjectContext, bundle: Bundle = Bundle.main) {
+          guard let basePath = bundle.resourceURL?.appendingPathComponent("uspopLabels") else {
+              print("Failed to find base path in bundle: \(bundle)")
+              return
+          }
 
-        do {
-            let artists = try FileManager.default.contentsOfDirectory(at: basePath, includingPropertiesForKeys: nil)
+          do {
+              let artists = try FileManager.default.contentsOfDirectory(at: basePath, includingPropertiesForKeys: nil)
 
-            for artist in artists {
-                let albums = try FileManager.default.contentsOfDirectory(at: artist, includingPropertiesForKeys: nil)
-                
-                for album in albums {
-                    let songs = try FileManager.default.contentsOfDirectory(at: album, includingPropertiesForKeys: nil, options: [])
-                    
-                    for song in songs {
-                        if song.pathExtension == "lab" {
-                            guard let songEntry = createSongRecord(from: song, artist: artist, album: album, into: context) else { continue }
-                          
-                            createSongChordInstance(from: song, for: songEntry, into: context)
-                        }
-                    }
-                }
-            }
+              for artist in artists {
+                  let albums = try FileManager.default.contentsOfDirectory(at: artist, includingPropertiesForKeys: nil)
+                  
+                  for album in albums {
+                      let songs = try FileManager.default.contentsOfDirectory(at: album, includingPropertiesForKeys: nil, options: [])
+                      
+                      for song in songs {
+                          if song.pathExtension == "lab" {
+                              guard let songEntry = createSongRecord(from: song, artist: artist, album: album, into: context, bundle: bundle) else {
+                                  print("Failed to create song record for: \(song.lastPathComponent)")
+                                  continue
+                              }
+                              createSongChordInstance(from: song, for: songEntry, into: context)
+                          }
+                      }
+                  }
+              }
 
-            try context.save()
-        } catch {
-            print("Failed to save context or read directory: \(error)")
-        }
-    }
+              try context.save()
+              print("Context saved successfully")
+          } catch {
+              print("Failed to save context or read directory: \(error)")
+          }
+      }
 
-    private func createSongRecord(from song: URL, artist: URL, album: URL, into context: NSManagedObjectContext) -> Song? {
-        let genreMappings = loadGenreMappings()
-        let URIMappings = loadURIMappings()
+    private func createSongRecord(from song: URL, artist: URL, album: URL, into context: NSManagedObjectContext, bundle: Bundle) -> Song? {
+        let genreMappings = loadGenreMappings(bundle: bundle)
+        let URIMappings = loadURIMappings(bundle: bundle)
         let songTitleWithID = song.deletingPathExtension().lastPathComponent
         let songTitleComponents = songTitleWithID.split(separator: "-")
         guard songTitleComponents.count >= 2 else { return nil }
@@ -91,21 +93,22 @@ class SongDataInitializer {
                   songChordInstance.start_time = startTime
                   songChordInstance.end_time = endTime
                   songChordInstance.chord = chord
+                  
               }
           }
       }
   }
   
   
-    private func loadGenreMappings() -> [String: String] {
-        let genreMappings: [String: String] = Bundle.main.decode([String: String].self, from: "songGenres.json")
+    private func loadGenreMappings(bundle: Bundle) -> [String: String] {
+        let genreMappings: [String: String] = bundle.decode([String: String].self, from: "songGenres.json")
         return genreMappings
     }
   
-    private func loadURIMappings() -> [String: String] {
-        let uriMappings: [String: String] = Bundle.main.decode([String: String].self, from: "spotify.json")
+    private func loadURIMappings(bundle: Bundle) -> [String: String] {
+        let uriMappings: [String: String] = bundle.decode([String: String].self, from: "spotify.json")
         return uriMappings
-      }
+    }
 
   
     func simplifyChordName(_ chordString: String) -> String? {

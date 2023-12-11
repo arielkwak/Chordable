@@ -15,13 +15,17 @@ import SpotifyWebAPI
 @main
 struct _43_ChordableApp: App {
     let persistenceController = PersistenceController.shared
-    @ObservedObject var onboardingState = OnboardingState() // Changed to @ObservedObject
+    @ObservedObject var onboardingState = OnboardingState()
     @StateObject var spotify = Spotify()
     @State private var isAuthorized = false
-    @StateObject var homeModel = HomeModel()
-  
+    @StateObject var homeModel: HomeModel
+
     init() {
-      SpotifyAPILogHandler.bootstrap()
+        SpotifyAPILogHandler.bootstrap()
+        // ADDING THE BELOW two lines because we want to add a context to the home model for testing purposes
+        let context = persistenceController.container.viewContext
+
+        _homeModel = StateObject(wrappedValue: HomeModel(context: context))
     }
 
     var body: some Scene {

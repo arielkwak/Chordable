@@ -15,6 +15,7 @@ struct SongsForGenreView: View {
   @State private var selectedSong: Song?
   @State private var isNavigatingToSongLearning = false
   @State private var refreshView: Bool = false
+  @EnvironmentObject var spotify: Spotify
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
   var body: some View {
@@ -198,7 +199,14 @@ struct SongsForGenreView: View {
           .frame(minHeight: 520)
           if isNavigatingToSongLearning, let song = selectedSong {
               NavigationLink(
-                destination: SongLearningView(controller: SongLearningViewController(context: context, song: song), song: song),
+                  destination: SongLearningView(
+                      controller: SongLearningViewController(
+                          context: context,
+                          song: song,
+                          spotify: spotify  // Pass the Spotify object from the environment
+                      ),
+                      song: song
+                  ),
                   isActive: $isNavigatingToSongLearning
               ) {
                   EmptyView()

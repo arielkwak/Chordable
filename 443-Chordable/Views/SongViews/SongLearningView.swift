@@ -6,14 +6,12 @@
 //  Referenced playback code from https://github.com/Peter-Schorn/SpotifyAPIExampleApp/blob/main/SpotifyAPIExampleApp/Views/TrackView.swift
 
 import SwiftUI
-import SpotifyWebAPI
-import Combine
+//import SpotifyWebAPI
+//import Combine
 
 struct SongLearningView: View {
     @ObservedObject var controller: SongLearningViewController
     @EnvironmentObject var spotify: Spotify
-    @State private var playRequestCancellable: AnyCancellable? = nil
-    @State private var pauseRequestCancellable: AnyCancellable? = nil
     @State private var alert: AlertItem? = nil
     let song: Song
     @Environment(\.managedObjectContext) var context
@@ -54,9 +52,12 @@ struct SongLearningView: View {
               Text("Play along!")
                 .foregroundColor(.white)
                 .font(.custom("Barlow-Regular", size: 16))
-              Toggle(isOn: $controller.playAlong) { EmptyView() }
-                .toggleStyle(GradientToggleStyle())
-                .padding(.trailing, 10)
+              Toggle(isOn: $controller.playAlong) {
+                EmptyView()
+              }
+              .toggleStyle(GradientToggleStyle())
+              .disabled(!controller.isAtStartingPosition) // Disable the toggle if not at starting position
+              .padding(.trailing, 10)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
             .padding(.trailing, 25)
@@ -74,7 +75,7 @@ struct SongLearningView: View {
           }
         
           // Display the current chord
-          let chordName = controller.currentChords[0]?.chord?.displayable_name ?? "No\nChord"
+          let chordName = controller.currentChords[0]?.chord?.chord_name ?? "No\nChord"
           Text(chordName)
           .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 45 : 96)) // Change the font size based on the text
           .foregroundColor(.white)
@@ -99,7 +100,7 @@ struct SongLearningView: View {
             }
             HStack {
               ForEach(1..<4) { index in
-                let chordName = controller.currentChords[index]?.chord?.displayable_name ?? "No\nChord"
+                let chordName = controller.currentChords[index]?.chord?.chord_name ?? "No\nChord"
                 Text(chordName)
                   .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 15 : 30))
                   .foregroundColor(.white)
@@ -114,17 +115,28 @@ struct SongLearningView: View {
                       )
                   )
               }
+              Spacer()
+              Button(action: {
+                  controller.restartSong()
+              }) {
+                  Image(systemName: "arrow.counterclockwise")
+                      .foregroundColor(.white)
+                      .padding()
+                      .cornerRadius(30)
+                      .font(.title)
+              }
+              .disabled(controller.isPlaying)
             }
+            .padding(.horizontal, 25)
           }
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding(.leading, 25)
           .padding(.bottom, 10)
+          
 
           // Progress Bar
           ProgressBar(progress: controller.progress)
           
           // Play/Pause Button
-          Button(action: startPlayPause) {
+          Button(action: controller.startPlayPause) {
             ZStack{
               Circle()
                 .fill(Color.white)
@@ -151,102 +163,33 @@ struct SongLearningView: View {
         })
     }
   
-  func startPlayPause() {
-    // if play along, then play
-    if controller.playAlong {
-      // if is paused, then play song
-      // if is playing, then pause song
-      if !controller.isPlaying {
-        if controller.progress > 0 {
-          resumeSong()
-        } else {
-          playSong()
-        }
-      } else {
-        pauseSong()
-      }
-      // play/pause chords
-      controller.playPauseToggled()
-    } else {
-      controller.playPauseToggled()
-    }
-  }
   
-  func playSong() {
-    let alertTitle = "Couldn't Play \(controller.song.title ?? "Song")"
-    guard let trackURI = controller.song.uri else {
-      self.alert = AlertItem(
-                      title: alertTitle,
-                      message: "missing URI"
-        )
-      return
-    }
-    let playbackRequest: PlaybackRequest
-    playbackRequest = PlaybackRequest(trackURI)
-    
-    // By using a single cancellable rather than a collection of
-    // cancellables, the previous request always gets cancelled when a new
-    // request to play a track is made.
-    self.playRequestCancellable =
-        self.spotify.api.getAvailableDeviceThenPlay(playbackRequest)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    self.alert = AlertItem(
-                        title: alertTitle,
-                        message: error.localizedDescription
-                    )
-                }
-            })
-  }
-  
-  func pauseSong() {
-    let alertTitle = "Couldn't Pause \(controller.song.title ?? "Song")"
-    self.pauseRequestCancellable =
-      self.spotify.api.pausePlayback()
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        if case .failure(let error) = completion {
-          self.alert = AlertItem(
-            title: alertTitle,
-            message: error.localizedDescription)
-        }
-      })
-  }
-  
-  func resumeSong() {
-    let alertTitle = "Couldn't Resume \(controller.song.title ?? "Song")"
-    self.playRequestCancellable = self.spotify.api.resumePlayback()
-          .receive(on: RunLoop.main)
-          .sink(receiveCompletion: { completion in
-            if case .failure(let error) = completion {
-              self.alert = AlertItem(
-                title: alertTitle,
-                message: error.localizedDescription)
-            }
-          })
-  }
 }
 
 
- struct ProgressBar: View {
-   var progress: Float
-  
-   var body: some View {
-     GeometryReader { geometry in
-       Rectangle()
-           .foregroundColor(Color(red: 114 / 255, green: 114 / 255, blue: 114 / 255))
-           .cornerRadius(5)
-           .padding(.horizontal, 25)
-           .frame(height:10)
-       Rectangle()
-         .frame(width: geometry.size.width * CGFloat(progress), height: 10)
-         .foregroundColor(.white)
-         .cornerRadius(5)
-         .padding(.horizontal, 25)
-     }
-   }
- }
+struct ProgressBar: View {
+    var progress: Float
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color(red: 114 / 255, green: 114 / 255, blue: 114 / 255))
+                    .cornerRadius(5)
+                    .frame(height: 10)
+
+                Rectangle()
+                    .frame(width: geometry.size.width * CGFloat(progress), height: 10)
+                    .foregroundColor(.white)
+                    .cornerRadius(5)
+            }
+        }
+        .padding(.horizontal, 25)
+    }
+}
+
+
+
 
 //struct ProgressBar: View {
 //    var progress: Float

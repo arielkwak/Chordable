@@ -27,10 +27,8 @@ extension Song {
         }
 
         let chordIDs = chordInstances.map { $0.chord?.chord_id }
-        print("Chord IDs from SongChordInstances: \(chordIDs)")
 
         let uniqueChordIDs = Set(chordIDs.compactMap { $0 })
-        print("Unique Chord IDs: \(uniqueChordIDs)")
 
         let fetchRequest: NSFetchRequest<Chord> = Chord.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "chord_id IN %@", uniqueChordIDs)

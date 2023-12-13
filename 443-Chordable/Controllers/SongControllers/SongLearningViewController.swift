@@ -145,43 +145,36 @@ class SongLearningViewController: ObservableObject {
 
     private func updateProgress() {
         progress = elapsedTime / totalDuration
-        print("Elapsed Time: \(elapsedTime), Total Duration: \(totalDuration), Progress: \(progress)")
     }
 
 
     private func updateChords() {
-        print("HELLO?")
-        // Find the current chord based on elapsed time
         let currentChord = songChordInstances.first { instance in
             elapsedTime >= instance.start_time && elapsedTime < instance.end_time
         }
 
-        // Update the current chord
         currentChords[0] = currentChord
 
-        // Define a variable for the time to search for upcoming chords
         let searchTime = currentChord?.end_time ?? elapsedTime
 
-        // Find and update the next three chords
         let upcomingChords = songChordInstances.filter { $0.start_time >= searchTime }
         for i in 1...3 {
             currentChords[i] = (i - 1) < upcomingChords.count ? upcomingChords[i - 1] : nil
         }
 
-        // Handle the end of the song
         if elapsedTime >= totalDuration {
             stopTimer()
             isPlaying = false
             progress = 1.0
-            restartSong()  // Or any other action you'd like to perform at the end of the song
+            restartSong()
         }
 
-        // Update secondsToNextChord
         if let nextChord = upcomingChords.first {
             secondsToNextChord = nextChord.start_time - elapsedTime
         } else {
             secondsToNextChord = nil
         }
+        let chordNames = currentChords.map { $0?.chord?.chord_name ?? "No Chord" }
     }
 
 

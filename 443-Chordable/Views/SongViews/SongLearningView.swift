@@ -76,11 +76,12 @@ struct SongLearningView: View {
         
           // Display the current chord
           let chordName = controller.currentChords[0]?.chord?.chord_name ?? "No\nChord"
+          let isLongChordName = chordName.count > 2
           Text(chordName)
-          .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 45 : 96)) // Change the font size based on the text
+          .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 45 : (isLongChordName ? 76 : 96)))
           .foregroundColor(.white)
           .multilineTextAlignment(.center)
-          .frame(width: 175, height: 175)
+          .frame(width: isLongChordName ? 200 : 175, height: 175)
           .background(Color.clear)
           .overlay(
             Circle()
@@ -101,8 +102,10 @@ struct SongLearningView: View {
             HStack {
               ForEach(1..<4) { index in
                 let chordName = controller.currentChords[index]?.chord?.chord_name ?? "No\nChord"
+                let isLongChordName = chordName.count > 2
+                let fontSize = chordName == "No\nChord" ? 15 : (chordName.count > 2 ? 20 : 30)
                 Text(chordName)
-                  .font(.custom("Barlow-BlackItalic", size: chordName == "No\nChord" ? 15 : 30))
+                  .font(.custom("Barlow-BlackItalic", size: CGFloat(fontSize)))
                   .foregroundColor(.white)
                   .multilineTextAlignment(.center)
                   .frame(width: 60, height: 60)
@@ -113,6 +116,7 @@ struct SongLearningView: View {
                         LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1)]), startPoint: .leading, endPoint: .trailing),
                         lineWidth: 2
                       )
+//                      .frame(width: isLongChordName ? 80 : 60, height: isLongChordName ? 80 : 60)
                   )
               }
               Spacer()

@@ -112,7 +112,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       if let recorder = audioRecorder, recorder.prepareToRecord() {
           recorder.record()
           status = .recording
-          print("Recording started.")
 
           timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
               self?.stopRecording(completion: completion)
@@ -128,7 +127,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .stopped
-      print("Stopped recording. File path: \(urlForMemo.path)")
 
       if FileManager.default.fileExists(atPath: urlForMemo.path) {
           if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForMemo.path),

@@ -3,7 +3,7 @@
 //  443-Chordable
 //
 //  Created by Owen Gometz on 10/29/23.
-// 
+//
 
 import SwiftUI
 import CoreData
@@ -13,6 +13,12 @@ struct SongsView: View {
   @Environment(\.managedObjectContext) var context
   @EnvironmentObject var homeModel: HomeModel
   
+  // FetchRequest to get all songs
+  @FetchRequest(
+      entity: Song.entity(),
+      sortDescriptors: []
+  ) var songs: FetchedResults<Song>
+
   var body: some View {
     NavigationView {
       ScrollView{
@@ -107,6 +113,10 @@ struct SongsView: View {
                       Text(genre)
                         .foregroundColor(.white)
                         .font(.custom("Barlow-Bold", size: 24))
+                      // Display number of unlocked songs for this genre
+                        Text("\(unlockedSongsCount(for: genre)) Songs Unlocked")
+                            .foregroundColor(.white)
+                            .font(.custom("Barlow-Italic", size: 16))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 25)
@@ -121,4 +131,9 @@ struct SongsView: View {
       }.background(Color.black)
     }
   }
-}
+  // Function to count unlocked songs for a given genre
+      func unlockedSongsCount(for genre: String) -> Int {
+          let unlockedSongs = songs.filter { $0.unlocked && $0.genre == genre }
+          return unlockedSongs.count
+      }
+  }

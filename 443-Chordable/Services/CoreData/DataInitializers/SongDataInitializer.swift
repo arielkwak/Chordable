@@ -11,6 +11,7 @@ import CoreData
 class SongDataInitializer {
   
   func initializeSongData(into context: NSManagedObjectContext, bundle: Bundle = Bundle.main) {
+          print("called")
           guard let basePath = bundle.resourceURL?.appendingPathComponent("uspopLabels") else {
               print("Failed to find base path in bundle: \(bundle)")
               return
@@ -47,16 +48,23 @@ class SongDataInitializer {
     private func createSongRecord(from song: URL, artist: URL, album: URL, into context: NSManagedObjectContext, bundle: Bundle) -> Song? {
         let genreMappings = loadGenreMappings(bundle: bundle)
         let URIMappings = loadURIMappings(bundle: bundle)
+      
+        // NEW CODE
         let songTitleWithID = song.deletingPathExtension().lastPathComponent
         let songTitleComponents = songTitleWithID.split(separator: "-")
-        guard songTitleComponents.count >= 2 else { return nil }
-        
-        // Replace underscores with spaces in the song title and trim whitespaces
-        let songTitle = String(songTitleComponents[1])
-                            .replacingOccurrences(of: "_", with: " ")
-                            .trimmingCharacters(in: .whitespacesAndNewlines)
-                            .capitalized
-        
+
+        guard !songTitleComponents.isEmpty else { return nil }
+      
+        let songTitleWithoutID = songTitleComponents.dropFirst().joined(separator: "-")
+        var songTitle = songTitleWithoutID.replacingOccurrences(of: "_", with: " ")
+                                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                                            .capitalized
+      let specialCases = [" S ": "'s ", " T ": "'t ", " Ll ": "'ll ", " Re ": "'re "]
+        for (key, value) in specialCases {
+            songTitle = songTitle.replacingOccurrences(of: key, with: value)
+        }
+        // END OF NEW CODE
+      
         let songEntry = Song(context: context)
         songEntry.song_id = UUID()
         songEntry.title = songTitle
@@ -67,7 +75,15 @@ class SongDataInitializer {
                                 .replacingOccurrences(of: "_", with: " ")
                                 .trimmingCharacters(in: .whitespacesAndNewlines)
         songEntry.audio_file = "\(songTitle).wav"
-        songEntry.genre = genreMappings[songTitle] ?? "Unknown"
+      
+        if let genre = genreMappings[songTitle] {
+            songEntry.genre = genre
+            print("passed")
+        } else {
+            print("Genre not found for song title: \(songTitle)")
+            songEntry.genre = "Unknown"
+        }
+      
         songEntry.uri = URIMappings[songTitle] ?? "Unknown"
 
         return songEntry

@@ -53,6 +53,7 @@ struct PersistenceController {
         })
         // Check if the data has been initialized
         if !UserDefaults.standard.bool(forKey: "isDataInitialized") {
+            print("DOING THINGS")
             let chordDataInitializer = ChordDataInitializer()
             let songDataInitializer = SongDataInitializer()
 

@@ -49,13 +49,19 @@ class SongDataInitializer {
         let URIMappings = loadURIMappings(bundle: bundle)
         let songTitleWithID = song.deletingPathExtension().lastPathComponent
         let songTitleComponents = songTitleWithID.split(separator: "-")
-        guard songTitleComponents.count >= 2 else { return nil }
-        
-        // Replace underscores with spaces in the song title and trim whitespaces
-        let songTitle = String(songTitleComponents[1])
-                            .replacingOccurrences(of: "_", with: " ")
-                            .trimmingCharacters(in: .whitespacesAndNewlines)
-                            .capitalized
+        guard !songTitleComponents.isEmpty else { return nil }
+      
+        // New Code
+        let songTitleWithoutID = songTitleComponents.dropFirst().joined(separator: "-")
+        var songTitle = songTitleWithoutID.replacingOccurrences(of: "_", with: " ")
+                                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                                            .capitalized
+      
+        let specialCases = [" S ": "'s ", " T ": "'t ", " Ll ": "'ll ", " Re ": "'re "]
+        for (key, value) in specialCases {
+            songTitle = songTitle.replacingOccurrences(of: key, with: value)
+        }
+        // END OF NEW CODE
         
         let songEntry = Song(context: context)
         songEntry.song_id = UUID()

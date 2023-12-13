@@ -101,7 +101,7 @@ struct HomeView: View {
                   .font(.custom("Barlow-BlackItalic", size: 50))
                   .padding(.leading, 35)
                 Spacer()
-                Text("Day (s)  Streak!")
+                Text("Day Streak!")
                   .foregroundColor(.white)
                   .font(.custom("Barlow-Italic", size: 24))
                   .padding(.leading, 5)

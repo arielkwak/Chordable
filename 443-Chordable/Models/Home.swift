@@ -58,4 +58,17 @@ class HomeModel: ObservableObject {
         }
     }
   
+    func countUnlockedSongs(forGenre genre: String, context: NSManagedObjectContext) -> Int {
+        let fetchRequest: NSFetchRequest<Song> = Song.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "genre == %@ AND unlocked == YES", genre)
+
+        do {
+            let songs = try context.fetch(fetchRequest)
+            return songs.count
+        } catch {
+            print("Error fetching songs: \(error)")
+            return 0
+        }
+    }
+  
 }

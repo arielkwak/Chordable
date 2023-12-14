@@ -107,6 +107,9 @@ struct SongsView: View {
                       Text(genre)
                         .foregroundColor(.white)
                         .font(.custom("Barlow-Bold", size: 24))
+                      Text("\(homeModel.countUnlockedSongs(forGenre: genre, context: context)) Songs Unlocked")
+                        .foregroundColor(.white)
+                        .font(.custom("Barlow-Italic", size: 16))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 25)

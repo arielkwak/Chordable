@@ -20,17 +20,13 @@ struct ResultView: View {
   
   var body: some View {
     ZStack {
-      // Background
       Color.black.edgesIgnoringSafeArea(.all)
       
-      // Content
       VStack(spacing: 30) {
         
-        // Chord Button
         Button(action: {}) {
           VStack {
             HStack {
-              // Split the chord name into parts for independent styling
               let chordParts = (chord.displayable_name ?? "").components(separatedBy: "#")
               if let firstPart = chordParts.first {
                 Text(firstPart)
@@ -41,34 +37,31 @@ struct ResultView: View {
                 Text("#")
                   .font(.custom("Barlow-BlackItalic", size: 35))
                   .foregroundColor(.white)
-                // Apply the offset to the sharp symbol only
                   .offset(x: -5, y: -10)
               }
             }
-            // Center the chord quality text
             Text(chord.quality ?? "")
               .font(.custom("Barlow-Regular", size: 24))
               .fontWeight(.semibold)
               .foregroundColor(.white)
-              .padding(.horizontal, 10) // Add horizontal padding to prevent text clipping
+              .padding(.horizontal, 10)
           }
-          // Padding inside the VStack to ensure space around the content
-          .padding(.horizontal, 30) // Horizontal padding for the entire VStack
-          .padding(.vertical, 5) // Vertical padding for the entire VStack
+          .padding(.horizontal, 30)
+          .padding(.vertical, 5)
           .padding(.bottom, 10)
         }
         .background(LinearGradient(gradient: Gradient(colors: [Color(red: 36 / 255.0, green: 0, blue: 255 / 255.0), Color(red: 127 / 255.0, green: 0, blue: 255 / 255.0)]), startPoint: .leading, endPoint: .trailing))
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .padding(.bottom, 10)
         .padding(.top, 50)
-        .disabled(true) // Disabled state is still here
+        .disabled(true)
         
         if isSuccess {
           VStack{
-            Image("congrats_emoji") // Your image asset for success
+            Image("congrats_emoji")
               .resizable()
               .scaledToFit()
-              .frame(width: 100, height: 100) // Adjust the size as needed
+              .frame(width: 100, height: 100)
               .padding(.top, 20)
             
             Text("Complete!")
@@ -102,7 +95,7 @@ struct ResultView: View {
               Text("Try Again")
                 .font(.custom("Barlow-SemiBold", size: 20))
                 .fontWeight(.semibold)
-                .foregroundColor(.black) // Set text color to black
+                .foregroundColor(.black)
                 .padding(.horizontal, 20)
             }
             .padding()

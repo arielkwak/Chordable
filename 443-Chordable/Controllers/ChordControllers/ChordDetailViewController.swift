@@ -28,7 +28,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       do {
           try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
           try session.setActive(true)
-          print("Audio session activated successfully.")
       } catch {
           print("AVAudioSession configuration error: \(error.localizedDescription)")
       }
@@ -47,9 +46,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   // MARK: - Playing Audio -
   
-  // playing audio
   func playChord(chordName: String) {
-    // change audio file path for each chord
     guard let asset  = NSDataAsset(name: "\(chordName)_audio") else {
       print("File not found for chord: \(chordName)")
       return
@@ -68,7 +65,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   // MARK: - Recording Audio -
   
-  // save recorded audio to temporary directory
   var urlForMemo: URL {
     let fileManager = FileManager.default
     let tempDir = fileManager.temporaryDirectory
@@ -76,9 +72,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
     return tempDir.appendingPathComponent(filePath)
   }
   
-  // recording function
   func setupRecorder() {
-    // set up recording setting
     let recordSettings: [String: Any] = [
       AVFormatIDKey: Int(kAudioFormatLinearPCM),
       AVSampleRateKey: 44100.0,
@@ -86,7 +80,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
     ]
     
-    // creating recorder
     do {
       audioRecorder = try AVAudioRecorder(url: urlForMemo, settings: recordSettings)
       audioRecorder?.delegate = self
@@ -94,9 +87,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       if let recorder = audioRecorder {
           if !recorder.prepareToRecord() {
               print("Failed to prepare to record.")
-          } else {
-              print("Recorder prepared successfully.")
-          }
+          } else {}
       } else {
           print("Recorder is nil after initialization.")
       }
@@ -112,7 +103,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       if let recorder = audioRecorder, recorder.prepareToRecord() {
           recorder.record()
           status = .recording
-          print("Recording started.")
 
           timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
               self?.stopRecording(completion: completion)
@@ -128,14 +118,11 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .stopped
-      print("Stopped recording. File path: \(urlForMemo.path)")
 
       if FileManager.default.fileExists(atPath: urlForMemo.path) {
           if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForMemo.path),
              let fileSize = attributes[.size] as? UInt64 {
-              print("File size: \(fileSize) bytes.")
               if fileSize > 0 {
-                  print("Proceeding with file upload.")
                   
                   DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                       self.isRecordingActive = false
@@ -162,18 +149,17 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   
   // MARK: - Start Countdown and Duration Timer -
   
-  // 3 second countdown
   func startCountdown() {
       countdownTimer?.invalidate()
       isCountingDown = true
-      countdown = 3 // Start from 3 seconds
+      countdown = 3
       countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
           if self.countdown > 1 {
               self.countdown -= 1
           } else {
               self.isCountingDown = false
               self.countdownTimer?.invalidate()
-              self.startDuration() // Call startDuration to manage recording time
+              self.startDuration()
           }
       }
   }
@@ -183,7 +169,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       isRecordingActive = true
       duration = 5
 
-      // Update the timer to just decrement the duration value
       durationTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
           if self.duration > 0 {
               self.duration -= 1
@@ -192,20 +177,16 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
           }
       }
 
-      // Start recording for 5 seconds and handle completion in its closure
       startRecording(for: 5) { predictedChord in
           DispatchQueue.main.async {
-              // Stop recording and handle the prediction result
               let success = predictedChord == self.chord.chord_name
               if success {
                   self.chord.completed = true
-                  // Save the context here
                   if let context = self.chord.managedObjectContext {
                       do {
                           try context.save()
                           Song.updateLockedSongs(context: context)
                       } catch {
-                          // Handle the error
                           print("Failed to save context: \(error)")
                       }
                   }
@@ -224,12 +205,10 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
           DispatchQueue.main.async {
               self.hasMicAccess = granted
               if granted {
-                  // Initiate the countdown only if the microphone access is granted and if it is not already counting down
                   if !self.isCountingDown {
                       self.startCountdown()
                   }
               } else {
-                  // Alert the user that microphone access is required
                   self.displayNotification = true
               }
           }
@@ -237,7 +216,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
 
   func uploadAudioFile(_ fileURL: URL, completion: @escaping (String) -> Void) {
-      print("Uploading audio file...")
       let url = URL(string: "https://ogometz.pythonanywhere.com/predict")!
       var request = URLRequest(url: url)
       request.httpMethod = "POST"
@@ -247,7 +225,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
 
       var data = Data()
 
-      // Add the audio file data to the request body
       data.append("--\(boundary)\r\n".data(using: .utf8)!)
       data.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileURL.lastPathComponent)\"\r\n".data(using: .utf8)!)
       data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
@@ -260,31 +237,24 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       URLSession.shared.dataTask(with: request) { data, response, error in
         if let error = error {
             print("Error during URLSession request: \(error)")
-            completion("Error")  // Return "Error" via the completion handler
+            completion("Error")
             return
         }
 
         guard let data = data else {
             print("Invalid response data")
-            completion("Error")  // Return "Error" if data is invalid
+            completion("Error")
             return
         }
-        
-        // debugging code
-        if let responseString = String(data: data, encoding: .utf8) {
-            print("Raw server response: \(responseString)")
-        }
-        // end of begunning code
 
-        // Attempt to decode this JSON into a Swift struct called ChordResponse
         do {
             let chordResponse = try JSONDecoder().decode(ChordResponse.self, from: data)
             completion(chordResponse.chord)  
         } catch {
-            print("JSON Decoding Error: \(error)")  // Print an error message if JSON decoding fails
-            completion("Error")  // Return "Error" if decoding fails
+            print("JSON Decoding Error: \(error)")
+            completion("Error")
         }
-    }.resume()  // Start the data task
+    }.resume()
 
   }
 

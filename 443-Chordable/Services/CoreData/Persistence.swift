@@ -59,7 +59,7 @@ struct PersistenceController {
             let context = container.viewContext
             chordDataInitializer.initializeChordData(into: context)
             songDataInitializer.initializeSongData(into: context)
-
+          
             // Mark data as initialized
             UserDefaults.standard.setValue(true, forKey: "isDataInitialized")
         }

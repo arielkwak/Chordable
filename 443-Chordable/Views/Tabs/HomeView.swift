@@ -80,12 +80,10 @@ struct HomeView: View {
             .edgesIgnoringSafeArea(.all)
             .shadow(color: Color(red: 0.14, green: 0, blue: 1).opacity(0.49), radius: 10, x: 0, y: -10)
             
-            // Full rectangle with no corner radius
             Rectangle()
             .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
             .edgesIgnoringSafeArea(.all)
 
-            // Smaller rectangle with top corner radius
             Rectangle()
             .fill(Color(red: 35 / 255.0, green: 35 / 255.0, blue: 35 / 255.0))
             .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
@@ -119,8 +117,8 @@ struct HomeView: View {
 
               // chord completion
               HStack{
-                let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext) // Fetch chords and count completed ones
-                let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0  // Calculate percentage
+                let (totalChords, completedChords) = homeModel.fetchChords(context: managedObjectContext)
+                let percentageCompleted = totalChords > 0 ? (completedChords * 100 / totalChords) : 0 
 
                 CircularProgressView(progress: Double(percentageCompleted)/100.0)
                 .frame(width: 120, height: 120)

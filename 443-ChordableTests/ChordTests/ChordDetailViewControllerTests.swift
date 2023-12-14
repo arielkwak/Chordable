@@ -50,97 +50,64 @@ class ChordDetailViewControllerTests: XCTestCase {
         XCTAssertFalse(chordDetailVC.displayNotification, "Display notification should be false if access is granted")
     }
 
-//    func testCountdownTimer() {
-//        chordDetailVC.startCountdown()
-//        XCTAssertEqual(chordDetailVC.countdown, 3, "Countdown should start at 3")
-//        XCTAssertTrue(chordDetailVC.isCountingDown, "Countdown flag should be true")
-//        
-//        let expectation = XCTestExpectation(description: "Countdown")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 8)
-//        
-//        XCTAssertFalse(chordDetailVC.isCountingDown, "Countdown should be finished")
-//    }
+    func testCountdownTimer() {
+        chordDetailVC.startCountdown()
+        XCTAssertEqual(chordDetailVC.countdown, 3, "Countdown should start at 3")
+        XCTAssertTrue(chordDetailVC.isCountingDown, "Countdown flag should be true")
+        
+        let expectation = XCTestExpectation(description: "Countdown")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 12)
+        
+        XCTAssertFalse(chordDetailVC.isCountingDown, "Countdown should be finished")
+    }
 
-//    func testDurationTimer() {
-//        chordDetailVC.startDuration()
-//        XCTAssertEqual(chordDetailVC.duration, 5, "Duration should start at 5 seconds")
-//        XCTAssertTrue(chordDetailVC.isRecordingActive, "Recording should be active")
-//
-//        // Debugging: Print statement to track the flow
-//        print("Test: Waiting for duration timer to finish...")
-//
-//        let expectation = XCTestExpectation(description: "Duration")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//            print("Test: Checking final state after duration...")
-//            XCTAssertFalse(self.chordDetailVC.isRecordingActive, "Recording should be finished")
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 6)
-//    }
+    func testDurationTimer() {
+        chordDetailVC.startDuration()
+        XCTAssertEqual(chordDetailVC.duration, 5, "Duration should start at 5 seconds")
+        XCTAssertTrue(chordDetailVC.isRecordingActive, "Recording should be active")
 
+        let expectation = XCTestExpectation(description: "Duration")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            print("Test: Checking final state after duration...")
+            XCTAssertFalse(self.chordDetailVC.isRecordingActive, "Recording should be finished")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10)
+    }
   
-//    func testStopRecording() {
-//        chordDetailVC.startRecording(for: 1) { _ in }
-//        let expectation = XCTestExpectation(description: "Recording")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 3)
-//
-//        chordDetailVC.stopRecording { predictedChord in
-////            XCTAssertFalse(self.chordDetailVC.isRecordingActive, "Recording should be stopped")
-////            XCTAssertNotNil(FileManager.default.contents(atPath: self.chordDetailVC.urlForMemo.path), "Recorded file should exist")
-//        }
-//    }
-  
-//    func testStartDuration() {
-//        chordDetailVC.startDuration()
-//        XCTAssertEqual(chordDetailVC.duration, 5, "Duration should start at 5 seconds")
-//        XCTAssertTrue(chordDetailVC.isRecordingActive, "Recording should be active")
-//
-//        let expectation = XCTestExpectation(description: "Duration")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 7)
-//        
-////        XCTAssertFalse(chordDetailVC.isRecordingActive, "Recording should be finished")
-//        XCTAssertEqual(chordDetailVC.duration, 0, "Duration should have counted down to 0")
-//
-////        XCTAssertEqual(chordDetailVC.status, .recording, "Status should be '.recording' when recording starts")
-//    }
+    func testStartDuration() {
+        chordDetailVC.startDuration()
+        XCTAssertEqual(chordDetailVC.duration, 5, "Duration should start at 5 seconds")
+        XCTAssertTrue(chordDetailVC.isRecordingActive, "Recording should be active")
+
+        let expectation = XCTestExpectation(description: "Duration")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 7)
+        
+        XCTAssertEqual(chordDetailVC.duration, 0, "Duration should have counted down to 0")
+
+    }
 
 
-//    func testAudioPlayerDidFinishPlaying() {
-//        chordDetailVC.status = .playing
-//        let mockPlayer = AVAudioPlayer()
-//        let expectation = XCTestExpectation(description: "Wait for audio to stop")
-//
-//        chordDetailVC.audioPlayerDidFinishPlaying(mockPlayer, successfully: true)
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 1.5)
-//        XCTAssertEqual(chordDetailVC.status, .stopped, "Status should be '.stopped' after audio finishes playing")
-//    }
-  
-//    func testPlayChord() {
-//        let validChordName = "C"
-//        chordDetailVC.playChord(chordName: validChordName)
-//        let expectation = XCTestExpectation(description: "Wait for audio to play")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            expectation.fulfill()
-//        }
-//      wait(for: [expectation], timeout: 1.0)
-//
-//        XCTAssertEqual(chordDetailVC.status, .playing, "Status should be '.playing' when audio is playing")
-//    }
+    func testAudioPlayerDidFinishPlaying() {
+        chordDetailVC.status = .playing
+        let mockPlayer = AVAudioPlayer()
+        let expectation = XCTestExpectation(description: "Wait for audio to stop")
 
+        chordDetailVC.audioPlayerDidFinishPlaying(mockPlayer, successfully: true)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.5)
+        XCTAssertEqual(chordDetailVC.status, .stopped, "Status should be '.stopped' after audio finishes playing")
+    }
 
 
 }

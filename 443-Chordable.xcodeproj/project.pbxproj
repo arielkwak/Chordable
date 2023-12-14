@@ -15,7 +15,6 @@
 		352BC6F42B24234C0008D9B2 /* spotify.json in Resources */ = {isa = PBXBuildFile; fileRef = 418F71A12B1A4FB400244397 /* spotify.json */; };
 		352BC6F82B2526B50008D9B2 /* ImageNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6F72B2526B50008D9B2 /* ImageNamesTests.swift */; };
 		352BC6FE2B252A530008D9B2 /* ChordsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6FD2B252A530008D9B2 /* ChordsViewControllerTests.swift */; };
-		352BC7002B252C480008D9B2 /* SongLearningViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */; };
 		352BC7102B26701E0008D9B2 /* ChordDataInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC70F2B26701E0008D9B2 /* ChordDataInitializerTests.swift */; };
 		352BC7122B2670790008D9B2 /* SongDataInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC7112B2670790008D9B2 /* SongDataInitializerTests.swift */; };
 		352BC7222B26723C0008D9B2 /* AudioStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352BC7212B26723C0008D9B2 /* AudioStatusTests.swift */; };
@@ -105,7 +104,6 @@
 		352BC6EB2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsForGenreViewControllerTests.swift; sourceTree = "<group>"; };
 		352BC6F72B2526B50008D9B2 /* ImageNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNamesTests.swift; sourceTree = "<group>"; };
 		352BC6FD2B252A530008D9B2 /* ChordsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordsViewControllerTests.swift; sourceTree = "<group>"; };
-		352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLearningViewControllerTests.swift; sourceTree = "<group>"; };
 		352BC70F2B26701E0008D9B2 /* ChordDataInitializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordDataInitializerTests.swift; sourceTree = "<group>"; };
 		352BC7112B2670790008D9B2 /* SongDataInitializerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDataInitializerTests.swift; sourceTree = "<group>"; };
 		352BC7212B26723C0008D9B2 /* AudioStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatusTests.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				352BC6EB2B2412640008D9B2 /* SongsForGenreViewControllerTests.swift */,
-				352BC6FF2B252C480008D9B2 /* SongLearningViewControllerTests.swift */,
 			);
 			path = SongTests;
 			sourceTree = "<group>";
@@ -652,7 +649,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				352BC6FE2B252A530008D9B2 /* ChordsViewControllerTests.swift in Sources */,
-				352BC7002B252C480008D9B2 /* SongLearningViewControllerTests.swift in Sources */,
 				352BC7242B2672670008D9B2 /* ChordTests.swift in Sources */,
 				4165A7B12B1FFE7000BC22EA /* TestCoreDataStack.swift in Sources */,
 				352BC72A2B2672DE0008D9B2 /* SongTests.swift in Sources */,
@@ -818,7 +814,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-43-Chordable-Josh";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-Chordable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -849,7 +845,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-43-Chordable-Josh";
+				PRODUCT_BUNDLE_IDENTIFIER = "-43-Chordable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

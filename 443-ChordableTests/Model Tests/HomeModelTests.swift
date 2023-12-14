@@ -112,4 +112,33 @@ final class HomeModelTests: XCTestCase {
         XCTAssertEqual(fetchResults.total, 0, "Total songs count should be 0 on error")
         XCTAssertEqual(fetchResults.unlocked, 0, "Unlocked songs count should be 0 on error")
     }
+  
+    func testCountUnlockedSongs() throws {
+        let song1 = Song(context: mockContext)
+        song1.genre = "Rock"
+        song1.unlocked = true
+
+        let song2 = Song(context: mockContext)
+        song2.genre = "Rock"
+        song2.unlocked = false
+
+        let song3 = Song(context: mockContext)
+        song3.genre = "Pop"
+        song3.unlocked = true
+
+        let song4 = Song(context: mockContext)
+        song4.genre = "Rock"
+        song4.unlocked = true
+
+        try mockContext.save()
+
+        let rockCount = homeModel.countUnlockedSongs(forGenre: "Rock", context: mockContext)
+        XCTAssertEqual(rockCount, 2, "Should find 2 unlocked Rock songs")
+
+        let popCount = homeModel.countUnlockedSongs(forGenre: "Pop", context: mockContext)
+        XCTAssertEqual(popCount, 1, "Should find 1 unlocked Pop song")
+
+        let otherCount = homeModel.countUnlockedSongs(forGenre: "Classical", context: mockContext)
+        XCTAssertEqual(otherCount, 0, "Should find 0 unlocked Classical songs")
+    }
 }

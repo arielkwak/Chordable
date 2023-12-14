@@ -38,7 +38,7 @@ class ChordsViewController: ObservableObject {
         } catch {
             print("Failed to save completed state: \(error)")
         }
-        fetchChords() // Refresh the chords
+        fetchChords()
     }
 }
 

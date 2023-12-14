@@ -49,9 +49,7 @@ struct SongCellView: View {
   }
   
   func loadImage() {
-    // Return early if the image has already been requested. We can't just
-    // check if `self.image == nil` because the image might have already
-    // been requested, but not loaded yet.
+    
     if self.didRequestImage { return }
     self.didRequestImage = true
     

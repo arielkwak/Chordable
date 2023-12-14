@@ -46,7 +46,6 @@ struct SongsForGenreView: View {
                 .padding(.horizontal, 30)
               
               VStack{
-                // Search Bar
                 HStack {
                   Image(systemName: "magnifyingglass")
                     .foregroundColor(.black)
@@ -63,7 +62,6 @@ struct SongsForGenreView: View {
                 .padding(.horizontal, 30)
                 .padding(.vertical, 30)
                 
-                // Segmented Picker for Locked/Unlocked
                 HStack{
                   // button styling for Unlocked
                   Button(action: {
@@ -154,7 +152,6 @@ struct SongsForGenreView: View {
             }
           }
           
-          // Songs List
           ScrollView{
             LazyVStack(alignment: .leading) {
               ForEach(controller.sortedSongs, id: \.song_id) { song in
@@ -203,7 +200,7 @@ struct SongsForGenreView: View {
                       controller: SongLearningViewController(
                           context: context,
                           song: song,
-                          spotify: spotify  // Pass the Spotify object from the environment
+                          spotify: spotify
                       ),
                       song: song
                   ),
@@ -221,12 +218,11 @@ struct SongsForGenreView: View {
           controller.applyFilters()
         }
         
-        // Chords Overlay
         if showingChordsOverlay, let song = selectedSong {
           ChordsOverlayView(song: song, context: context, isPresented: $showingChordsOverlay)
         }
       }
-      .id(refreshView) // Use the refreshView variable to force refresh the view
+      .id(refreshView)
     }
     .background(Color.black.edgesIgnoringSafeArea(.all))
     .navigationBarBackButtonHidden(true)

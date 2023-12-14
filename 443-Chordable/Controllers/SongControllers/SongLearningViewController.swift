@@ -13,7 +13,7 @@ import Combine
 class SongLearningViewController: ObservableObject {
     @Published var currentChords: [SongChordInstance?] = [nil, nil, nil, nil] // Current and next 3 chords
     @Published var isPlaying = false
-    @Published var progress: Float = 0.0 // For progress bar
+    @Published var progress: Float = 0.0
     @Published var playAlong = false
     @Published var playRequestCancellable: AnyCancellable? = nil
     @Published var pauseRequestCancellable: AnyCancellable? = nil
@@ -30,7 +30,7 @@ class SongLearningViewController: ObservableObject {
     private var totalDuration: Float = 0.0
   
     var showAlert: ((AlertItem) -> Void)?
-    var song: Song // Make this internal or public
+    var song: Song
     var spotify: Spotify
     var songChordInstances: [SongChordInstance] = []
 
@@ -45,10 +45,7 @@ class SongLearningViewController: ObservableObject {
   
   
     func startPlayPause() {
-      // if play along, then play
       if playAlong {
-        // if is paused, then play song
-        // if is playing, then pause song
         if !isPlaying {
           if progress > 0 {
             resumeSong()
@@ -58,7 +55,6 @@ class SongLearningViewController: ObservableObject {
         } else {
           pauseSong()
         }
-        // play/pause chords
         playPauseToggled()
       } else {
         playPauseToggled()
@@ -82,7 +78,6 @@ class SongLearningViewController: ObservableObject {
               }, receiveValue: { _ in })
       }
 
-      // Pause Song
       func pauseSong() {
           let alertTitle = "Couldn't Pause \(song.title ?? "Song")"
           pauseRequestCancellable = spotify.api.pausePlayback()
@@ -94,7 +89,6 @@ class SongLearningViewController: ObservableObject {
               }, receiveValue: { _ in })
       }
 
-      // Resume Song
       func resumeSong() {
           let alertTitle = "Couldn't Resume \(song.title ?? "Song")"
           playRequestCancellable = spotify.api.resumePlayback()
@@ -121,7 +115,6 @@ class SongLearningViewController: ObservableObject {
         progress = 0.0
         updateChords()
         isPlaying = false
-        // Optionally reset Spotify playback here if needed
     }
 
     private func handleAlert(title: String, message: String) {
@@ -151,32 +144,26 @@ class SongLearningViewController: ObservableObject {
 
     private func updateChords() {
         print("HELLO?")
-        // Find the current chord based on elapsed time
         let currentChord = songChordInstances.first { instance in
             elapsedTime >= instance.start_time && elapsedTime < instance.end_time
         }
 
-        // Update the current chord
         currentChords[0] = currentChord
 
-        // Define a variable for the time to search for upcoming chords
         let searchTime = currentChord?.end_time ?? elapsedTime
 
-        // Find and update the next three chords
         let upcomingChords = songChordInstances.filter { $0.start_time >= searchTime }
         for i in 1...3 {
             currentChords[i] = (i - 1) < upcomingChords.count ? upcomingChords[i - 1] : nil
         }
 
-        // Handle the end of the song
         if elapsedTime >= totalDuration {
             stopTimer()
             isPlaying = false
             progress = 1.0
-            restartSong()  // Or any other action you'd like to perform at the end of the song
+            restartSong()
         }
 
-        // Update secondsToNextChord
         if let nextChord = upcomingChords.first {
             secondsToNextChord = nextChord.start_time - elapsedTime
         } else {

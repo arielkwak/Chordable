@@ -51,7 +51,6 @@ class SongDataInitializer {
         let songTitleComponents = songTitleWithID.split(separator: "-")
         guard !songTitleComponents.isEmpty else { return nil }
       
-        // New Code
         let songTitleWithoutID = songTitleComponents.dropFirst().joined(separator: "-")
         var songTitle = songTitleWithoutID.replacingOccurrences(of: "_", with: " ")
                                             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -61,7 +60,6 @@ class SongDataInitializer {
         for (key, value) in specialCases {
             songTitle = songTitle.replacingOccurrences(of: key, with: value)
         }
-        // END OF NEW CODE
         
         let songEntry = Song(context: context)
         songEntry.song_id = UUID()
@@ -129,7 +127,6 @@ class SongDataInitializer {
     }
 
     func findChordObject(chordName: String, in context: NSManagedObjectContext) -> Chord? {
-        // Fetch request to find the chord object that matches the simplified chord name
         let request: NSFetchRequest<Chord> = Chord.fetchRequest()
         request.predicate = NSPredicate(format: "chord_name == %@", chordName)
 

@@ -12,7 +12,6 @@ extension Song {
     static func filterSongs(songs: [Song], searchText: String, tabSelection: Int) -> [Song] {
         return songs.filter { song in
             let matchesSearchText = searchText.isEmpty || (song.title?.lowercased().contains(searchText.lowercased()) ?? false)
-            // Directly use the 'unlocked' attribute of the Song entity
             let isUnlocked = song.unlocked
             return matchesSearchText && ((tabSelection == 0 && !isUnlocked) || (tabSelection == 1 && isUnlocked))
         }

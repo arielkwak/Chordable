@@ -7,8 +7,7 @@ struct MainTabView: View {
     @EnvironmentObject var homeModel: HomeModel
 
     var body: some View {
-        VStack(spacing: 0) { // Remove the Spacer and set spacing to 0
-            // Content views for different tabs
+        VStack(spacing: 0) {
             if selectedTab == 0 {
                 ChordsView(viewController: ChordsViewController())
             } else if selectedTab == 1 {
@@ -64,9 +63,3 @@ struct CustomTabBarButton: View {
     }
 }
 
-
-//struct MainTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainTabView()
-//    }
-//}

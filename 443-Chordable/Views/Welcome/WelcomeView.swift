@@ -12,7 +12,7 @@ import Combine
 
 struct WelcomeView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @EnvironmentObject var onboardingState: OnboardingState // Now using the shared state
+    @EnvironmentObject var onboardingState: OnboardingState
     @State var userName: String = ""
   
     @EnvironmentObject var spotify: Spotify
@@ -24,24 +24,19 @@ struct WelcomeView: View {
     NavigationView {
       ScrollView {
         ZStack {
-          // Start with a black background
           Color.black.edgesIgnoringSafeArea(.all)
           
-          // Place your image on top of the black background
           Image("start_page_background_image")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
           
-          // Create a gradient from black to transparent that overlays the image
           let gradient = Gradient(colors: [Color.black, Color.black.opacity(0.6), Color.clear])
           let linearGradient = LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
           
-          // Place the gradient on top of the image
           linearGradient.edgesIgnoringSafeArea(.all)
           
           VStack(alignment: .leading, spacing: 16) {
-            // Welcome texts
             Text("Welcome!")
               .font(.custom("Barlow-Regular", size: 50))
               .fontWeight(.semibold)
@@ -54,14 +49,13 @@ struct WelcomeView: View {
               .foregroundColor(.white)
               .padding(.bottom, 100)
             
-            
-            // TextField placed higher on the screen
+          
             ZStack(alignment: .bottomLeading) {
               Rectangle()
-                .frame(height: 6) // Height of the underline
-                .foregroundColor(.white) // Color of the underline
-                .cornerRadius(3) // This will make the ends of the Rectangle a bit more curvy.
-                .padding(.trailing, 30) // This will prevent it from extending all the way to the right.
+                .frame(height: 6)
+                .foregroundColor(.white)
+                .cornerRadius(3)
+                .padding(.trailing, 30)
               
               TextField("", text: $userName)
                 .font(.custom("Barlow-Regular", size: 18))
@@ -70,12 +64,11 @@ struct WelcomeView: View {
                 .placeholder(when: userName.isEmpty) {
                   Text("Enter your name").foregroundColor(.white).opacity(0.7).italic()
                 }
-                .padding(.bottom, 15) // This will move the text up a bit, so it doesn't overlap the underline.
-                .padding(.trailing, 30) // This will align the TextField text with the padded Rectangle underline.
+                .padding(.bottom, 15)
+                .padding(.trailing, 30)
             }
             
-            
-            // Conditional display of the 'Continue' button
+          
             if !userName.isEmpty {
               NavigationLink(
                 destination: SpotifyWelcomeView(userName: $userName, isAuthorized: $isAuthorized)) {
@@ -83,12 +76,9 @@ struct WelcomeView: View {
                     Text("Continue")
                       .fontWeight(.bold)
                       .foregroundColor(.white)
-                    Image(systemName: "arrow.right") // Sideways caret
+                    Image(systemName: "arrow.right")
                       .foregroundColor(.white)
                   }
-//                  .onTapGesture {
-//                    addUserAndContinue()
-//                  }
                 }
               
               
@@ -96,11 +86,11 @@ struct WelcomeView: View {
               .padding(.horizontal)
             }
             
-            Spacer() // This spacer pushes the content towards the top, leaving space at the bottom.
+            Spacer()
           }
           .padding(.top, UIApplication.shared.connectedScenes
             .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-            .first { $0.isKeyWindow }?.safeAreaInsets.top ?? 0 + 20) // Additional top padding to respect the safe area and additional space
+            .first { $0.isKeyWindow }?.safeAreaInsets.top ?? 0 + 20)
           .padding(.leading, 30)
         }
         .navigationBarHidden(true)
@@ -108,25 +98,7 @@ struct WelcomeView: View {
     }
   }
   
-//    private func addUserAndContinue() {
-//        
-//        let newUser = UserInfo(context: managedObjectContext)
-//        newUser.user_id = UUID()
-//        newUser.user_name = userName
-//        newUser.num_chords_completed = 0
-//        newUser.day_streak = 0
-//        newUser.num_songs_unlocked = 0
-//        
-//      if isAuthorized {
-//        do {
-//          try managedObjectContext.save()
-//          onboardingState.completeOnboarding() // Updates the shared onboarding state
-//        } catch {
-//          print("Could not save user: \(error)")
-//        }
-//      }
-//          
-//    }
+
 }
 
 
@@ -142,12 +114,3 @@ extension View {
     }
 }
 
-// WelcomeView.swift
-// Add your existing WelcomeView code here.
-//
-//struct WelcomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WelcomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//            .environmentObject(OnboardingState()) // Make sure to provide this if your view relies on it
-//    }
-//}

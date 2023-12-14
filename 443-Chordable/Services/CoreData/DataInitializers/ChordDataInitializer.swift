@@ -42,7 +42,6 @@ class ChordDataInitializer {
                 chord_instance.difficulty = difficulty.description
                 chord_instance.completed = false
                 
-                // Set the displayable_name attribute
                 if chord.hasSuffix("m") {
                     chord_instance.displayable_name = String(chord.dropLast())
                 } else {

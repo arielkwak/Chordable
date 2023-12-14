@@ -59,8 +59,6 @@ struct LoginView: ViewModifier {
         }
       }
       .onAppear {
-        // After the app first launches, add a short delay before
-        // showing this view so that the animation can be seen.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
           withAnimation(LoginView.animation) {
             self.finishedViewLoadDelay = true
@@ -121,9 +119,6 @@ struct LoginView: ViewModifier {
         }
         .accessibility(identifier: "Connect to Spotify Identifier")
         .buttonStyle(PlainButtonStyle())
-        // Prevent the user from trying to login again
-        // if a request to retrieve the access and refresh
-        // tokens is currently in progress.
         .allowsHitTesting(!spotify.isRetrievingTokens)
         .padding(.bottom, 5)
       }.offset(y: -90)

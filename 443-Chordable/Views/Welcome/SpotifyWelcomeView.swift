@@ -11,7 +11,7 @@ import Combine
 
 struct SpotifyWelcomeView: View {
   @Environment(\.managedObjectContext) var managedObjectContext
-  @EnvironmentObject var onboardingState: OnboardingState // Now using the shared state
+  @EnvironmentObject var onboardingState: OnboardingState
   @Binding var userName: String
   
   @EnvironmentObject var spotify: Spotify
@@ -129,7 +129,7 @@ struct SpotifyWelcomeView: View {
     
       do {
         try managedObjectContext.save()
-        onboardingState.completeOnboarding() // Updates the shared onboarding state
+        onboardingState.completeOnboarding()
       } catch {
         print("Could not save user: \(error)")
       }

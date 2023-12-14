@@ -68,7 +68,6 @@ struct ChordDetailView: View {
             .padding(.bottom, 20)
             .foregroundStyle(Color.white)
           
-          // Display corresponding chord image
           Image("\(chord.chord_name ?? "")_diagram")
             .resizable()
             .scaledToFill()
@@ -139,9 +138,7 @@ struct ChordDetailView: View {
         
         // MARK: - Recording Button -
         
-        // record chord button, begin counting down/stop recording
         Button {
-            // record audio
           if audio.status == .stopped {
             if audio.hasMicAccess {
               startCountdown()

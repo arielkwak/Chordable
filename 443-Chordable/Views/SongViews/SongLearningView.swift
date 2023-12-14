@@ -6,8 +6,6 @@
 //  Referenced playback code from https://github.com/Peter-Schorn/SpotifyAPIExampleApp/blob/main/SpotifyAPIExampleApp/Views/TrackView.swift
 
 import SwiftUI
-//import SpotifyWebAPI
-//import Combine
 
 struct SongLearningView: View {
     @ObservedObject var controller: SongLearningViewController
@@ -56,7 +54,7 @@ struct SongLearningView: View {
                 EmptyView()
               }
               .toggleStyle(GradientToggleStyle())
-              .disabled(!controller.isAtStartingPosition) // Disable the toggle if not at starting position
+              .disabled(!controller.isAtStartingPosition)
               .padding(.trailing, 10)
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -67,14 +65,13 @@ struct SongLearningView: View {
             
           // switch text
           if let secondsToNextChord = controller.secondsToNextChord {
-            Text("Switch in \(String(format: "%.1f", secondsToNextChord)) second(s)") // Updated line
+            Text("Switch in \(String(format: "%.1f", secondsToNextChord)) second(s)")
               .font(.headline)
               .font(.custom("Barlow-Bold", size: 32))
               .foregroundColor(.white)
               .padding(.bottom, 15)
           }
         
-          // Display the current chord
           let chordName = controller.currentChords[0]?.chord?.chord_name ?? "No\nChord"
           let isLongChordName = chordName.count > 2
           Text(chordName)
@@ -133,9 +130,7 @@ struct SongLearningView: View {
             .padding(.horizontal, 25)
           }
           .padding(.bottom, 10)
-          
-
-          // Progress Bar
+        
           ProgressBar(progress: controller.progress)
           
           // Play/Pause Button
@@ -193,24 +188,6 @@ struct ProgressBar: View {
 
 
 
-
-//struct ProgressBar: View {
-//    var progress: Float
-//
-//    var body: some View {
-//        ZStack(alignment: .leading) {
-//            Rectangle()
-//                .foregroundColor(Color(red: 114 / 255, green: 114 / 255, blue: 114 / 255))
-//                .cornerRadius(5)
-//            Rectangle()
-//                .frame(width: CGFloat(self.progress) * UIScreen.main.bounds.width)
-//                .foregroundColor(.white)
-//                .cornerRadius(5)
-//        }
-//        .frame(height: 10)
-//        .padding(.horizontal, 25)
-//    }
-//}
 
 struct GradientToggleStyle: ToggleStyle {
   var colors: [Color] = [Color(red: 127 / 255, green: 0, blue: 255 / 255, opacity: 1), Color(red: 36 / 255, green: 0, blue: 255 / 255, opacity: 1)]

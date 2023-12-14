@@ -138,12 +138,10 @@ class SongLearningViewController: ObservableObject {
 
     private func updateProgress() {
         progress = elapsedTime / totalDuration
-        print("Elapsed Time: \(elapsedTime), Total Duration: \(totalDuration), Progress: \(progress)")
     }
 
 
     private func updateChords() {
-        print("HELLO?")
         let currentChord = songChordInstances.first { instance in
             elapsedTime >= instance.start_time && elapsedTime < instance.end_time
         }
@@ -186,6 +184,5 @@ class SongLearningViewController: ObservableObject {
 
     private func calculateTotalDuration() {
         totalDuration = songChordInstances.last?.end_time ?? 0.0
-        print(totalDuration)
     }
 }

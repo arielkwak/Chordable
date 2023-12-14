@@ -59,7 +59,6 @@ struct SongCellView: View {
           return getAlbum(albumURI: track.album?.uri ?? "")
         }
         .sink(receiveCompletion: { completion in
-          print("album completion for \(song.title):", completion, terminator: "\n\n\n")
         }, receiveValue: { album in
           self.album = album
           

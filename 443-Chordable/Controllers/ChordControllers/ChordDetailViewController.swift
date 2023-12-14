@@ -28,7 +28,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       do {
           try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
           try session.setActive(true)
-          print("Audio session activated successfully.")
       } catch {
           print("AVAudioSession configuration error: \(error.localizedDescription)")
       }
@@ -88,9 +87,7 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       if let recorder = audioRecorder {
           if !recorder.prepareToRecord() {
               print("Failed to prepare to record.")
-          } else {
-              print("Recorder prepared successfully.")
-          }
+          } else {}
       } else {
           print("Recorder is nil after initialization.")
       }
@@ -106,7 +103,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
       if let recorder = audioRecorder, recorder.prepareToRecord() {
           recorder.record()
           status = .recording
-          print("Recording started.")
 
           timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
               self?.stopRecording(completion: completion)
@@ -122,14 +118,11 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .stopped
-      print("Stopped recording. File path: \(urlForMemo.path)")
 
       if FileManager.default.fileExists(atPath: urlForMemo.path) {
           if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForMemo.path),
              let fileSize = attributes[.size] as? UInt64 {
-              print("File size: \(fileSize) bytes.")
               if fileSize > 0 {
-                  print("Proceeding with file upload.")
                   
                   DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                       self.isRecordingActive = false
@@ -194,7 +187,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
                           try context.save()
                           Song.updateLockedSongs(context: context)
                       } catch {
-
                           print("Failed to save context: \(error)")
                       }
                   }
@@ -224,7 +216,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
   }
 
   func uploadAudioFile(_ fileURL: URL, completion: @escaping (String) -> Void) {
-      print("Uploading audio file...")
       let url = URL(string: "https://ogometz.pythonanywhere.com/predict")!
       var request = URLRequest(url: url)
       request.httpMethod = "POST"
@@ -255,12 +246,6 @@ class ChordDetailViewController: NSObject, ObservableObject, AVAudioRecorderDele
             completion("Error")
             return
         }
-        
-//        // debugging code
-//        if let responseString = String(data: data, encoding: .utf8) {
-//            print("Raw server response: \(responseString)")
-//        }
-//        // end of begunning code
 
         do {
             let chordResponse = try JSONDecoder().decode(ChordResponse.self, from: data)

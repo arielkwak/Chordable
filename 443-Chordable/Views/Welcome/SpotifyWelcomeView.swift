@@ -118,7 +118,6 @@ struct SpotifyWelcomeView: View {
         }
   
   private func addUserAndContinue() {
-    print("in add user")
       
       let newUser = UserInfo(context: managedObjectContext)
       newUser.user_id = UUID()

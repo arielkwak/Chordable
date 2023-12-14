@@ -18,7 +18,6 @@ extension Song {
     }
 
     func getUniqueChords(context: NSManagedObjectContext) -> [Chord] {
-        print("Fetching unique chords for song: \(self.title ?? "Unknown Title")")
 
         guard let chordInstances = self.songChordInstances as? Set<SongChordInstance> else {
             print("No chord instances found for this song.")
@@ -26,17 +25,14 @@ extension Song {
         }
 
         let chordIDs = chordInstances.map { $0.chord?.chord_id }
-        print("Chord IDs from SongChordInstances: \(chordIDs)")
 
         let uniqueChordIDs = Set(chordIDs.compactMap { $0 })
-        print("Unique Chord IDs: \(uniqueChordIDs)")
 
         let fetchRequest: NSFetchRequest<Chord> = Chord.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "chord_id IN %@", uniqueChordIDs)
 
         do {
             let chords = try context.fetch(fetchRequest)
-            print("Fetched Chords: \(chords.map { $0.displayable_name ?? "Unnamed Chord" })")
             return chords
         } catch {
             print("Error fetching chords: \(error)")

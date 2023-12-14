@@ -181,11 +181,6 @@ struct ChordDetailView: View {
               }
             }
           } else {
-            // older vers
-            // let imageName = (audio.status == .recording ? "mic.circle.fill" : "mic.circle")
-            // Image(systemName: imageName)
-            //   .font(.system(size: 70))
-            //   .foregroundColor(Color(.systemRed))
             if audio.status == .recording{
               VStack{
                 ZStack{
